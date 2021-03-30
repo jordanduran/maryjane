@@ -1,8 +1,11 @@
+import { Fragment } from 'react';
+import Hero from '../components/homepage/Hero';
+
 const HomePage = () => {
   return (
-    <div>
-      <h1>HomePage!</h1>
-    </div>
+    <Fragment>
+      <Hero />
+    </Fragment>
   );
 };
 
