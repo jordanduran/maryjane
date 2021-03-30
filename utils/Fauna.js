@@ -26,6 +26,25 @@ const getUserById = async () => {
 
 const createUser = async () => {
   // TODO: create user
+  const { data } = await faunaClient.query(
+    q.Create(q.Collection('users'), {
+      data: {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        password: hashedPassword,
+        address: {
+          street: formData.streetAddress,
+          city: formData.city,
+          state: formData.state,
+          zipcode: formData.zipcode,
+        },
+        isVendor: false,
+        isAdmin: false,
+      },
+    })
+  );
+  return data;
 };
 
 const updateUser = async () => {

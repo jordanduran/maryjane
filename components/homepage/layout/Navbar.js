@@ -52,7 +52,7 @@ const Navbar = () => {
           <div className='hidden space-x-10 md:flex md:ml-10'>
             <Link href='/marketplace'>
               <a
-                className='font-medium text-black hover:text-gray-300'
+                className='font-medium text-gray-700 hover:text-gray-800'
                 onFocus={() => setIsNavMenuOpen(false)}
               >
                 Marketplace
@@ -60,10 +60,10 @@ const Navbar = () => {
             </Link>
             <Link href='/apply'>
               <a
-                className='font-medium text-black hover:text-gray-300'
+                className='font-medium text-gray-700 hover:text-gray-800'
                 onFocus={() => setIsNavMenuOpen(false)}
               >
-                Deliver with Leafly
+                Deliver with Maryjane
               </a>
             </Link>
           </div>
@@ -71,7 +71,7 @@ const Navbar = () => {
         <div className='hidden md:flex md:space-x-4'>
           <Link href='/login'>
             <a
-              className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-black bg-gray-200 hover:bg-gray-300'
+              className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray700 bg-gray-200 hover:bg-gray-300'
               onFocus={() => setIsNavMenuOpen(false)}
             >
               Sign In
@@ -135,10 +135,10 @@ const Navbar = () => {
               </Link>
               <Link href='/apply'>
                 <a
-                  className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                  className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-800 hover:bg-gray-200'
                   onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
                 >
-                  Deliver with Leafly
+                  Deliver with Maryjane
                 </a>
               </Link>
             </div>
