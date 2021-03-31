@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useSession, signOut, signout } from 'next-auth/client';
+import { useRouter } from 'next/router';
 import { Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCannabis, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -8,9 +9,11 @@ import { faCannabis, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 const Navbar = () => {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
   const [session, loading] = useSession();
+  const router = useRouter();
 
   const logoutHandler = () => {
     signout();
+    router.replace('/');
   };
 
   return (
