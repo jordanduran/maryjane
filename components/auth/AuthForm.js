@@ -108,7 +108,7 @@ const AuthForm = () => {
       {isLogin && (
         <Fragment>
           <h2
-            className='mt-6 text-center text-3xl font-extrabold text-gray-900'
+            className='mt-6 text-center text-3xl font-extrabold text-gray-600'
             ref={headingRef}
           >
             Sign into your account
@@ -249,7 +249,7 @@ const AuthForm = () => {
       {!isLogin && (
         <Fragment>
           <h2
-            className='mt-6 text-center text-3xl font-extrabold text-gray-900'
+            className='mt-6 text-center text-3xl font-extrabold text-gray-600'
             ref={headingRef}
           >
             Create your new account
@@ -274,7 +274,7 @@ const AuthForm = () => {
                   name='name'
                   id='name'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='John Doe'
+                  placeholder='Full Name'
                   required
                 />
               </div>
@@ -292,7 +292,7 @@ const AuthForm = () => {
                   name='phone'
                   id='phone'
                   autoComplete='phone'
-                  placeholder='123-456-7890'
+                  placeholder='Phone Number'
                   required
                   className='block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md'
                   ref={phoneInputRef}
@@ -313,7 +313,7 @@ const AuthForm = () => {
                   name='email'
                   id='email'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='you@example.com'
+                  placeholder='Email Address'
                   required
                 />
               </div>
@@ -332,7 +332,7 @@ const AuthForm = () => {
                   name='street'
                   id='street'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='123 Riverview Park'
+                  placeholder='Street'
                   required
                 />
               </div>
@@ -351,7 +351,7 @@ const AuthForm = () => {
                   name='city'
                   id='city'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='Manhattan'
+                  placeholder='City'
                   required
                 />
               </div>
@@ -370,7 +370,7 @@ const AuthForm = () => {
                   name='state'
                   id='state'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='New York'
+                  placeholder='State'
                   required
                 />
               </div>
@@ -389,7 +389,7 @@ const AuthForm = () => {
                   name='zipcode'
                   id='zipcode'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='10001'
+                  placeholder='Zipcode'
                   required
                 />
               </div>
@@ -409,6 +409,7 @@ const AuthForm = () => {
                   id='password'
                   className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
                   autoComplete='current-password'
+                  placeholder='Password'
                   required
                 />
               </div>
