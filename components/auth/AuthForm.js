@@ -4,11 +4,100 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
+
   const headingRef = useRef(null);
+  const nameInputRef = useRef();
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const phoneInputRef = useRef();
+  const streetInputRef = useRef();
+  const cityInputRef = useRef();
+  const stateInputRef = useRef();
+  const zipcodeInputRef = useRef();
+
+  const createUser = async (
+    name,
+    email,
+    password,
+    phone,
+    street,
+    city,
+    state,
+    zipcode
+  ) => {
+    const response = await fetch('/api/createUser', {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        password,
+        street,
+        city,
+        state,
+        zipcode,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Something went wrong!!!');
+    }
+
+    // nameInputRef.current.value = '';
+    // phoneInputRef.current.value = '';
+    // emailInputRef.current.value = '';
+    // streetAddressInputRef.current.value = '';
+    // cityInputRef.current.value = '';
+    // stateInputRef.current.value = '';
+    // zipcodeInputRef.current.value = '';
+
+    return data;
+  };
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
     headingRef.current.scrollIntoView();
+  };
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
+    const enteredName = nameInputRef.current.value;
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+    const enteredPhone = phoneInputRef.current.value;
+    const enteredStreet = streetInputRef.current.value;
+    const enteredCity = cityInputRef.current.value;
+    const enteredState = stateInputRef.current.value;
+    const enteredZipcode = zipcodeInputRef.current.value;
+
+    // OPTIONAL: Add Validation
+
+    if (isLogin) {
+      // sign user in
+    } else {
+      // create new user
+      try {
+        const result = await createUser(
+          enteredName,
+          enteredEmail,
+          enteredPhone,
+          enteredPassword,
+          enteredStreet,
+          enteredCity,
+          enteredState,
+          enteredZipcode
+        );
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -30,7 +119,12 @@ const AuthForm = () => {
               start your 14-day free trial
             </a>
           </p>
-          <form className='mt-8 space-y-6' action='#' method='POST'>
+          <form
+            onSubmit={submitHandler}
+            className='mt-8 space-y-6'
+            action='#'
+            method='POST'
+          >
             <input type='hidden' name='remember' value='true' />
             <div className='rounded-md shadow-sm -space-y-px'>
               <div>
@@ -38,6 +132,7 @@ const AuthForm = () => {
                   Email address
                 </label>
                 <input
+                  ref={emailInputRef}
                   id='email-address'
                   name='email'
                   type='email'
@@ -52,6 +147,7 @@ const AuthForm = () => {
                   Password
                 </label>
                 <input
+                  ref={passwordInputRef}
                   id='password'
                   name='password'
                   type='password'
@@ -154,22 +250,48 @@ const AuthForm = () => {
           >
             Create your new account
           </h2>
-          <form className='mt-8 space-y-6' action='#' method='POST'>
+          <form
+            onSubmit={submitHandler}
+            className='mt-8 space-y-6'
+            action='#'
+            method='POST'
+          >
             <div>
               <label
-                for='email'
+                for='name'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Full Name
               </label>
               <div className='mt-1'>
                 <input
+                  ref={nameInputRef}
                   type='text'
                   name='name'
                   id='name'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
                   placeholder='John Doe'
                   required
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                for='phone'
+                className='text-left block text-sm font-medium text-gray-700'
+              >
+                Phone Number
+              </label>
+              <div className='mt-1'>
+                <input
+                  type='tel'
+                  name='phone'
+                  id='phone'
+                  autoComplete='phone'
+                  placeholder='123-456-7890'
+                  required
+                  className='block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md'
+                  ref={phoneInputRef}
                 />
               </div>
             </div>
@@ -182,6 +304,7 @@ const AuthForm = () => {
               </label>
               <div className='mt-1'>
                 <input
+                  ref={emailInputRef}
                   type='text'
                   name='email'
                   id='email'
@@ -193,13 +316,14 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='email'
+                for='street'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Street Address
               </label>
               <div className='mt-1'>
                 <input
+                  ref={streetInputRef}
                   type='text'
                   name='street'
                   id='street'
@@ -211,13 +335,14 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='email'
+                for='city'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 City
               </label>
               <div className='mt-1'>
                 <input
+                  ref={cityInputRef}
                   type='text'
                   name='city'
                   id='city'
@@ -229,13 +354,14 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='email'
+                for='state'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 State
               </label>
               <div className='mt-1'>
                 <input
+                  ref={stateInputRef}
                   type='text'
                   name='state'
                   id='state'
@@ -247,13 +373,14 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='email'
+                for='zipcode'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Zipcode
               </label>
               <div className='mt-1'>
                 <input
+                  ref={zipcodeInputRef}
                   type='text'
                   name='zipcode'
                   id='zipcode'
@@ -265,13 +392,14 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='email'
+                for='password'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Password
               </label>
               <div className='mt-1'>
                 <input
+                  ref={passwordInputRef}
                   type='password'
                   name='password'
                   id='password'

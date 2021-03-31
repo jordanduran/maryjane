@@ -1,8 +1,8 @@
 const faunadb = require('faunadb');
-const faunaClient = new faunadb.Client({
-  secret: process.env.FAUNADB_SECRET_KEY,
-});
 const q = faunadb.query;
+const faunaClient = new faunadb.Client({
+  secret: process.env.FAUNA_SECRET_KEY,
+});
 
 const getUsers = async () => {
   // TODO: get users
@@ -24,27 +24,41 @@ const getUserById = async () => {
   // TODO: get user by id
 };
 
-const createUser = async () => {
-  // TODO: create user
+const getUserByEmail = async (email) => {
+  // TODO: get user by email
   const { data } = await faunaClient.query(
+    q.Get(q.Match(q.Index('user_by_email'), email))
+  );
+  return data;
+};
+
+const createUser = async (
+  name,
+  email,
+  phone,
+  password,
+  street,
+  city,
+  state,
+  zipcode
+) => {
+  // TODO: create user
+  return await faunaClient.query(
     q.Create(q.Collection('users'), {
       data: {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        password: hashedPassword,
+        name,
+        email,
+        phone,
+        password,
         address: {
-          street: formData.streetAddress,
-          city: formData.city,
-          state: formData.state,
-          zipcode: formData.zipcode,
+          street,
+          city,
+          state,
+          zipcode,
         },
-        isVendor: false,
-        isAdmin: false,
       },
     })
   );
-  return data;
 };
 
 const updateUser = async () => {
@@ -58,6 +72,7 @@ const deleteUser = async () => {
 module.exports = {
   getUsers,
   getUserById,
+  getUserByEmail,
   createUser,
   updateUser,
   deleteUser,
