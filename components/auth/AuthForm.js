@@ -74,7 +74,10 @@ const AuthForm = () => {
         password: enteredPassword,
       });
 
-      console.log(result);
+      if (result.ok) {
+        console.log(result);
+        router.replace('/marketplace');
+      }
     } else if (!isLogin) {
       // create new user
       const enteredName = nameInputRef.current.value;
