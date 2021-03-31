@@ -1,9 +1,11 @@
 import { Fragment, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/router';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter();
 
   const headingRef = useRef(null);
   const nameInputRef = useRef();
@@ -48,14 +50,6 @@ const AuthForm = () => {
       throw new Error(data.message || 'Something went wrong!!!');
     }
 
-    // nameInputRef.current.value = '';
-    // phoneInputRef.current.value = '';
-    // emailInputRef.current.value = '';
-    // streetAddressInputRef.current.value = '';
-    // cityInputRef.current.value = '';
-    // stateInputRef.current.value = '';
-    // zipcodeInputRef.current.value = '';
-
     return data;
   };
 
@@ -93,6 +87,15 @@ const AuthForm = () => {
           enteredState,
           enteredZipcode
         );
+        nameInputRef.current.value = '';
+        phoneInputRef.current.value = '';
+        emailInputRef.current.value = '';
+        streetInputRef.current.value = '';
+        cityInputRef.current.value = '';
+        stateInputRef.current.value = '';
+        zipcodeInputRef.current.value = '';
+        passwordInputRef.current.value = '';
+        setIsLogin(true);
         console.log(result);
       } catch (error) {
         console.log(error);
@@ -115,6 +118,7 @@ const AuthForm = () => {
             <a
               onClick={switchAuthModeHandler}
               class='font-medium text-green-600 hover:text-green-500'
+              style={{ cursor: 'pointer' }}
             >
               start your 14-day free trial
             </a>
@@ -414,7 +418,7 @@ const AuthForm = () => {
                 type='submit'
                 className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
               >
-                <span className='text-lg absolute left-0 inset-y-0 flex items-center pl-3'>
+                <span className='text-base absolute left-0 inset-y-0 flex items-center pl-3'>
                   <FontAwesomeIcon icon={faUserPlus} />
                 </span>
                 Sign Up

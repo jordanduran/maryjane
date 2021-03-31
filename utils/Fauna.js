@@ -56,6 +56,8 @@ const createUser = async (
           state,
           zipcode,
         },
+        isAdmin: false,
+        isCompanyOwner: false,
       },
     })
   );
