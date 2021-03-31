@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { useSession, signOut, signout } from 'next-auth/client';
+import { useSession, signOut } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +12,7 @@ const Navbar = () => {
   const router = useRouter();
 
   const logoutHandler = () => {
-    signout();
+    signOut();
     router.replace('/');
   };
 
