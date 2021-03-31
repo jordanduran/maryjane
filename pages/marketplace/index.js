@@ -1,9 +1,14 @@
 import React from 'react';
+import CompanyList from '../../components/company/CompanyList';
+import Hero from '../../components/marketplace/Hero';
 
 const MarketPlacePage = () => {
   return (
-    <div>
-      <h1>All companies!</h1>
+    <div className='max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 confetti-bg'>
+      <Hero />
+      <div className='max-w-5xl mx-auto'>
+        <CompanyList />
+      </div>
     </div>
   );
 };
