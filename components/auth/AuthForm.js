@@ -108,16 +108,16 @@ const AuthForm = () => {
       {isLogin && (
         <Fragment>
           <h2
-            class='mt-6 text-center text-3xl font-extrabold text-gray-900'
+            className='mt-6 text-center text-3xl font-extrabold text-gray-900'
             ref={headingRef}
           >
             Sign into your account
           </h2>
-          <p class='mt-2 text-center text-sm text-gray-600'>
+          <p className='mt-2 text-center text-sm text-gray-600'>
             Or{' '}
             <a
               onClick={switchAuthModeHandler}
-              class='font-medium text-green-600 hover:text-green-500'
+              className='font-medium text-green-600 hover:text-green-500'
               style={{ cursor: 'pointer' }}
             >
               start your 14-day free trial
@@ -132,7 +132,7 @@ const AuthForm = () => {
             <input type='hidden' name='remember' value='true' />
             <div className='rounded-md shadow-sm -space-y-px'>
               <div>
-                <label for='email-address' className='sr-only'>
+                <label htmlFor='email-address' className='sr-only'>
                   Email address
                 </label>
                 <input
@@ -140,14 +140,14 @@ const AuthForm = () => {
                   id='email-address'
                   name='email'
                   type='email'
-                  autocomplete='email'
+                  autoComplete='email'
                   required
                   className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
                   placeholder='Email address'
                 />
               </div>
               <div>
-                <label for='password' className='sr-only'>
+                <label htmlFor='password' className='sr-only'>
                   Password
                 </label>
                 <input
@@ -155,7 +155,7 @@ const AuthForm = () => {
                   id='password'
                   name='password'
                   type='password'
-                  autocomplete='current-password'
+                  autoComplete='current-password'
                   required
                   className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
                   placeholder='Password'
@@ -172,7 +172,7 @@ const AuthForm = () => {
                   className='h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded'
                 />
                 <label
-                  for='remember_me'
+                  htmlFor='remember_me'
                   className='ml-2 block text-sm text-gray-900'
                 >
                   Remember me
@@ -213,21 +213,21 @@ const AuthForm = () => {
               </button>
             </div>
 
-            <div class='relative'>
+            <div className='relative'>
               <div
-                class='absolute inset-0 flex items-center'
+                className='absolute inset-0 flex items-center'
                 aria-hidden='true'
               >
-                <div class='w-full border-t border-gray-300'></div>
+                <div className='w-full border-t border-gray-300'></div>
               </div>
-              <div class='relative flex justify-center'>
+              <div className='relative flex justify-center'>
                 <button
                   onClick={switchAuthModeHandler}
                   type='button'
-                  class='inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  className='inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                 >
                   <svg
-                    class='-ml-1.5 mr-1 h-5 w-5 text-gray-400'
+                    className='-ml-1.5 mr-1 h-5 w-5 text-gray-400'
                     xmlns='http://www.w3.org/2000/svg'
                     viewBox='0 0 20 20'
                     fill='currentColor'
@@ -249,7 +249,7 @@ const AuthForm = () => {
       {!isLogin && (
         <Fragment>
           <h2
-            class='mt-6 text-center text-3xl font-extrabold text-gray-900'
+            className='mt-6 text-center text-3xl font-extrabold text-gray-900'
             ref={headingRef}
           >
             Create your new account
@@ -262,7 +262,7 @@ const AuthForm = () => {
           >
             <div>
               <label
-                for='name'
+                htmlFor='name'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Full Name
@@ -281,7 +281,7 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='phone'
+                htmlFor='phone'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Phone Number
@@ -301,7 +301,7 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='email'
+                htmlFor='email'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Email Address
@@ -320,7 +320,7 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='street'
+                htmlFor='street'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Street Address
@@ -339,7 +339,7 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='city'
+                htmlFor='city'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 City
@@ -358,7 +358,7 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='state'
+                htmlFor='state'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 State
@@ -377,7 +377,7 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='zipcode'
+                htmlFor='zipcode'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Zipcode
@@ -396,7 +396,7 @@ const AuthForm = () => {
             </div>
             <div>
               <label
-                for='password'
+                htmlFor='password'
                 className='text-left block text-sm font-medium text-gray-700'
               >
                 Password
@@ -408,7 +408,7 @@ const AuthForm = () => {
                   name='password'
                   id='password'
                   className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
-                  autocomplete='current-password'
+                  autoComplete='current-password'
                   required
                 />
               </div>

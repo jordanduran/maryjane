@@ -15,14 +15,16 @@ const Navbar = () => {
       >
         <div className='flex items-center flex-1'>
           <div className='flex items-center justify-between w-full md:w-auto'>
-            <a href='/'>
-              <span className='sr-only'>Workflow</span>
-              <FontAwesomeIcon
-                style={{ color: '#10B981' }}
-                className='fa-2x'
-                icon={faCannabis}
-              />
-            </a>
+            <Link href='/'>
+              <a>
+                <span className='sr-only'>Workflow</span>
+                <FontAwesomeIcon
+                  style={{ color: '#10B981' }}
+                  className='fa-2x'
+                  icon={faCannabis}
+                />
+              </a>
+            </Link>
             <div className='-mr-2 flex items-center md:hidden'>
               <button
                 onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
@@ -69,7 +71,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className='hidden md:flex md:space-x-4'>
-          <Link href='/login'>
+          <Link href='/auth'>
             <a
               className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray700 bg-gray-200 hover:bg-gray-300'
               onFocus={() => setIsNavMenuOpen(false)}
@@ -93,11 +95,16 @@ const Navbar = () => {
           <div className='rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
             <div className='px-5 pt-4 flex items-center justify-between'>
               <div>
-                <FontAwesomeIcon
-                  style={{ color: '#10B981' }}
-                  className='fa-2x'
-                  icon={faCannabis}
-                />
+                <Link href='/'>
+                  <a>
+                    <span className='sr-only'>Workflow</span>
+                    <FontAwesomeIcon
+                      style={{ color: '#10B981' }}
+                      className='fa-2x'
+                      icon={faCannabis}
+                    />
+                  </a>
+                </Link>
               </div>
               <div className='-mr-2'>
                 <button
@@ -143,9 +150,8 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <Link href='/login'>
+            <Link href='/auth'>
               <a
-                href='#'
                 className='block w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
                 onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
               >
