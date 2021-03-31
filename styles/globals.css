@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* THEME */
+
+/* 
+Green: light: #34D399 default: #10B981 dark: #059669
+Gray: light: #F9FAFB default: #4B5563 dark: #1F2937
+*/
+
 html {
   background-color: #f9fafb;
   scroll-behavior: smooth;

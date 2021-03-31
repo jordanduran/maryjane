@@ -83,7 +83,7 @@ const Navbar = () => {
           <div className='hidden md:flex md:space-x-4'>
             <Link href='/auth'>
               <a
-                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray700 bg-gray-200 hover:bg-gray-300'
+                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300'
                 onFocus={() => setIsNavMenuOpen(false)}
               >
                 Sign In
@@ -96,7 +96,7 @@ const Navbar = () => {
           <div className='hidden md:flex md:space-x-4'>
             <Link href='#'>
               <a
-                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray700 bg-gray-200 hover:bg-gray-300'
+                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300'
                 onFocus={() => setIsNavMenuOpen(false)}
               >
                 View Account
@@ -105,11 +105,11 @@ const Navbar = () => {
             <Link href='/auth'>
               <a
                 onClick={logoutHandler}
-                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray700 bg-gray-200 hover:bg-gray-300'
+                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300'
                 onFocus={() => setIsNavMenuOpen(false)}
               >
                 <FontAwesomeIcon
-                  className='fa-2x text-base mr-2'
+                  className='fa-2x text-base mr-2 text-gray-700'
                   icon={faSignOutAlt}
                 />
                 Sign Out
@@ -171,7 +171,7 @@ const Navbar = () => {
             <div className='px-2 pt-2 pb-3 space-y-1'>
               <Link href='/marketplace'>
                 <a
-                  className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                  className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-800 hover:bg-gray-50'
                   onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
                 >
                   Marketplace
