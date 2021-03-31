@@ -143,7 +143,7 @@ const Navbar = () => {
                   </a>
                 </Link>
               </div>
-              <div className='-mr-2'>
+              <div className=''>
                 <button
                   onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
                   type='button'
