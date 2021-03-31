@@ -1,7 +1,44 @@
 import { Fragment, useState, useRef } from 'react';
+import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/router';
+
+const createUser = async (
+  name,
+  email,
+  password,
+  phone,
+  street,
+  city,
+  state,
+  zipcode
+) => {
+  const response = await fetch('/api/createUser', {
+    method: 'POST',
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      phone,
+      street,
+      city,
+      state,
+      zipcode,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Something went wrong!!!');
+  }
+
+  return data;
+};
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -17,42 +54,6 @@ const AuthForm = () => {
   const stateInputRef = useRef();
   const zipcodeInputRef = useRef();
 
-  const createUser = async (
-    name,
-    email,
-    password,
-    phone,
-    street,
-    city,
-    state,
-    zipcode
-  ) => {
-    const response = await fetch('/api/createUser', {
-      method: 'POST',
-      body: JSON.stringify({
-        name,
-        email,
-        phone,
-        password,
-        street,
-        city,
-        state,
-        zipcode,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || 'Something went wrong!!!');
-    }
-
-    return data;
-  };
-
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
     headingRef.current.scrollIntoView();
@@ -61,40 +62,50 @@ const AuthForm = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    const enteredName = nameInputRef.current.value;
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-    const enteredPhone = phoneInputRef.current.value;
-    const enteredStreet = streetInputRef.current.value;
-    const enteredCity = cityInputRef.current.value;
-    const enteredState = stateInputRef.current.value;
-    const enteredZipcode = zipcodeInputRef.current.value;
-
     // OPTIONAL: Add Validation
 
     if (isLogin) {
+      const enteredEmail = emailInputRef.current.value;
+      const enteredPassword = passwordInputRef.current.value;
       // sign user in
-    } else {
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+
+      console.log(result);
+    } else if (!isLogin) {
       // create new user
+      const enteredName = nameInputRef.current.value;
+      const enteredEmail = emailInputRef.current.value;
+      const enteredPassword = passwordInputRef.current.value;
+      const enteredPhone = phoneInputRef.current.value;
+      const enteredStreet = streetInputRef.current.value;
+      const enteredCity = cityInputRef.current.value;
+      const enteredState = stateInputRef.current.value;
+      const enteredZipcode = zipcodeInputRef.current.value;
       try {
         const result = await createUser(
           enteredName,
           enteredEmail,
-          enteredPhone,
           enteredPassword,
+          enteredPhone,
           enteredStreet,
           enteredCity,
           enteredState,
           enteredZipcode
         );
+
         nameInputRef.current.value = '';
-        phoneInputRef.current.value = '';
         emailInputRef.current.value = '';
+        passwordInputRef.current.value = '';
+        phoneInputRef.current.value = '';
         streetInputRef.current.value = '';
         cityInputRef.current.value = '';
         stateInputRef.current.value = '';
         zipcodeInputRef.current.value = '';
-        passwordInputRef.current.value = '';
+
         setIsLogin(true);
         console.log(result);
       } catch (error) {

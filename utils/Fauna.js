@@ -1,3 +1,4 @@
+import { hashPassword } from './auth';
 const faunadb = require('faunadb');
 const q = faunadb.query;
 const faunaClient = new faunadb.Client({
@@ -5,7 +6,7 @@ const faunaClient = new faunadb.Client({
 });
 
 const getUsers = async () => {
-  // TODO: get users
+  // Fetches users from DB
   const { data } = await faunaClient.query(
     q.Map(
       q.Paginate(q.Documents(q.Collection('users'))),
@@ -25,7 +26,7 @@ const getUserById = async () => {
 };
 
 const getUserByEmail = async (email) => {
-  // TODO: get user by email
+  // Fetches specific user from DB by email
   const { data } = await faunaClient.query(
     q.Get(q.Match(q.Index('user_by_email'), email))
   );
@@ -35,21 +36,23 @@ const getUserByEmail = async (email) => {
 const createUser = async (
   name,
   email,
-  phone,
   password,
+  phone,
   street,
   city,
   state,
   zipcode
 ) => {
-  // TODO: create user
+  const hashedPassword = await hashPassword(password);
+
+  // Creates new user in DB
   return await faunaClient.query(
     q.Create(q.Collection('users'), {
       data: {
         name,
         email,
+        password: hashedPassword,
         phone,
-        password,
         address: {
           street,
           city,

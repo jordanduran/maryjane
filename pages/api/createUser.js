@@ -1,5 +1,4 @@
 import { createUser, getUserByEmail } from '../../utils/Fauna';
-import { hashPassword } from '../../utils/auth';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -17,9 +16,7 @@ export default async function handler(req, res) {
     zipcode,
   } = req.body;
 
-  const hashedPassword = await hashPassword(password);
-
-  console.log('NEW USER FORM DATA', req.body);
+  console.log('NEW USER FORM DATA:', req.body);
 
   let regName = /^([\w]{2,})+\s+([\w\s]{3,})+$/i;
 
@@ -52,17 +49,17 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     // If query for existing user doesn't return an instance, create user
-
     const newUser = await createUser(
       name,
       email,
+      password,
       phone,
-      hashedPassword,
       street,
       city,
       state,
       zipcode
     );
-    return res.status(200).json(newUser);
+    res.status(200).json(newUser);
+    return;
   }
 }
