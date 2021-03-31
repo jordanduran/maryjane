@@ -1,6 +1,9 @@
+import { useSession } from 'next-auth/client';
 import Link from 'next/link';
 
 const Hero = () => {
+  const [session, loading] = useSession();
+
   return (
     <div className='relative bg-gray-50 overflow-hidden confetti-bg'>
       <div className='relative pt-6 pb-16 sm:pb-24'>
@@ -27,16 +30,18 @@ const Hero = () => {
                   </a>
                 </Link>
               </div>
-              <div className='mt-3 rounded-md shadow sm:mt-0 sm:ml-3'>
-                <Link href='/auth'>
-                  <a
-                    href='#'
-                    className='w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-green-500 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10'
-                  >
-                    Sign In
-                  </a>
-                </Link>
-              </div>
+              {!session && !loading && (
+                <div className='mt-3 rounded-md shadow sm:mt-0 sm:ml-3'>
+                  <Link href='/auth'>
+                    <a
+                      href='#'
+                      className='w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-green-500 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10'
+                    >
+                      Sign In
+                    </a>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </main>

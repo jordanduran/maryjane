@@ -1,7 +1,7 @@
 import CompanyList from '../../components/company/CompanyList';
 import Hero from '../../components/marketplace/Hero';
 
-const MarketPlacePage = () => {
+const MarketplacePage = () => {
   return (
     <div className='max-w-screen-xl mx-auto px-4 sm:px-4 lg:px-8 confetti-bg'>
       <Hero />
@@ -12,4 +12,4 @@ const MarketPlacePage = () => {
   );
 };
 
-export default MarketPlacePage;
+export default MarketplacePage;
