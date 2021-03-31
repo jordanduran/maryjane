@@ -1,4 +1,3 @@
-import React from 'react';
 import CompanyItem from './CompanyItem';
 
 const CompanyList = () => {

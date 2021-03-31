@@ -1,4 +1,3 @@
-import React from 'react';
 import CompanyList from '../../components/company/CompanyList';
 import Hero from '../../components/marketplace/Hero';
 

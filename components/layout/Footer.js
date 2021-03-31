@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Footer = () => {
   return (
     <footer className='mountain-bg md:pt-20 sm:pt-0'>
