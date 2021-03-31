@@ -1,4 +1,5 @@
 import AuthForm from '../../components/auth/AuthForm';
+import { getSession } from 'next-auth/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCannabis } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,5 +19,22 @@ const AuthPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/marketplace',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+}
 
 export default AuthPage;
