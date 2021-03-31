@@ -74,9 +74,11 @@ const AuthForm = () => {
         password: enteredPassword,
       });
 
-      if (result.ok) {
+      if (!result.error) {
         console.log(result);
         router.replace('/marketplace');
+      } else if (result.error) {
+        console.log(result);
       }
     } else if (!isLogin) {
       // create new user
