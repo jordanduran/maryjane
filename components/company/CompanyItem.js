@@ -6,7 +6,7 @@ const CompanyItem = () => {
       <li className='relative'>
         <div className='focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
           <img
-            src='https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80'
+            src='https://images.unsplash.com/photo-1584392335317-b7b40d8a1c47?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1915&q=80'
             alt=''
             className='group-hover:opacity-75 object-cover pointer-events-none'
           />
@@ -63,7 +63,7 @@ const CompanyItem = () => {
       <li className='relative'>
         <div className='focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
           <img
-            src='https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80'
+            src='https://images.unsplash.com/photo-1551377130-380f4fa9bb63?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=970&q=80'
             alt=''
             className='group-hover:opacity-75 object-cover pointer-events-none'
           />
@@ -119,7 +119,7 @@ const CompanyItem = () => {
       <li className='relative'>
         <div className='focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
           <img
-            src='https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80'
+            src='https://images.unsplash.com/photo-1560999448-1288f5c62468?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80'
             alt=''
             className='group-hover:opacity-75 object-cover pointer-events-none'
           />
@@ -176,7 +176,7 @@ const CompanyItem = () => {
       <li className='relative'>
         <div className='focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
           <img
-            src='https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-1.2.1&ixqx=lLzeNgAB2h&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80'
+            src='https://images.unsplash.com/photo-1616626737950-3414368e0956?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80'
             alt=''
             className='group-hover:opacity-75 object-cover pointer-events-none'
           />
