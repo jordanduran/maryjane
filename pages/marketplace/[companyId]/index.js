@@ -1,16 +1,14 @@
 import { useRouter } from 'next/router';
+import { getCompanies, getCompanyById } from '../../../utils/Fauna';
 import CompanyProfile from '../../../components/company/CompanyProfile';
 
 const CompanyProfilePage = () => {
   const router = useRouter();
 
-  const companyId = router.query.companyId;
-
-  // Send request to backend API to fetch companies with companyId
+  // const companyId = router.query.companyId; // Send request to backend API to fetch companies with companyId
 
   return (
     <div>
-      <h1>Company Page</h1>
       <CompanyProfile
         email='jdoe@example.com'
         company='Johns Pot'
@@ -22,37 +20,25 @@ const CompanyProfilePage = () => {
 };
 
 export async function getStaticPaths() {
+  const companies = await getCompanies();
+
   return {
     fallback: false,
-    paths: [
-      {
-        params: {
-          companyId: 'c1',
-        },
-        params: {
-          companyId: 'c2',
-        },
-      },
-    ],
+    paths: companies.map((company) => ({ params: { companyId: company.id } })),
   };
 }
 
 export async function getStaticProps(context) {
-  // Fetch data for single company
-
   const companyId = context.params.companyId;
-  console.log(companyId);
+
+  const selectedCompany = await getCompanyById(companyId);
+
+  console.log('SELECTED COMPANY:', selectedCompany);
+  console.log('ID:', companyId);
 
   return {
     props: {
-      companyData: {
-        id: companyId,
-        email: 'jdoe@example.com',
-        company: 'Johns Pot',
-        city: 'Manhattan',
-        state: 'New York',
-        street: '123 Sunnyside Lane',
-      },
+      companyData: selectedCompany,
     },
   };
 }

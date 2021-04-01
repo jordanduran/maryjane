@@ -23,8 +23,12 @@ const getUsers = async () => {
   return users;
 };
 
-const getUserById = async () => {
-  // TODO: get user by id
+const getUserById = async (id) => {
+  // Fetches user by id
+  const { data } = await faunaClient.query(
+    q.Get(q.Match(q.Index('user_by_id'), id))
+  );
+  return data;
 };
 
 const getUserByEmail = async (email) => {
@@ -94,8 +98,12 @@ const getCompanies = async () => {
   return companies;
 };
 
-const getCompanyById = async () => {
-  // TODO: get company by id
+const getCompanyById = async (id) => {
+  // Fetches company by id
+  const { data } = await faunaClient.query(
+    q.Get(q.Match(q.Index('company_by_id'), id))
+  );
+  return data;
 };
 
 const getCompanyByEmail = async (email) => {
