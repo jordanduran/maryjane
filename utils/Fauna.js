@@ -36,6 +36,7 @@ const getUserByEmail = async (email) => {
   const { data } = await faunaClient.query(
     q.Get(q.Match(q.Index('user_by_email'), email))
   );
+
   return data;
 };
 
@@ -115,14 +116,18 @@ const getCompanyByEmail = async (email) => {
 };
 
 const getCompanyByUserEmail = async (email) => {
-  // Fetches specific company from DB by user email
+  // Fetches specific company from DB by company email
   const { data } = await faunaClient.query(
-    q.Paginate(
-      q.Match(
-        q.Index('companies_by_user'),
-        q.Select('ref', q.Get(q.Match(q.Index('user_by_email'), email)))
-      )
-    )
+    q.Get(q.Match(q.Index('company_by_email'), email))
+  );
+
+  return data;
+};
+
+const getCompanyByCompanyEmail = async (email) => {
+  // Fetches specific company from DB by email
+  const { data } = await faunaClient.query(
+    q.Get(q.Match(q.Index('company_by_companyEmail'), email))
   );
   return data;
 };
@@ -172,5 +177,6 @@ module.exports = {
   getCompanyById,
   getCompanyByEmail,
   getCompanyByUserEmail,
+  getCompanyByCompanyEmail,
   createCompany,
 };

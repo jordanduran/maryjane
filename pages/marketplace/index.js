@@ -17,11 +17,20 @@ const MarketplacePage = (props) => {
 export async function getStaticProps() {
   const companies = await getCompanies();
 
-  console.log('ALL COMPANIES IN MARKETPLACE:', companies.data);
-
   return {
     props: {
-      companies: companies,
+      companies: companies.map((company) => ({
+        id: company.id,
+        country: company.data.country,
+        street: company.data.address.street,
+        city: company.data.address.city,
+        state: company.data.address.state,
+        zipcode: company.data.address.zipcode,
+        company: company.data.company,
+        companyEmail: company.data.companyEmail,
+        name: company.data.name,
+        phone: company.data.phone,
+      })),
     },
     revalidate: 1,
   };

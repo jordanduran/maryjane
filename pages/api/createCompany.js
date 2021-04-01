@@ -1,4 +1,4 @@
-import { createCompany, getCompanyByUserEmail } from '../../utils/Fauna';
+import { createCompany, getCompanyByCompanyEmail } from '../../utils/Fauna';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -39,13 +39,18 @@ export default async function handler(req, res) {
     return;
   }
 
+  if (!companyEmail || !companyEmail.includes('@')) {
+    res.status(422).json({ message: 'Invalid company email address' });
+    return;
+  }
+
   try {
-    const checkIfExistingApplication = await getCompanyByUserEmail(email);
+    const existingApp = await getCompanyByCompanyEmail(companyEmail);
 
-    console.log('EXISTING APP:', checkIfExistingApplication);
-
-    if (checkIfExistingApplication) {
-      res.status(422).json({ message: 'User already exists!' });
+    if (existingApp.companyEmail === companyEmail) {
+      res
+        .status(422)
+        .json({ message: 'You have already submitted an application' });
       return;
     }
   } catch (error) {

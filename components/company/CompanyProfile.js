@@ -24,10 +24,10 @@ const CompanyProfile = (props) => {
                 </div>
               </div>
               <div>
-                <h1 className='text-2xl font-bold text-gray-50'>
+                <h1 className='text-2xl font-bold text-gray-700'>
                   {props.company}
                 </h1>
-                <p className='text-sm font-medium text-gray-50'>
+                <p className='text-sm font-medium text-gray-700'>
                   {props.city}, {props.state}
                 </p>
               </div>
@@ -135,10 +135,10 @@ const CompanyProfile = (props) => {
                 </div>
               </div>
               <div>
-                <h1 className='text-2xl font-bold text-gray-50'>
+                <h1 className='text-2xl font-bold text-gray-700'>
                   {props.company}
                 </h1>
-                <p className='text-sm font-medium text-gray-50'>
+                <p className='text-sm font-medium text-gray-700'>
                   {props.city}, {props.state}
                 </p>
               </div>

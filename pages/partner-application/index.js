@@ -1,6 +1,9 @@
+import { useRouter } from 'next/router';
 import PartnerApplicationForm from '../../components/partner-application/PartnerApplicationForm';
 
 const PartnerApplicationPage = () => {
+  const router = useRouter();
+
   const addCompanyHandler = async (enteredCompanyData) => {
     const response = await fetch('/api/createCompany', {
       method: 'POST',
@@ -12,16 +15,10 @@ const PartnerApplicationPage = () => {
 
     const data = await response.json();
 
-    try {
-      if (response.ok) {
-        console.log(data);
-
-        // router.push('/apply/application-successful');
-      }
-    } catch (error) {
-      if (response.status === 422) {
-        console.log(error);
-      }
+    if (response.ok) {
+      router.push('/partner-application/application-successful');
+    } else if (!response.ok) {
+      console.error(data.message || 'Something went wrong!');
     }
 
     return data;
@@ -47,7 +44,7 @@ const PartnerApplicationPage = () => {
           </div>
         </div>
       </div>
-      <div className='flex place-content-center lg:opacity-0 text-center mb-4 md:mb-10'>
+      <div className='flex place-content-center text-center mb-4 md:mb-10'>
         <svg
           className='animate-bounce w-10 h-10 text-gray-700 self-center'
           xmlns='http://www.w3.org/2000/svg'
@@ -63,6 +60,7 @@ const PartnerApplicationPage = () => {
           />
         </svg>
       </div>
+
       <div className='bg-gray-50 overflow-hidden shadow rounded-lg mb-10'>
         <div className='px-4 py-5 sm:p-6'>
           <PartnerApplicationForm onAddCompanyHandler={addCompanyHandler} />
