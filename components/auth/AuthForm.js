@@ -62,8 +62,6 @@ const AuthForm = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    // OPTIONAL: Add Validation
-
     if (isLogin) {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;

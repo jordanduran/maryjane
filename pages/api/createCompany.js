@@ -1,4 +1,4 @@
-import { createCompany, getCompanyByEmail } from '../../utils/Fauna';
+import { createCompany, getCompanyByUserEmail } from '../../utils/Fauna';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -40,12 +40,12 @@ export default async function handler(req, res) {
   }
 
   try {
-    const checkIfExistingApplication = await getCompanyByEmail(email);
+    const checkIfExistingApplication = await getCompanyByUserEmail(email);
 
-    if (checkIfExistingApplication.email === email) {
-      res
-        .status(422)
-        .json({ message: 'User has already applied to be a partner' });
+    console.log('EXISTING APP:', checkIfExistingApplication);
+
+    if (checkIfExistingApplication) {
+      res.status(422).json({ message: 'User already exists!' });
       return;
     }
   } catch (error) {

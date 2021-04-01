@@ -47,18 +47,20 @@ const PartnerApplicationForm = (props) => {
       hasApplied: true,
     };
 
-    props.onAddCompanyHandler(companyData);
+    if (!console.error) {
+      nameInputRef.current.value = '';
+      emailInputRef.current.value = '';
+      phoneInputRef.current.value = '';
+      companyInputRef.current.value = '';
+      companyEmailInputRef.current.value = '';
+      countryInputRef.current.value = '';
+      streetInputRef.current.value = '';
+      cityInputRef.current.value = '';
+      companyLogoInputRef.current.value = '';
+      zipcodeInputRef.current.value = '';
+    }
 
-    // nameInputRef.current.value = '';
-    // emailInputRef.current.value = '';
-    // phoneInputRef.current.value = '';
-    // companyInputRef.current.value = '';
-    // companyEmailInputRef.current.value = '';
-    // countryInputRef.current.value = '';
-    // streetInputRef.current.value = '';
-    // cityInputRef.current.value = '';
-    // companyLogoInputRef.current.value = '';
-    // zipcodeInputRef.current.value = '';
+    props.onAddCompanyHandler(companyData);
   };
 
   return (

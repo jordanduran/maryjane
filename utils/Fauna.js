@@ -114,6 +114,19 @@ const getCompanyByEmail = async (email) => {
   return data;
 };
 
+const getCompanyByUserEmail = async (email) => {
+  // Fetches specific company from DB by user email
+  const { data } = await faunaClient.query(
+    q.Paginate(
+      q.Match(
+        q.Index('companies_by_user'),
+        q.Select('ref', q.Get(q.Match(q.Index('user_by_email'), email)))
+      )
+    )
+  );
+  return data;
+};
+
 const createCompany = async (
   name,
   email,
@@ -158,5 +171,6 @@ module.exports = {
   getCompanies,
   getCompanyById,
   getCompanyByEmail,
+  getCompanyByUserEmail,
   createCompany,
 };
