@@ -1,7 +1,15 @@
+import { useRouter } from 'next/router';
+
 const CompanyItem = (props) => {
+  const router = useRouter();
+
+  const showCompanyPageHandler = () => {
+    router.push('/marketplace/' + props.id);
+  };
+
   return (
     <>
-      <li className='relative'>
+      <li className='relative' onClick={showCompanyPageHandler}>
         <div className='focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
           <img
             src='https://images.unsplash.com/photo-1584392335317-b7b40d8a1c47?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1915&q=80'

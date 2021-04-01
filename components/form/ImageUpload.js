@@ -44,7 +44,7 @@ const ImageUpload = (props) => {
         name='file-upload'
         ref={filePickerRef}
         type='file'
-        class='sr-only'
+        className='sr-only'
         accept='.jpg, .png, .jpeg'
         onChange={pickedHandler}
       />

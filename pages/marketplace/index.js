@@ -51,15 +51,26 @@ const DUMMY_COMPANIES = [
   },
 ];
 
-const MarketplacePage = () => {
+const MarketplacePage = (props) => {
   return (
     <Fragment>
       <Hero />
       <div className='max-w-5xl md:max-w-4xl lg:max-w-7xl mx-auto'>
-        <CompanyList companies={DUMMY_COMPANIES} />
+        <CompanyList companies={props.companies} />
       </div>
     </Fragment>
   );
 };
+
+export async function getStaticProps() {
+  // Fetch data from API
+
+  return {
+    props: {
+      companies: DUMMY_COMPANIES,
+    },
+    revalidate: 1,
+  };
+}
 
 export default MarketplacePage;

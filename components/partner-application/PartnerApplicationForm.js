@@ -5,7 +5,7 @@ import ImageUpload from '../form/ImageUpload';
 const PartnerApplicationForm = (props) => {
   const [session, loading] = useSession();
 
-  const fullNameInputRef = useRef();
+  const nameInputRef = useRef();
   const phoneInputRef = useRef();
   const emailInputRef = useRef();
   const companyInputRef = useRef();
@@ -13,15 +13,14 @@ const PartnerApplicationForm = (props) => {
   const countryInputRef = useRef();
   const streetInputRef = useRef();
   const cityInputRef = useRef();
-  const stateInputRef = useRef();
+  const companyLogoInputRef = useRef();
   const zipcodeInputRef = useRef();
   // const idInputRef = useRef();
-  // const avatarInputRef = useRef();
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const enteredName = fullNameInputRef.current.value;
+    const enteredName = nameInputRef.current.value;
     const enteredPhone = phoneInputRef.current.value;
     const enteredEmail = emailInputRef.current.value;
     const enteredCompany = companyInputRef.current.value;
@@ -29,28 +28,37 @@ const PartnerApplicationForm = (props) => {
     const enteredCountry = countryInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
     const enteredCity = cityInputRef.current.value;
-    const enteredState = stateInputRef.current.value;
+    const enteredState = companyLogoInputRef.current.value;
     const enteredZipcode = zipcodeInputRef.current.value;
 
     const companyData = {
       name: enteredName,
-      phone: enteredPhone,
       email: enteredEmail,
+      phone: enteredPhone,
       company: enteredCompany,
       companyEmail: enteredCompanyEmail,
       country: enteredCountry,
-      address: {
-        street: enteredStreet,
-        city: enteredCity,
-        state: enteredState,
-        zipcode: enteredZipcode,
-      },
+      street: enteredStreet,
+      city: enteredCity,
+      state: enteredState,
+      zipcode: enteredZipcode,
       // stateId: enteredId,
       isVerified: false,
       hasApplied: true,
     };
-    console.log(companyData);
+
     props.onAddCompanyHandler(companyData);
+
+    nameInputRef.current.value = '';
+    emailInputRef.current.value = '';
+    phoneInputRef.current.value = '';
+    companyInputRef.current.value = '';
+    companyEmailInputRef.current.value = '';
+    countryInputRef.current.value = '';
+    streetInputRef.current.value = '';
+    cityInputRef.current.value = '';
+    companyLogoInputRef.current.value = '';
+    zipcodeInputRef.current.value = '';
   };
 
   return (
@@ -77,7 +85,7 @@ const PartnerApplicationForm = (props) => {
                 type='name'
                 autoComplete='name'
                 autoFocus
-                ref={fullNameInputRef}
+                ref={nameInputRef}
                 required
                 className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
               />
@@ -230,7 +238,7 @@ const PartnerApplicationForm = (props) => {
                 type='text'
                 name='state'
                 id='state'
-                ref={stateInputRef}
+                ref={companyLogoInputRef}
                 className='max-w-lg block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md mb-4'
               />
             </div>
@@ -260,7 +268,7 @@ const PartnerApplicationForm = (props) => {
               htmlFor='cover_photo'
               className='block text-sm font-medium text-gray-700'
             >
-              State ID
+              Company Logo
             </label>
             <div className='mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md'>
               <div className='space-y-1 text-center'>

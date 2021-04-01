@@ -5,6 +5,8 @@ const faunaClient = new faunadb.Client({
   secret: process.env.FAUNA_SECRET_KEY,
 });
 
+// USER API ROUTES
+
 const getUsers = async () => {
   // Fetches users from DB
   const { data } = await faunaClient.query(
@@ -74,6 +76,70 @@ const deleteUser = async () => {
   // TODO: delete user
 };
 
+// COMPANY API ROUTES
+
+const getCompanies = async () => {
+  // Fetches companies from DB
+  const { data } = await faunaClient.query(
+    q.Map(
+      q.Paginate(q.Documents(q.Collection('companies'))),
+      q.Lambda('ref', q.Get(q.Var('ref')))
+    )
+  );
+  const companies = data.map((company) => {
+    company.id = company.ref.id;
+    delete company.ref;
+    return company;
+  });
+  return companies;
+};
+
+const getCompanyById = async () => {
+  // TODO: get company by id
+};
+
+const getCompanyByEmail = async (email) => {
+  // Fetches specific company from DB by email
+  const { data } = await faunaClient.query(
+    q.Get(q.Match(q.Index('company_by_email'), email))
+  );
+  return data;
+};
+
+const createCompany = async (
+  name,
+  email,
+  phone,
+  company,
+  companyEmail,
+  country,
+  street,
+  city,
+  state,
+  zipcode
+) => {
+  // Creates new company in DB
+  return await faunaClient.query(
+    q.Create(q.Collection('companies'), {
+      data: {
+        name,
+        email,
+        phone,
+        company,
+        companyEmail,
+        country,
+        address: {
+          street,
+          city,
+          state,
+          zipcode,
+        },
+        hasApplied: true,
+      },
+    })
+  );
+};
+
 module.exports = {
   getUsers,
   getUserById,
@@ -81,4 +147,8 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  getCompanies,
+  getCompanyById,
+  getCompanyByEmail,
+  createCompany,
 };
