@@ -131,7 +131,7 @@ const createCompany = async (
     q.Create(q.Collection('companies'), {
       data: {
         name,
-        email,
+        email: q.Select('ref', q.Get(q.Match(q.Index('user_by_email'), email))),
         phone,
         company,
         companyEmail,
