@@ -4,11 +4,13 @@ import Navbar from './Navbar';
 
 const Layout = (props) => {
   return (
-    <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 confetti-bg'>
-      <Navbar />
-      {props.children}
+    <Fragment>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 confetti-bg'>
+        <Navbar />
+        {props.children}
+      </div>
       <Footer />
-    </div>
+    </Fragment>
   );
 };
 
