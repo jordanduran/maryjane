@@ -1,10 +1,15 @@
+import { useContext } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/client';
+import { UserContext } from '../../store/userContext';
 
 const CompanyProfile = (props) => {
   const [session, loading] = useSession();
+  const loggedInUser = useContext(UserContext);
+  console.log(props.id);
 
-  if (session && props.email === session.user.email) {
+  // LINE BELOW WILL NOT WORK SINCE props.email is undefined
+  if (session && props.id === loggedInUser.loggedInUser.id) {
     return (
       <div className='min-h-screen confetti-bg bg-gray-800'>
         <main className='py-10 sm:ml-5'>
@@ -24,10 +29,10 @@ const CompanyProfile = (props) => {
                 </div>
               </div>
               <div>
-                <h1 className='text-2xl font-bold text-gray-700'>
+                <h1 className='text-2xl font-bold text-gray-50'>
                   {props.company}
                 </h1>
-                <p className='text-sm font-medium text-gray-700'>
+                <p className='text-sm font-medium text-gray-50'>
                   {props.city}, {props.state}
                 </p>
               </div>
@@ -135,10 +140,10 @@ const CompanyProfile = (props) => {
                 </div>
               </div>
               <div>
-                <h1 className='text-2xl font-bold text-gray-700'>
+                <h1 className='text-2xl font-bold text-gray-50'>
                   {props.company}
                 </h1>
-                <p className='text-sm font-medium text-gray-700'>
+                <p className='text-sm font-medium text-gray-50'>
                   {props.city}, {props.state}
                 </p>
               </div>

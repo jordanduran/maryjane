@@ -1,8 +1,9 @@
-import { Fragment, useState, useRef } from 'react';
+import { Fragment, useState, useEffect, useRef, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { UserContext } from '../../store/userContext';
 
 const createUser = async (
   name,
@@ -42,8 +43,9 @@ const createUser = async (
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const router = useRouter();
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
+  const router = useRouter();
   const headingRef = useRef(null);
   const nameInputRef = useRef();
   const emailInputRef = useRef();
@@ -62,6 +64,26 @@ const AuthForm = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
+    const fetchUser = async () => {
+      const data = await fetch('/api/getUser').then((response) =>
+        response.json().then((data) =>
+          setLoggedInUser({
+            id: data.ref['@ref'].id,
+            name: data.data.name,
+            email: data.data.email,
+            address: {
+              street: data.data.address.street,
+              city: data.data.address.city,
+              state: data.data.address.state,
+              zipcode: data.data.address.zipcode,
+            },
+          })
+        )
+      );
+
+      return data;
+    };
+
     if (isLogin) {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
@@ -72,8 +94,11 @@ const AuthForm = () => {
         password: enteredPassword,
       });
 
+      console.log(result);
+
       if (!result.error) {
         console.log(result);
+        fetchUser();
         router.replace('/marketplace');
       } else if (result.error) {
         console.log(result);

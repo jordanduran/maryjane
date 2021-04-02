@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { getCompanies, getCompanyById } from '../../../utils/Fauna';
 import CompanyProfile from '../../../components/company/CompanyProfile';
@@ -10,6 +11,7 @@ const CompanyProfilePage = (props) => {
   return (
     <div>
       <CompanyProfile
+        id={props.companyData.id}
         name={props.companyData.name}
         company={props.companyData.company}
         companyEmail={props.companyData.companyEmail}
@@ -40,6 +42,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       companyData: {
+        id: selectedCompany.email.id,
         name: selectedCompany.name,
         company: selectedCompany.company,
         companyEmail: selectedCompany.companyEmail,

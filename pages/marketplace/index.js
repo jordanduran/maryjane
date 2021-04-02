@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 import { getCompanies } from '../../utils/Fauna';
 import CompanyList from '../../components/company/CompanyList';
 import Hero from '../../components/marketplace/Hero';
@@ -16,6 +16,11 @@ const MarketplacePage = (props) => {
 
 export async function getStaticProps() {
   const companies = await getCompanies();
+
+  console.log(
+    'COMPANIES:',
+    companies.map((company) => company.data.email)
+  );
 
   return {
     props: {

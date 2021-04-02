@@ -1,7 +1,6 @@
 import CompanyItem from './CompanyItem';
 
 const CompanyList = (props) => {
-  console.log(props);
   return (
     <ul
       role='list'

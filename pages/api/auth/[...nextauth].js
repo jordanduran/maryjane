@@ -11,6 +11,7 @@ export default NextAuth({
     Providers.Credentials({
       async authorize(credentials) {
         const user = await getUserByEmail(credentials.email);
+        console.log('user:', user);
 
         if (!user) {
           throw new Error('User does not exist!');
@@ -18,16 +19,18 @@ export default NextAuth({
 
         const isValid = await verifyPassword(
           credentials.password,
-          user.password
+          user.data.password
         );
-
-        console.log(user);
 
         if (!isValid) {
           throw new Error('Incorrect username or password');
         }
 
-        return { email: user.email, name: user.name };
+        return {
+          id: user.ref.id,
+          email: user.data.email,
+          name: user.data.name,
+        };
       },
     }),
   ],

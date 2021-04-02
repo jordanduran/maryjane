@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCannabis, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { UserContext } from '../../store/userContext';
 
 const Navbar = () => {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
+  const loggedInUser = useContext(UserContext);
   const [session, loading] = useSession();
   const router = useRouter();
 
@@ -15,6 +17,8 @@ const Navbar = () => {
     signOut();
     router.replace('/');
   };
+
+  console.log(loggedInUser);
 
   return (
     <div className='relative pt-6 pb-2 sm:pb-24 bg-gray-50 md:h-0'>

@@ -33,11 +33,11 @@ const getUserById = async (id) => {
 
 const getUserByEmail = async (email) => {
   // Fetches specific user from DB by email
-  const { data } = await faunaClient.query(
+  const { data, ref } = await faunaClient.query(
     q.Get(q.Match(q.Index('user_by_email'), email))
   );
 
-  return data;
+  return { data, ref };
 };
 
 const createUser = async (
