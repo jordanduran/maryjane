@@ -28,8 +28,10 @@ const PartnerApplicationPage = () => {
     <div className='max-w-4xl mx-auto mt-10 md:mt-2'>
       <div className='max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8'>
         <h2 className='text-3xl font-extrabold tracking-tight text-gray-700 sm:text-4xl'>
-          <span className='block text-green-500'>Ready to dive in?</span>
-          <span className='block text-gray-700'>
+          <span className='block text-green-500 text-4xl md:text-5xl'>
+            Ready to dive in?
+          </span>
+          <span className='block text-gray-700 text-3xl md:text-5xl'>
             Start your partnership with us today!
           </span>
         </h2>
