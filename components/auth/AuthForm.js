@@ -94,8 +94,6 @@ const AuthForm = () => {
         password: enteredPassword,
       });
 
-      console.log(result);
-
       if (!result.error) {
         console.log(result);
         fetchUser();

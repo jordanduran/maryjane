@@ -19,7 +19,7 @@ export async function getStaticProps() {
 
   console.log(
     'COMPANIES:',
-    companies.map((company) => company.data.email)
+    companies.map((company) => company.data)
   );
 
   return {

@@ -18,8 +18,6 @@ const Navbar = () => {
     router.replace('/');
   };
 
-  console.log(loggedInUser);
-
   return (
     <div className='relative pt-6 pb-2 sm:pb-24 bg-gray-50 md:h-0'>
       <nav

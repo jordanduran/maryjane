@@ -6,9 +6,7 @@ import { UserContext } from '../../store/userContext';
 const CompanyProfile = (props) => {
   const [session, loading] = useSession();
   const loggedInUser = useContext(UserContext);
-  console.log(props.id);
 
-  // LINE BELOW WILL NOT WORK SINCE props.email is undefined
   if (session && props.id === loggedInUser.loggedInUser.id) {
     return (
       <div className='min-h-screen confetti-bg bg-gray-800'>
