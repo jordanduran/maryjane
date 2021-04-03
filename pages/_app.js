@@ -2,6 +2,8 @@ import { useState, useMemo } from 'react';
 import { Provider } from 'next-auth/client';
 import Layout from '../components/layout/Layout';
 import { UserContext } from '../store/userContext';
+import { AlertContextProvider } from '../store/AlertContext';
+
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }) => {
@@ -14,11 +16,13 @@ const MyApp = ({ Component, pageProps }) => {
 
   return (
     <UserContext.Provider value={value}>
-      <Provider session={pageProps.session}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
+      <AlertContextProvider>
+        <Provider session={pageProps.session}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Provider>
+      </AlertContextProvider>
     </UserContext.Provider>
   );
 };

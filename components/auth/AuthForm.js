@@ -1,9 +1,10 @@
-import { Fragment, useState, useEffect, useRef, useContext } from 'react';
+import { Fragment, useState, useRef, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { UserContext } from '../../store/userContext';
+import AlertContext from '../../store/AlertContext';
 
 const createUser = async (
   name,
@@ -44,6 +45,7 @@ const createUser = async (
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+  const { showAlert } = useContext(AlertContext);
 
   const router = useRouter();
   const headingRef = useRef(null);
@@ -98,8 +100,18 @@ const AuthForm = () => {
         console.log(result);
         fetchUser();
         router.replace('/marketplace');
+        showAlert({
+          title: 'Successful sign in.',
+          message: `You have successfully signed in.`,
+          status: 'success',
+        });
       } else if (result.error) {
         console.log(result);
+        alertContext.showAlert({
+          title: 'Error signing in.',
+          message: 'The email or password you entered are incorrect.',
+          status: 'error',
+        });
       }
     } else if (!isLogin) {
       // create new user
