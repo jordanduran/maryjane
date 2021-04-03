@@ -107,7 +107,7 @@ const AuthForm = () => {
         });
       } else if (result.error) {
         console.log(result);
-        alertContext.showAlert({
+        showAlert({
           title: 'Error signing in.',
           message: 'The email or password you entered are incorrect.',
           status: 'error',

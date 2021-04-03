@@ -6,16 +6,23 @@ import { Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCannabis, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { UserContext } from '../../store/userContext';
+import AlertContext from '../../store/AlertContext';
 
 const Navbar = () => {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
   const loggedInUser = useContext(UserContext);
+  const { showAlert } = useContext(AlertContext);
   const [session, loading] = useSession();
   const router = useRouter();
 
-  const logoutHandler = () => {
+  const logoutHandler = async () => {
     signOut();
     router.replace('/');
+    showAlert({
+      title: 'Successful sign out.',
+      message: `You have been successfully signed out.`,
+      status: 'success',
+    });
   };
 
   return (

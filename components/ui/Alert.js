@@ -1,4 +1,9 @@
+import { useContext } from 'react';
+import AlertContext from '../../store/AlertContext';
+
 const Alert = (props) => {
+  const { hideAlert } = useContext(AlertContext);
+
   if (props.status === 'success') {
     return (
       <div className='rounded-md bg-green-50 p-4'>
@@ -26,6 +31,7 @@ const Alert = (props) => {
           <div className='ml-auto pl-3'>
             <div className='-mx-1.5 -my-1.5'>
               <button
+                onClick={() => hideAlert()}
                 type='button'
                 className='inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600'
               >
@@ -76,6 +82,7 @@ const Alert = (props) => {
           <div className='ml-auto pl-3'>
             <div className='-mx-1.5 -my-1.5'>
               <button
+                onClick={() => hideAlert()}
                 type='button'
                 className='inline-flex bg-yellow-50 rounded-md p-1.5 text-yellow-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-yellow-50 focus:ring-yellow-600'
               >
@@ -126,6 +133,7 @@ const Alert = (props) => {
           <div className='ml-auto pl-3'>
             <div className='-mx-1.5 -my-1.5'>
               <button
+                onClick={() => hideAlert()}
                 type='button'
                 className='inline-flex bg-red-50 rounded-md p-1.5 text-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-50 focus:ring-red-600'
               >
