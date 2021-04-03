@@ -15,7 +15,7 @@ const Navbar = () => {
   const [session, loading] = useSession();
   const router = useRouter();
 
-  const logoutHandler = async () => {
+  const logoutHandler = () => {
     signOut();
     router.replace('/');
     showAlert({

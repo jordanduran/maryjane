@@ -107,6 +107,7 @@ const AuthForm = () => {
         });
       } else if (result.error) {
         console.log(result);
+        window.scrollTo(0, 0);
         showAlert({
           title: 'Error signing in.',
           message: 'The email or password you entered are incorrect.',
@@ -145,9 +146,20 @@ const AuthForm = () => {
         zipcodeInputRef.current.value = '';
 
         setIsLogin(true);
+        showAlert({
+          title: 'Successful account registration.',
+          message: `You have successfully created an account.`,
+          status: 'success',
+        });
         console.log(result);
       } catch (error) {
-        console.log(error);
+        window.scrollTo(0, 0);
+        showAlert({
+          title: 'Unsuccessful account registration.',
+          message: error.message || 'User registration was unsuccessful.',
+          status: 'error',
+        });
+        console.log(error.message);
       }
     }
   };
