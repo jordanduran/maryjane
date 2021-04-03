@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className='mountain-bg md:pt-20 lg:pt-44 sm:pt-0'>
+    <footer className='mountain-bg  lg:pt-44 md:pt-20'>
       <div className='max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8'>
         <nav
           className='-mx-5 -my-2 flex flex-wrap justify-center'
