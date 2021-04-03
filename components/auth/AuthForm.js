@@ -44,7 +44,7 @@ const createUser = async (
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+  const { setLoggedInUser } = useContext(UserContext);
   const { showAlert } = useContext(AlertContext);
 
   const router = useRouter();
@@ -89,7 +89,7 @@ const AuthForm = () => {
     if (isLogin) {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
-      // sign user in
+
       const result = await signIn('credentials', {
         redirect: false,
         email: enteredEmail,
@@ -97,9 +97,13 @@ const AuthForm = () => {
       });
 
       if (!result.error) {
-        console.log(result);
+        emailInputRef.current.value = '';
+        passwordInputRef.current.value = '';
+
         fetchUser();
+
         router.replace('/marketplace');
+
         showAlert({
           title: 'Successful sign in.',
           message: `You have successfully signed in.`,
@@ -107,7 +111,7 @@ const AuthForm = () => {
         });
       } else if (result.error) {
         console.log(result);
-        window.scrollTo(0, 0);
+
         showAlert({
           title: 'Error signing in.',
           message: 'The email or password you entered are incorrect.',
@@ -115,7 +119,6 @@ const AuthForm = () => {
         });
       }
     } else if (!isLogin) {
-      // create new user
       const enteredName = nameInputRef.current.value;
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
@@ -124,6 +127,7 @@ const AuthForm = () => {
       const enteredCity = cityInputRef.current.value;
       const enteredState = stateInputRef.current.value;
       const enteredZipcode = zipcodeInputRef.current.value;
+
       try {
         const result = await createUser(
           enteredName,
@@ -146,19 +150,21 @@ const AuthForm = () => {
         zipcodeInputRef.current.value = '';
 
         setIsLogin(true);
+
         showAlert({
           title: 'Successful account registration.',
           message: `You have successfully created an account.`,
           status: 'success',
         });
+
         console.log(result);
       } catch (error) {
-        window.scrollTo(0, 0);
         showAlert({
           title: 'Unsuccessful account registration.',
           message: error.message || 'User registration was unsuccessful.',
           status: 'error',
         });
+
         console.log(error.message);
       }
     }

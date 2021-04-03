@@ -11,6 +11,7 @@ export const AlertContextProvider = (props) => {
 
   const showAlertHandler = (alertData) => {
     setActiveAlert(alertData);
+    window.scrollTo(0, 0);
     const timer = setTimeout(() => {
       setActiveAlert(null);
     }, 5000);
