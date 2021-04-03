@@ -11,6 +11,10 @@ export const AlertContextProvider = (props) => {
 
   const showAlertHandler = (alertData) => {
     setActiveAlert(alertData);
+    const timer = setTimeout(() => {
+      setActiveAlert(null);
+    }, 5000);
+    return () => clearTimeout(timer);
   };
 
   const hideAlertHandler = () => {
