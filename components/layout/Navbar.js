@@ -98,7 +98,7 @@ const Navbar = () => {
           <div className='hidden md:flex md:space-x-4'>
             <Link href='#'>
               <a
-                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700'
+                className='hover:text-green-500 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700'
                 onFocus={() => setIsNavMenuOpen(false)}
               >
                 <span className='inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-100 mr-2'>
@@ -110,7 +110,7 @@ const Navbar = () => {
                     <path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
                   </svg>
                 </span>
-                <span className='text-base hover:text-green-500 font-semibold'>
+                <span className='text-base font-semibold'>
                   {loggedInUser.email || session.user.email}
                 </span>
               </a>
@@ -217,9 +217,9 @@ const Navbar = () => {
                     className='flex content-center justify-center w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
                     onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
                   >
-                    <span class='inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-100 mr-2'>
+                    <span className='inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-100 mr-2'>
                       <svg
-                        class='h-full w-full text-gray-300'
+                        className='h-full w-full text-gray-300'
                         fill='currentColor'
                         viewBox='0 0 24 24'
                       >

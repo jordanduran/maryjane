@@ -5,7 +5,7 @@ const Hero = () => {
   const [session, loading] = useSession();
 
   return (
-    <div className='relative bg-gray-50 overflow-hidden confetti-bg'>
+    <div className='relative overflow-hidden '>
       <div className='relative pt-6 pb-16 sm:pb-24'>
         <main className='mt-16 mx-auto max-w-7xl px-4 sm:mt-24'>
           <div className='text-center'>
