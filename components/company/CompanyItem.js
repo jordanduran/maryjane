@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
 const CompanyItem = (props) => {
@@ -8,7 +9,7 @@ const CompanyItem = (props) => {
   };
 
   return (
-    <>
+    <Fragment>
       <li className='relative' onClick={showCompanyPageHandler}>
         <div className='focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
           <img
@@ -67,7 +68,7 @@ const CompanyItem = (props) => {
           </p>
         </div>
       </li>
-    </>
+    </Fragment>
   );
 };
 

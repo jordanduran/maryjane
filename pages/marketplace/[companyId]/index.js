@@ -1,11 +1,7 @@
-import { useContext } from 'react';
-import { useRouter } from 'next/router';
 import { getCompanies, getCompanyById } from '../../../utils/Fauna';
 import CompanyProfile from '../../../components/company/CompanyProfile';
 
 const CompanyProfilePage = (props) => {
-  const router = useRouter();
-
   // const companyId = router.query.companyId; // Send request to backend API to fetch companies with companyId
 
   return (
