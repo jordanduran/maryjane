@@ -136,7 +136,7 @@ const AccountActions = () => {
 
         <div className='relative group bg-gray-50 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-green-500'>
           <div>
-            <span className='rounded-lg inline-flex p-3 bg-light-blue-50 text-light-blue-700 ring-4 ring-gray-50'>
+            <span className='rounded-lg inline-flex p-3 bg-light-green-50 text-light-green-700 ring-4 ring-gray-50'>
               <svg
                 className='h-7 w-7'
                 xmlns='http://www.w3.org/2000/svg'

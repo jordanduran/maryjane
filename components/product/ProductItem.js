@@ -10,7 +10,7 @@ const ProductItem = () => {
       <li className='relative' onClick={showProductHandler}>
         <div className='focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
           <img
-            src='https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80'
+            src='https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60'
             alt=''
             className='group-hover:opacity-75 object-cover pointer-events-none'
           />
@@ -19,10 +19,10 @@ const ProductItem = () => {
           </button>
         </div>
         <p className='mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none'>
-          Strain
+          Strawberry Kush
         </p>
         <p className='block text-sm font-medium text-gray-500 pointer-events-none'>
-          Strain Type
+          Hybrid
         </p>
       </li>
     </Fragment>

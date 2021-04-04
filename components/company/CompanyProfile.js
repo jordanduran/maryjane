@@ -122,7 +122,7 @@ const CompanyProfile = (props) => {
                       </svg>
                       {props.company}
                     </p>
-                    <p className='text-sm'>
+                    <p className='text-sm text-gray-700'>
                       <svg
                         className='h-5 mr-1 inline-block'
                         xmlns='http://www.w3.org/2000/svg'
