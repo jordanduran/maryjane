@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import Hero from '../components/homepage/Hero';
 
 const HomePage = () => {

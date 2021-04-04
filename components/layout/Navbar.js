@@ -103,7 +103,7 @@ const Navbar = () => {
 
         {session && (
           <div className='hidden md:flex md:space-x-4'>
-            <Link href='#'>
+            <Link href='/account'>
               <a
                 className='hover:text-green-500 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700'
                 onFocus={() => setIsNavMenuOpen(false)}
@@ -219,7 +219,7 @@ const Navbar = () => {
             )}
             {session && (
               <div className='flex flex-col content-center'>
-                <Link href='#'>
+                <Link href='/account'>
                   <a
                     className='flex content-center justify-center w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
                     onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
