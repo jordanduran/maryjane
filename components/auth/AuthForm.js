@@ -291,7 +291,7 @@ const AuthForm = () => {
                 <button
                   onClick={switchAuthModeHandler}
                   type='button'
-                  className='inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  className='inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
                 >
                   <svg
                     className='-ml-1.5 mr-1 h-5 w-5 text-gray-400'
@@ -361,7 +361,7 @@ const AuthForm = () => {
                   autoComplete='phone'
                   placeholder='Phone Number'
                   required
-                  className='block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md'
+                  className='block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md'
                   ref={phoneInputRef}
                 />
               </div>
@@ -504,7 +504,7 @@ const AuthForm = () => {
                 <button
                   onClick={switchAuthModeHandler}
                   type='button'
-                  className='inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  className='inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
                 >
                   <svg
                     className='-ml-1.5 mr-1 h-5 w-5 text-gray-400'
