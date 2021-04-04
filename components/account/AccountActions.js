@@ -15,7 +15,7 @@ const AccountActions = () => {
   }, []);
 
   return (
-    <div className='confetti-bg'>
+    <div className='confetti-bg mb-8'>
       <div className='max-w-7xl mx-auto py-5 px-4 sm:py-24 md:py-5 sm:px-6 lg:px-8 md:mt-10'>
         <div className='text-center'>
           <h2 className='text-base font-semibold text-green-400 tracking-wide uppercase'>
