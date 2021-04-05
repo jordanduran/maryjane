@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/client';
+
 import PartnerApplicationForm from '../../components/partner-application/PartnerApplicationForm';
+import AlertContext from '../../store/AlertContext';
 
 const PartnerApplicationPage = () => {
   const [heroBtnClicked, setHeroBtnClicked] = useState(false);
+  const [userClickedForm, setUserClickedForm] = useState(false);
+  const [session, loading] = useSession();
+  const { showAlert } = useContext(AlertContext);
   const router = useRouter();
+
+  const handleShowLoginAlert = (formFocused) => {
+    if (formFocused && !session) {
+      setUserClickedForm(true);
+    }
+  };
 
   const addCompanyHandler = async (enteredCompanyData) => {
     const response = await fetch('/api/createCompany', {
@@ -25,6 +37,24 @@ const PartnerApplicationPage = () => {
 
     return data;
   };
+
+  useEffect(() => {
+    if (userClickedForm) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+      showAlert({
+        title: 'Must login to complete form',
+        message: `You must be signed in if you want to apply for partnership.`,
+        status: 'notice',
+      });
+
+      setTimeout(() => {
+        setUserClickedForm(false);
+      }, 4000);
+    }
+  }, [userClickedForm]);
 
   return (
     <div className='max-w-4xl mx-auto mt-10 md:mt-2'>
@@ -68,6 +98,7 @@ const PartnerApplicationPage = () => {
       <div className='bg-gray-50 overflow-hidden shadow rounded-lg mb-10'>
         <div className='px-4 py-5 sm:p-6'>
           <PartnerApplicationForm
+            onHandleShowLoginAlert={handleShowLoginAlert}
             onHeroBtnClicked={heroBtnClicked}
             onSetHeroBtnClicked={setHeroBtnClicked}
             onAddCompanyHandler={addCompanyHandler}

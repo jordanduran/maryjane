@@ -187,7 +187,7 @@ const AuthForm = () => {
               className='font-medium text-green-600 hover:text-green-500'
               style={{ cursor: 'pointer' }}
             >
-              start your 14-day free trial
+              create a new account
             </a>
           </p>
           <form
