@@ -7,9 +7,6 @@ const NewProductForm = () => {
   const [session, loading] = useSession();
   const router = useRouter();
 
-  console.log(session);
-  const user = session.user.email || '';
-
   const productTypeInputRef = useRef();
   const productNameInputRef = useRef();
   const pricePerGramInputRef = useRef();

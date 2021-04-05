@@ -1,14 +1,13 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/client';
 import { UserContext } from '../../store/userContext';
 import ProductList from '../product/ProductList';
 
 const CompanyProfile = (props) => {
+  const [editBtnClicked, setEditBtnClicked] = useState(false);
   const [session, loading] = useSession();
   const loggedInUser = useContext(UserContext);
-
-  console.log(props);
 
   if (session && !loading && props.id === loggedInUser.loggedInUser.id) {
     return (
@@ -81,14 +80,18 @@ const CompanyProfile = (props) => {
               </button>
             </Link>
             <button
+              onClick={() => setEditBtnClicked((prevState) => !prevState)}
               type='button'
               className='relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 m-2'
             >
-              Edit Inventory
+              {editBtnClicked ? 'Done' : 'Edit Inventory'}
             </button>
           </div>
         </div>
-        <ProductList />
+        <ProductList
+          onEditBtnClicked={editBtnClicked}
+          onSetEditBtnClicked={setEditBtnClicked}
+        />
       </div>
     );
   } else {
