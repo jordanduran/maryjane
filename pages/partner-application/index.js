@@ -69,6 +69,7 @@ const PartnerApplicationPage = () => {
         <div className='px-4 py-5 sm:p-6'>
           <PartnerApplicationForm
             onHeroBtnClicked={heroBtnClicked}
+            onSetHeroBtnClicked={setHeroBtnClicked}
             onAddCompanyHandler={addCompanyHandler}
           />
         </div>

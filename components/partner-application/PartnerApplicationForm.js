@@ -5,6 +5,8 @@ import ImageUpload from '../form/ImageUpload';
 const PartnerApplicationForm = (props) => {
   const [session, loading] = useSession();
 
+  console.log(props);
+
   const formRef = useRef();
   const nameInputRef = useRef();
   const phoneInputRef = useRef();
@@ -68,6 +70,7 @@ const PartnerApplicationForm = (props) => {
     if (props.onHeroBtnClicked) {
       nameInputRef.current.focus();
       formRef.current.scrollIntoView();
+      props.onSetHeroBtnClicked(false);
     }
   }, [props.onHeroBtnClicked]);
 
