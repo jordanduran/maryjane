@@ -3,11 +3,15 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/client';
 import { UserContext } from '../../store/userContext';
 import ProductList from '../product/ProductList';
+import { useRouter } from 'next/router';
 
 const CompanyProfile = (props) => {
   const [editBtnClicked, setEditBtnClicked] = useState(false);
   const [session, loading] = useSession();
+  const router = useRouter();
   const loggedInUser = useContext(UserContext);
+
+  const companyId = router.query.companyId;
 
   if (session && !loading && props.id === loggedInUser.loggedInUser.id) {
     return (
@@ -71,7 +75,7 @@ const CompanyProfile = (props) => {
             </h3>
           </div>
           <div className='ml-4 mt-2 flex-shrink-0'>
-            <Link href='/marketplace/add-new-product'>
+            <Link href={`/marketplace/${companyId}/add-new-product`}>
               <button
                 type='button'
                 className='relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600'
