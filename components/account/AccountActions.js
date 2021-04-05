@@ -10,7 +10,7 @@ const AccountActions = () => {
 
   useEffect(() => {
     if (!session) {
-      router.replace('/auth');
+      router.replace('/');
     }
   }, []);
 

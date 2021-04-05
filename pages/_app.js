@@ -7,7 +7,11 @@ import { AlertContextProvider } from '../store/AlertContext';
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }) => {
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(
+    typeof window !== 'undefined'
+      ? JSON.parse(localStorage.getItem('user'))
+      : null
+  );
 
   const value = useMemo(() => ({ loggedInUser, setLoggedInUser }), [
     loggedInUser,

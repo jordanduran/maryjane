@@ -1,9 +1,18 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useEffect, useContext } from 'react';
 import { getCompanies } from '../../utils/Fauna';
 import CompanyList from '../../components/company/CompanyList';
 import Hero from '../../components/marketplace/Hero';
+import { UserContext } from '../../store/userContext';
 
 const MarketplacePage = (props) => {
+  const { loggedInUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (loggedInUser) {
+      localStorage.setItem('user', JSON.stringify(loggedInUser));
+    }
+  }, [loggedInUser]);
+
   return (
     <Fragment>
       <Hero />
