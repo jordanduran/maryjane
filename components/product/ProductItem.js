@@ -9,7 +9,7 @@ const ProductItem = (props) => {
     return (
       <Fragment>
         <li className='relative'>
-          <div className='focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
+          <div className='group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
             <img
               src='https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60'
               alt=''
