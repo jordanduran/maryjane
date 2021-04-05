@@ -110,8 +110,6 @@ const AuthForm = () => {
           status: 'success',
         });
       } else if (result.error) {
-        console.log(result);
-
         showAlert({
           title: 'Error signing in.',
           message: 'The email or password you entered are incorrect.',
