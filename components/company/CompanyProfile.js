@@ -5,6 +5,51 @@ import { UserContext } from '../../store/userContext';
 import ProductList from '../product/ProductList';
 import { useRouter } from 'next/router';
 
+const DUMMY_PRODUCTS = [
+  {
+    productId: 'p1',
+    productName: 'Strawberry Kush',
+    productType: 'Sativa',
+    productImage:
+      'https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+    productPrice: {
+      gram: '10',
+      eighth: '25',
+      quarter: '50',
+      half: '100',
+      ounce: '200',
+    },
+  },
+  {
+    productId: 'p2',
+    productName: 'Purple Haze',
+    productType: 'Indica',
+    productImage:
+      'https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+    productPrice: {
+      gram: '10',
+      eighth: '25',
+      quarter: '50',
+      half: '100',
+      ounce: '200',
+    },
+  },
+  {
+    productId: 'p3',
+    productName: 'Mimosa Cookies',
+    productType: 'Hybrid',
+    productImage:
+      'https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+    productPrice: {
+      gram: '10',
+      eighth: '25',
+      quarter: '50',
+      half: '100',
+      ounce: '200',
+    },
+  },
+];
+
 const CompanyProfile = (props) => {
   const [editBtnClicked, setEditBtnClicked] = useState(false);
   const [session, loading] = useSession();
@@ -93,6 +138,7 @@ const CompanyProfile = (props) => {
           </div>
         </div>
         <ProductList
+          products={DUMMY_PRODUCTS}
           onEditBtnClicked={editBtnClicked}
           onSetEditBtnClicked={setEditBtnClicked}
         />
@@ -160,7 +206,7 @@ const CompanyProfile = (props) => {
             </h3>
           </div>
         </div>
-        <ProductList />
+        <ProductList products={DUMMY_PRODUCTS} />
       </div>
     );
   }

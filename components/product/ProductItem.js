@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 
 const ProductItem = (props) => {
   const showProductHandler = () => {
-    console.log('do something');
+    console.log('show product');
   };
 
   if (props.onEditBtnClicked) {
@@ -11,9 +11,9 @@ const ProductItem = (props) => {
         <li className='relative'>
           <div className='group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
             <img
-              src='https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60'
-              alt=''
-              className='object-cover pointer-events-none'
+              src={props.productImage}
+              alt={props.productName}
+              className='w-full object-cover pointer-events-none'
             />
             <div className='flex flex-row justify-between justify-between h-1/5 z-10 img-button'>
               <button
@@ -52,10 +52,10 @@ const ProductItem = (props) => {
           </div>
 
           <p className='mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none'>
-            Strawberry Kush
+            {props.productName}
           </p>
           <p className='block text-sm font-medium text-gray-500 pointer-events-none'>
-            Hybrid
+            {props.productType}
           </p>
         </li>
       </Fragment>
@@ -66,17 +66,17 @@ const ProductItem = (props) => {
         <li className='relative' onClick={showProductHandler}>
           <div className='focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
             <img
-              src='https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60'
-              alt=''
-              className='group-hover:opacity-75 object-cover cursor-pointer'
+              src={props.productImage}
+              alt={props.productName}
+              className='w-full group-hover:opacity-75 object-cover cursor-pointer'
             />
           </div>
 
           <p className='mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none'>
-            Strawberry Kush
+            {props.productName}
           </p>
           <p className='block text-sm font-medium text-gray-500 pointer-events-none'>
-            Hybrid
+            {props.productType}
           </p>
         </li>
       </Fragment>
