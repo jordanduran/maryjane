@@ -93,9 +93,9 @@ const NewProductForm = () => {
   return (
     <form action='#' method='POST' onSubmit={submitHandler}>
       <div className='shadow sm:rounded-lg sm:overflow-hidden'>
-        <div className='bg-white py-6 px-4 space-y-6 sm:p-6'>
+        <div className='confetti-bg bg-gray-50 py-6 px-4 space-y-6 sm:p-6'>
           <div>
-            <h3 className='text-lg leading-6 font-medium text-gray-900'>
+            <h3 className='text-lg leading-6 font-medium text-gray-800'>
               Add new product to your inventory
             </h3>
             {/* <p className='mt-1 text-sm text-gray-500'>
@@ -370,7 +370,7 @@ const NewProductForm = () => {
                   <div className='flex text-sm text-gray-600 text-center'>
                     <label
                       htmlFor='file-upload'
-                      className='relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500'
+                      className='relative cursor-pointer bg-gray-100 rounded-md font-medium text-green-400 hover:text-green-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500'
                     >
                       <span>Upload a file</span>
                       <p className='pl-1'>or drag and drop</p>
