@@ -117,7 +117,7 @@ const Navbar = () => {
                     <path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
                   </svg>
                 </span>
-                <span className='uppercase text-base font-semibold'>
+                <span className='uppercase text-sm font-semibold'>
                   {loggedInUser.name || session.user.name}
                 </span>
               </a>
@@ -224,17 +224,8 @@ const Navbar = () => {
                     className='flex content-center justify-center w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
                     onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
                   >
-                    <span className='inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-100 mr-2'>
-                      <svg
-                        className='h-full w-full text-gray-300'
-                        fill='currentColor'
-                        viewBox='0 0 24 24'
-                      >
-                        <path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
-                      </svg>
-                    </span>
-                    <span className='uppercase inline-block align-middle mt-1'>
-                      {loggedInUser.name || session.user.name}
+                    <span className='inline-block align-middle mt-1.5'>
+                      View Account
                     </span>
                   </a>
                 </Link>
