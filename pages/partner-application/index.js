@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import PartnerApplicationForm from '../../components/partner-application/PartnerApplicationForm';
 
 const PartnerApplicationPage = () => {
+  const [heroBtnClicked, setHeroBtnClicked] = useState(false);
   const router = useRouter();
 
   const addCompanyHandler = async (enteredCompanyData) => {
@@ -37,12 +39,12 @@ const PartnerApplicationPage = () => {
         </h2>
         <div className='mt-8 flex justify-center'>
           <div className='inline-flex rounded-md shadow'>
-            <a
-              href='#'
+            <button
+              onClick={() => setHeroBtnClicked(true)}
               className='inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600'
             >
               Get started
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -65,7 +67,10 @@ const PartnerApplicationPage = () => {
 
       <div className='bg-gray-50 overflow-hidden shadow rounded-lg mb-10'>
         <div className='px-4 py-5 sm:p-6'>
-          <PartnerApplicationForm onAddCompanyHandler={addCompanyHandler} />
+          <PartnerApplicationForm
+            onHeroBtnClicked={heroBtnClicked}
+            onAddCompanyHandler={addCompanyHandler}
+          />
         </div>
       </div>
     </div>

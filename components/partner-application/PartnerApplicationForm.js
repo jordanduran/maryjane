@@ -1,10 +1,11 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useSession } from 'next-auth/client';
 import ImageUpload from '../form/ImageUpload';
 
 const PartnerApplicationForm = (props) => {
   const [session, loading] = useSession();
 
+  const formRef = useRef();
   const nameInputRef = useRef();
   const phoneInputRef = useRef();
   const emailInputRef = useRef();
@@ -63,9 +64,17 @@ const PartnerApplicationForm = (props) => {
     props.onAddCompanyHandler(companyData);
   };
 
+  useEffect(() => {
+    if (props.onHeroBtnClicked) {
+      nameInputRef.current.focus();
+      formRef.current.scrollIntoView();
+    }
+  }, [props.onHeroBtnClicked]);
+
   return (
     <div className='confetti-bg'>
       <form
+        ref={formRef}
         onSubmit={submitHandler}
         action='#'
         method='POST'
@@ -86,7 +95,7 @@ const PartnerApplicationForm = (props) => {
                 name='name'
                 type='name'
                 autoComplete='name'
-                autoFocus
+                autoFocus={props.onHeroBtnClicked && true}
                 ref={nameInputRef}
                 required
                 className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
