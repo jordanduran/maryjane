@@ -28,27 +28,33 @@ export default async function handler(req, res) {
   }
 
   if (!email || !email.includes('@')) {
-    res.status(422).json({ message: 'Invalid email address' });
+    res.status(422).json({ message: 'Invalid email address.' });
     return;
   }
 
   if (!password) {
-    res.status(422).json({ message: 'Password is required' });
+    res.status(422).json({ message: 'Password is required.' });
     return;
   } else if (password.trim().length < 7) {
-    res.status(422).json({ message: 'Password must be 7 characters or more' });
+    res.status(422).json({ message: 'Password must be 7 characters or more.' });
     return;
   }
 
   try {
-    const checkIfExistingUser = await getUserByEmail(email);
+    const user = await getUserByEmail(email);
 
-    if (checkIfExistingUser.email === email) {
-      res.status(422).json({ message: 'User already exists!' });
+    const checkIfExistingUser = () => {
+      return user.email === email ? true : false;
+    };
+
+    if (checkIfExistingUser) {
+      res
+        .status(422)
+        .json({ message: 'The email you have chosen is aleady in use.' });
       return;
     }
   } catch (error) {
-    // If query for existing user doesn't return an instance, create user
+    // If no instance is found, create user
     const newUser = await createUser(
       name,
       email,
