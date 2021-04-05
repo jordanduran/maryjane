@@ -72,12 +72,14 @@ const CompanyProfile = (props) => {
             </h3>
           </div>
           <div className='ml-4 mt-2 flex-shrink-0'>
-            <button
-              type='button'
-              className='relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600'
-            >
-              Add New Product
-            </button>
+            <Link href='/marketplace/add-new-product'>
+              <button
+                type='button'
+                className='relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600'
+              >
+                Add New Product
+              </button>
+            </Link>
             <button
               type='button'
               className='relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 m-2'
