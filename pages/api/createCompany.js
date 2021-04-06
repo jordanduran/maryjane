@@ -1,4 +1,4 @@
-import { createCompany, getCompanyByCompanyEmail } from '../../utils/Fauna';
+import { createCompany, getCompanyByUserEmail } from '../../utils/Fauna';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -45,12 +45,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    const existingApp = await getCompanyByCompanyEmail(companyEmail);
+    const existingApplication = await getCompanyByUserEmail(email);
 
-    if (existingApp.companyEmail === companyEmail) {
-      res
-        .status(422)
-        .json({ message: 'You have already submitted an application' });
+    const checkIfExistingApplication = () => {
+      return existingApplication.email === email ? true : false;
+    };
+
+    if (checkIfExistingApplication) {
+      res.status(422).json({
+        message:
+          'You have already applied for partnership, please allow 1-3 business days for the application to be processed.',
+      });
       return;
     }
   } catch (error) {

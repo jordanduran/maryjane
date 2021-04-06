@@ -31,8 +31,20 @@ const PartnerApplicationPage = () => {
 
     if (response.ok) {
       router.push('/partner-application/application-successful');
+      showAlert({
+        title: 'Partnership application successful',
+        message:
+          'Congratulations! You have successfully applied for partnership. Please allow 1-3 business days for the application to be processed.',
+        status: 'success',
+      });
     } else if (!response.ok) {
-      console.error(data.message || 'Something went wrong!');
+      showAlert({
+        title: 'Partnership application already in database',
+        message:
+          data.message ||
+          'Sorry, but your application was not submitted successfully at this time.',
+        status: 'notice',
+      });
     }
 
     return data;

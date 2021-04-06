@@ -1,4 +1,3 @@
-import { useSession, getSession } from 'next-auth/client';
 import Link from 'next/link';
 import React from 'react';
 
@@ -12,8 +11,8 @@ const ApplicationSuccessful = () => {
           </span>
         </h2>
         <p className='mt-4 text-lg leading-6 text-green-800'>
-          Please allow 3-4 business days for the application to be processed.
-          You will receive an email with confirmation once a decision is made.
+          Please allow 1-3 business days for the application to be processed.
+          You will receive an email with confirmation once a verdict is made.
           For now you can view the marketplace and browse the existing
           companies!
         </p>

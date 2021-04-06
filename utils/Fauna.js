@@ -107,14 +107,6 @@ const getCompanyById = async (id) => {
   return data;
 };
 
-const getCompanyByEmail = async (email) => {
-  // Fetches specific company from DB by email
-  const { data } = await faunaClient.query(
-    q.Get(q.Match(q.Index('company_by_email'), email))
-  );
-  return data;
-};
-
 const getCompanyByUserEmail = async (email) => {
   // Fetches specific company from DB by company email
   const { data } = await faunaClient.query(
@@ -149,7 +141,11 @@ const createCompany = async (
     q.Create(q.Collection('companies'), {
       data: {
         name,
-        email: q.Select('ref', q.Get(q.Match(q.Index('user_by_email'), email))),
+        userId: q.Select(
+          'ref',
+          q.Get(q.Match(q.Index('user_by_email'), email))
+        ),
+        email,
         phone,
         company,
         companyEmail,
@@ -175,7 +171,6 @@ module.exports = {
   deleteUser,
   getCompanies,
   getCompanyById,
-  getCompanyByEmail,
   getCompanyByUserEmail,
   getCompanyByCompanyEmail,
   createCompany,
