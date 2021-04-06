@@ -10,10 +10,16 @@ const NewProductForm = () => {
   const productTypeInputRef = useRef();
   const productNameInputRef = useRef();
   const pricePerGramInputRef = useRef();
+  const gramQtyInputRef = useRef();
   const pricePerEighthInputRef = useRef();
+  const eighthQtyInputRef = useRef();
   const pricePerQuarterInputRef = useRef();
+  const quarterQtyInputRef = useRef();
   const pricePerHalfInputRef = useRef();
+  const halfQtyInputRef = useRef();
   const pricePerOunceInputRef = useRef();
+  const ounceQtyInputRef = useRef();
+
   const verifyEmailInputRef = useRef();
 
   const AddNewProduct = async (
@@ -169,13 +175,42 @@ const NewProductForm = () => {
                   <select
                     id='currency'
                     name='currency'
-                    className='focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
+                    className='focus:ring-green-500 focus:border-green-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
                   >
                     <option>USD</option>
                     {/* <option>CAD</option>
                       <option>EUR</option> */}
                   </select>
                 </div>
+              </div>
+            </div>
+            <div className='col-span-3 sm:col-span-2'>
+              <label
+                htmlFor='gramQty'
+                className='block text-sm font-medium text-gray-700'
+              >
+                Quantity of Grams
+              </label>
+              <div className='w-20 mt-1 relative rounded-md shadow-sm'>
+                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                  <svg
+                    className='h-5 w-5 text-gray-400'
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-5 w-5'
+                    viewBox='0 0 20 20'
+                    fill='currentColor'
+                  >
+                    <path d='M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z' />
+                  </svg>
+                </div>
+                <input
+                  ref={gramQtyInputRef}
+                  type='text'
+                  name='gramQty'
+                  id='gramQty'
+                  className='focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md'
+                  placeholder='0'
+                />
               </div>
             </div>
 
@@ -205,13 +240,43 @@ const NewProductForm = () => {
                   <select
                     id='currency'
                     name='currency'
-                    className='focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
+                    className='focus:ring-green-500 focus:border-green-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
                   >
                     <option>USD</option>
                     {/* <option>CAD</option>
                       <option>EUR</option> */}
                   </select>
                 </div>
+              </div>
+            </div>
+
+            <div className='col-span-3 sm:col-span-2'>
+              <label
+                htmlFor='eighthQty'
+                className='block text-sm font-medium text-gray-700'
+              >
+                Quantity of Eighths
+              </label>
+              <div className='w-20 mt-1 relative rounded-md shadow-sm'>
+                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                  <svg
+                    className='h-5 w-5 text-gray-400'
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-5 w-5'
+                    viewBox='0 0 20 20'
+                    fill='currentColor'
+                  >
+                    <path d='M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z' />
+                  </svg>
+                </div>
+                <input
+                  ref={eighthQtyInputRef}
+                  type='text'
+                  name='eighthQty'
+                  id='eighthQty'
+                  className='focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md'
+                  placeholder='0'
+                />
               </div>
             </div>
 
@@ -241,13 +306,43 @@ const NewProductForm = () => {
                   <select
                     id='currency'
                     name='currency'
-                    className='focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
+                    className='focus:ring-green-500 focus:border-green-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
                   >
                     <option>USD</option>
                     {/* <option>CAD</option>
                       <option>EUR</option> */}
                   </select>
                 </div>
+              </div>
+            </div>
+
+            <div className='col-span-3 sm:col-span-2'>
+              <label
+                htmlFor='quarterQty'
+                className='block text-sm font-medium text-gray-700'
+              >
+                Quantity of Quarters
+              </label>
+              <div className='w-20 mt-1 relative rounded-md shadow-sm'>
+                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                  <svg
+                    className='h-5 w-5 text-gray-400'
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-5 w-5'
+                    viewBox='0 0 20 20'
+                    fill='currentColor'
+                  >
+                    <path d='M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z' />
+                  </svg>
+                </div>
+                <input
+                  ref={quarterQtyInputRef}
+                  type='text'
+                  name='quarterQty'
+                  id='quarterQty'
+                  className='focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md'
+                  placeholder='0'
+                />
               </div>
             </div>
 
@@ -277,13 +372,43 @@ const NewProductForm = () => {
                   <select
                     id='currency'
                     name='currency'
-                    className='focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
+                    className='focus:ring-green-500 focus:border-green-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
                   >
                     <option>USD</option>
                     {/* <option>CAD</option>
                       <option>EUR</option> */}
                   </select>
                 </div>
+              </div>
+            </div>
+
+            <div className='col-span-3 sm:col-span-2'>
+              <label
+                htmlFor='halfQty'
+                className='block text-sm font-medium text-gray-700'
+              >
+                Quantity of Halfs
+              </label>
+              <div className='w-20 mt-1 relative rounded-md shadow-sm'>
+                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                  <svg
+                    className='h-5 w-5 text-gray-400'
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-5 w-5'
+                    viewBox='0 0 20 20'
+                    fill='currentColor'
+                  >
+                    <path d='M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z' />
+                  </svg>
+                </div>
+                <input
+                  ref={halfQtyInputRef}
+                  type='text'
+                  name='halfQty'
+                  id='halfQty'
+                  className='focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md'
+                  placeholder='0'
+                />
               </div>
             </div>
 
@@ -313,13 +438,43 @@ const NewProductForm = () => {
                   <select
                     id='currency'
                     name='currency'
-                    className='focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
+                    className='focus:ring-green-500 focus:border-green-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md'
                   >
                     <option>USD</option>
                     {/* <option>CAD</option>
                       <option>EUR</option> */}
                   </select>
                 </div>
+              </div>
+            </div>
+
+            <div className='col-span-3 sm:col-span-2'>
+              <label
+                htmlFor='ounceQty'
+                className='block text-sm font-medium text-gray-700'
+              >
+                Quantity of Ounces
+              </label>
+              <div className='w-20 mt-1 relative rounded-md shadow-sm'>
+                <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                  <svg
+                    className='h-5 w-5 text-gray-400'
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-5 w-5'
+                    viewBox='0 0 20 20'
+                    fill='currentColor'
+                  >
+                    <path d='M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z' />
+                  </svg>
+                </div>
+                <input
+                  ref={ounceQtyInputRef}
+                  type='text'
+                  name='ounceQty'
+                  id='ounceQty'
+                  className='focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md'
+                  placeholder='0'
+                />
               </div>
             </div>
 
@@ -337,7 +492,7 @@ const NewProductForm = () => {
                   ref={verifyEmailInputRef}
                   id='email'
                   value={session.user.email}
-                  className='shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md'
+                  className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
                   placeholder='you@example.com'
                   readOnly
                 />

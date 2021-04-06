@@ -2,13 +2,14 @@ import { Fragment } from 'react';
 
 const ProductItem = (props) => {
   const showProductHandler = () => {
-    console.log('show product');
+    console.log(props.id);
   };
+  console.log(props);
 
   if (props.onEditBtnClicked) {
     return (
       <Fragment>
-        <li className='relative'>
+        <li key={props.id} className='relative'>
           <div className='group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
             <img
               src={props.productImage}
@@ -17,7 +18,7 @@ const ProductItem = (props) => {
             />
             <div className='flex flex-row justify-between justify-between h-1/5 z-10 img-button'>
               <button
-                onClick={() => console.log('Edit')}
+                onClick={() => console.log('EDIT', props.id)}
                 type='button'
                 className='z-10 w-9 h-9 m-2 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500'
               >
@@ -31,7 +32,7 @@ const ProductItem = (props) => {
                 </svg>
               </button>
               <button
-                onClick={() => console.log('Delete')}
+                onClick={() => console.log('DELETE', props.id)}
                 type='button'
                 className='z-10 w-9 h-9 m-2 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600'
               >
@@ -51,9 +52,30 @@ const ProductItem = (props) => {
             </div>
           </div>
 
-          <p className='mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none'>
+          <p className='w-1/2 mt-2 inline-block text-sm font-medium text-gray-900 truncate pointer-events-none'>
             {props.productName}
           </p>
+          {Number(props.gram.gramQty) > 0 ||
+          Number(props.eighth.eighthQty) > 0 ||
+          Number(props.quarter.quarterQty) > 0 ||
+          Number(props.half.halfQty) > 0 ||
+          Number(props.ounce.ounceQty) > 0 ? (
+            <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
+              <span class='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
+                In Stock
+              </span>
+            </p>
+          ) : (Number(props.gram.gramQty) === 0 &&
+              Number(props.eighth.eighthQty) === 0) ||
+            (Number(props.eighth.eighthQty) === 0 &&
+              Number(props.half.halfQty) === 0 &&
+              Number(props.ounce.ounceQty) === 0) ? (
+            <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
+              <span class='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
+                Out of Stock
+              </span>
+            </p>
+          ) : null}
           <p className='block text-sm font-medium text-gray-500 pointer-events-none'>
             {props.productType}
           </p>
@@ -72,10 +94,32 @@ const ProductItem = (props) => {
             />
           </div>
 
-          <p className='mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none'>
+          <p className='w-1/2 mt-2 inline-block text-sm font-medium text-gray-900 truncate pointer-events-none'>
             {props.productName}
           </p>
-          <p className='block text-sm font-medium text-gray-500 pointer-events-none'>
+
+          {Number(props.gram.gramQty) > 0 ||
+          Number(props.eighth.eighthQty) > 0 ||
+          Number(props.quarter.quarterQty) > 0 ||
+          Number(props.half.halfQty) > 0 ||
+          Number(props.ounce.ounceQty) > 0 ? (
+            <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
+              <span class='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
+                In Stock
+              </span>
+            </p>
+          ) : (Number(props.gram.gramQty) === 0 &&
+              Number(props.eighth.eighthQty) === 0) ||
+            (Number(props.eighth.eighthQty) === 0 &&
+              Number(props.half.halfQty) === 0 &&
+              Number(props.ounce.ounceQty) === 0) ? (
+            <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
+              <span class='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
+                Out of Stock
+              </span>
+            </p>
+          ) : null}
+          <p className='w-1/2 block text-sm font-medium text-gray-500 pointer-events-none'>
             {props.productType}
           </p>
         </li>

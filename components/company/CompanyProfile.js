@@ -73,23 +73,23 @@ const DUMMY_PRODUCTS = [
     productPrice: {
       gram: {
         gram: '25',
-        gramQty: '2',
+        gramQty: '0',
       },
       eighth: {
         eighthPrice: '25',
-        eighthQty: '2',
+        eighthQty: '0',
       },
       quarter: {
         quarterPrice: '50',
-        quarterQty: '3',
+        quarterQty: '0',
       },
       half: {
         halfPrice: '100',
-        halfQty: '4',
+        halfQty: '0',
       },
       ounce: {
         ouncePrice: '200',
-        ounceQty: '8',
+        ounceQty: '0',
       },
     },
   },
