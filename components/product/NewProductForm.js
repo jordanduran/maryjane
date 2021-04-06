@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useRef } from 'react';
 import ImageUpload from '../form/ImageUpload';
 
-const NewProductForm = () => {
+const NewProductForm = (props) => {
   const [session, loading] = useSession();
   const router = useRouter();
 
@@ -19,18 +19,23 @@ const NewProductForm = () => {
   const halfQtyInputRef = useRef();
   const pricePerOunceInputRef = useRef();
   const ounceQtyInputRef = useRef();
-
   const verifyEmailInputRef = useRef();
 
   const AddNewProduct = async (
-    productName,
     productType,
-    // productImage,
+    productName,
     gram,
+    gramQty,
+    eighth,
+    eighthQty,
     quarter,
+    quarterQty,
     half,
+    halfQty,
     ounce,
-    email
+    ounceQty,
+    email,
+    productImage
   ) => {
     const response = await fetch('/api/auth/new-product', {
       method: 'POST',
@@ -38,11 +43,17 @@ const NewProductForm = () => {
         productType,
         productName,
         gram,
+        gramQty,
+        eighth,
+        eighthQty,
         quarter,
+        quarterQty,
         half,
+        halfQty,
         ounce,
-        // productImage,
+        ounceQty,
         email,
+        productImage,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -60,21 +71,31 @@ const NewProductForm = () => {
     const enteredProductType = productTypeInputRef.current.value;
     const enteredProductName = productNameInputRef.current.value;
     const enteredProductPricePerGram = pricePerGramInputRef.current.value;
+    const enteredGramQty = gramQtyInputRef.current.value;
     const enteredProductPricePerEighth = pricePerEighthInputRef.current.value;
+    const enteredEighthQty = eighthQtyInputRef.current.value;
     const enteredProductPricePerQuarter = pricePerQuarterInputRef.current.value;
+    const enteredQuarterQty = quarterQtyInputRef.current.value;
     const enteredProductPricePerHalf = pricePerHalfInputRef.current.value;
+    const enteredHalfQty = halfQtyInputRef.current.value;
     const enteredProductPricePerOunce = pricePerOunceInputRef.current.value;
+    const enteredOunceQty = ounceQtyInputRef.current.value;
     const enteredVerifiedEmail = verifyEmailInputRef.current.value;
 
     try {
       const result = await AddNewProduct(
-        enteredProductName,
         enteredProductType,
+        enteredProductName,
         enteredProductPricePerGram,
+        enteredGramQty,
         enteredProductPricePerEighth,
+        enteredEighthQty,
         enteredProductPricePerQuarter,
+        enteredQuarterQty,
         enteredProductPricePerHalf,
+        enteredHalfQty,
         enteredProductPricePerOunce,
+        enteredOunceQty,
         enteredVerifiedEmail
       );
 
@@ -91,6 +112,7 @@ const NewProductForm = () => {
     } catch (error) {
       console.log(error);
     }
+    
   };
 
   return (

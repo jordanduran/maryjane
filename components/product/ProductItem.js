@@ -1,14 +1,19 @@
+import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 
 const ProductItem = (props) => {
+  const router = useRouter();
+  const companyId = router.query.companyId;
+
   const showProductHandler = () => {
     console.log(props.id);
+    router.push('/marketplace/' + companyId + '/' + props.id);
   };
 
   if (props.onEditBtnClicked) {
     return (
       <Fragment>
-        <li key={props.id} className='relative'>
+        <li key={props.id} className='relative' onClick={showProductHandler}>
           <div className='group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
             <img
               src={props.productImage}
