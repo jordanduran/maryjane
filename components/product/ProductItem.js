@@ -13,7 +13,7 @@ const ProductItem = (props) => {
   if (props.onEditBtnClicked) {
     return (
       <Fragment>
-        <li key={props.id} className='relative' onClick={showProductHandler}>
+        <li key={props.id} className='relative'>
           <div className='group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden'>
             <img
               src={props.productImage}
