@@ -1,9 +1,98 @@
 import { getCompanies, getCompanyById } from '../../../utils/Fauna';
 import CompanyProfile from '../../../components/company/CompanyProfile';
 
+const DUMMY_PRODUCTS = [
+  {
+    productId: 'p1',
+    productName: 'Strawberry Kush',
+    productType: 'Sativa',
+    productImage:
+      'https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+    productPrice: {
+      gram: {
+        gram: '25',
+        gramQty: '2',
+      },
+      eighth: {
+        eighthPrice: '25',
+        eighthQty: '2',
+      },
+      quarter: {
+        quarterPrice: '50',
+        quarterQty: '3',
+      },
+      half: {
+        halfPrice: '100',
+        halfQty: '4',
+      },
+      ounce: {
+        ouncePrice: '200',
+        ounceQty: '8',
+      },
+    },
+  },
+  {
+    productId: 'p2',
+    productName: 'Purple Haze',
+    productType: 'Indica',
+    productImage:
+      'https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+    productPrice: {
+      gram: {
+        gram: '25',
+        gramQty: '2',
+      },
+      eighth: {
+        eighthPrice: '25',
+        eighthQty: '2',
+      },
+      quarter: {
+        quarterPrice: '50',
+        quarterQty: '3',
+      },
+      half: {
+        halfPrice: '100',
+        halfQty: '4',
+      },
+      ounce: {
+        ouncePrice: '200',
+        ounceQty: '8',
+      },
+    },
+  },
+  {
+    productId: 'p3',
+    productName: 'Mimosa Cookies',
+    productType: 'Hybrid',
+    productImage:
+      'https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+    productPrice: {
+      gram: {
+        gram: '25',
+        gramQty: '0',
+      },
+      eighth: {
+        eighthPrice: '25',
+        eighthQty: '0',
+      },
+      quarter: {
+        quarterPrice: '50',
+        quarterQty: '0',
+      },
+      half: {
+        halfPrice: '100',
+        halfQty: '0',
+      },
+      ounce: {
+        ouncePrice: '200',
+        ounceQty: '0',
+      },
+    },
+  },
+];
+
 const CompanyProfilePage = (props) => {
   // const companyId = router.query.companyId; // Send request to backend API to fetch companies with companyId
-
   return (
     <div>
       <CompanyProfile
@@ -17,6 +106,7 @@ const CompanyProfilePage = (props) => {
         city={props.companyData.city}
         state={props.companyData.state}
         zipcode={props.companyData.zipcode}
+        products={props.products}
       />
     </div>
   );
@@ -57,7 +147,9 @@ export async function getStaticProps(context) {
         state: selectedCompany.address.state,
         zipcode: selectedCompany.address.zipcode,
       },
+      products: DUMMY_PRODUCTS,
     },
+    revalidate: 1,
   };
 }
 
