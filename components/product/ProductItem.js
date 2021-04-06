@@ -59,11 +59,12 @@ const ProductItem = (props) => {
           <p className='w-1/2 mt-2 inline-block text-sm font-medium text-gray-900 truncate pointer-events-none'>
             {props.productName}
           </p>
-          {Number(props.gram.gramQty) > 0 ||
-          Number(props.eighth.eighthQty) > 0 ||
-          Number(props.quarter.quarterQty) > 0 ||
-          Number(props.half.halfQty) > 0 ||
-          Number(props.ounce.ounceQty) > 0 ? (
+          {Number(props.gram.gramQty) +
+            Number(props.eighth.eighthQty) +
+            Number(props.quarter.quarterQty) +
+            Number(props.half.halfQty) +
+            Number(props.ounce.ounceQty) >=
+          8 ? (
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
                 In Stock
@@ -77,6 +78,24 @@ const ProductItem = (props) => {
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
                 Out of Stock
+              </span>
+            </p>
+          ) : Number(props.gram.gramQty) +
+              Number(props.eighth.eighthQty) +
+              Number(props.eighth.eighthQty) +
+              Number(props.half.halfQty) +
+              Number(props.ounce.ounceQty) <
+              7 &&
+            Number(props.gram.gramQty) +
+              Number(props.eighth.eighthQty) +
+              Number(props.eighth.eighthQty) +
+              Number(props.half.halfQty) +
+              Number(props.ounce.ounceQty) <
+              7 >
+              0 ? (
+            <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
+              <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700'>
+                Low in Stock
               </span>
             </p>
           ) : null}
@@ -102,11 +121,12 @@ const ProductItem = (props) => {
             {props.productName}
           </p>
 
-          {Number(props.gram.gramQty) > 0 ||
-          Number(props.eighth.eighthQty) > 0 ||
-          Number(props.quarter.quarterQty) > 0 ||
-          Number(props.half.halfQty) > 0 ||
-          Number(props.ounce.ounceQty) > 0 ? (
+          {Number(props.gram.gramQty) +
+            Number(props.eighth.eighthQty) +
+            Number(props.quarter.quarterQty) +
+            Number(props.half.halfQty) +
+            Number(props.ounce.ounceQty) >=
+          8 ? (
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
                 In Stock
@@ -120,6 +140,24 @@ const ProductItem = (props) => {
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
                 Out of Stock
+              </span>
+            </p>
+          ) : Number(props.gram.gramQty) +
+              Number(props.eighth.eighthQty) +
+              Number(props.eighth.eighthQty) +
+              Number(props.half.halfQty) +
+              Number(props.ounce.ounceQty) <
+              7 &&
+            Number(props.gram.gramQty) +
+              Number(props.eighth.eighthQty) +
+              Number(props.eighth.eighthQty) +
+              Number(props.half.halfQty) +
+              Number(props.ounce.ounceQty) <
+              7 >
+              0 ? (
+            <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
+              <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700'>
+                Low in Stock
               </span>
             </p>
           ) : null}

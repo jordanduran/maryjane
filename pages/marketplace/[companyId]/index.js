@@ -44,19 +44,19 @@ const DUMMY_PRODUCTS = [
       },
       eighth: {
         eighthPrice: '25',
-        eighthQty: '2',
+        eighthQty: '0',
       },
       quarter: {
         quarterPrice: '50',
-        quarterQty: '3',
+        quarterQty: '1',
       },
       half: {
         halfPrice: '100',
-        halfQty: '4',
+        halfQty: '1',
       },
       ounce: {
         ouncePrice: '200',
-        ounceQty: '8',
+        ounceQty: '2',
       },
     },
   },
