@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
 import { Fragment } from 'react';
+import { useRouter } from 'next/router';
 
 const ProductItem = (props) => {
   const router = useRouter();
