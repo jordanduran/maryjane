@@ -103,7 +103,7 @@ const CompanyProfile = (props) => {
 
   const companyId = router.query.companyId;
 
-  if (session && !loading && props.id === loggedInUser.loggedInUser.id) {
+  if (session && !loading && props.userId === loggedInUser.loggedInUser.id) {
     return (
       <div className='confetti-bg bg-gray-50 px-4 py-5 border-b border-gray-200 sm:px-6'>
         <div className='-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap'>

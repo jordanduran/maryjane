@@ -8,6 +8,7 @@ const CompanyProfilePage = (props) => {
     <div>
       <CompanyProfile
         id={props.companyData.id}
+        userId={props.companyData.userId}
         name={props.companyData.name}
         company={props.companyData.company}
         companyEmail={props.companyData.companyEmail}
@@ -24,6 +25,11 @@ const CompanyProfilePage = (props) => {
 export async function getStaticPaths() {
   const companies = await getCompanies();
 
+  console.log(
+    'COMPANIES:',
+    companies.map((company) => company.id)
+  );
+
   return {
     fallback: false,
     paths: companies.map((company) => ({ params: { companyId: company.id } })),
@@ -35,10 +41,13 @@ export async function getStaticProps(context) {
 
   const selectedCompany = await getCompanyById(companyId);
 
+  console.log('SELECTED COMPANY:', selectedCompany);
+
   return {
     props: {
       companyData: {
-        id: selectedCompany.email.id,
+        id: companyId,
+        userId: selectedCompany.userId.id,
         name: selectedCompany.name,
         company: selectedCompany.company,
         companyEmail: selectedCompany.companyEmail,

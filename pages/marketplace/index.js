@@ -34,6 +34,8 @@ export async function getStaticProps() {
   return {
     props: {
       companies: companies.map((company) => ({
+        userId: company.data.userId.id,
+        key: company.id,
         id: company.id,
         country: company.data.country,
         street: company.data.address.street,

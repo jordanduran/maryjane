@@ -8,8 +8,9 @@ const CompanyList = (props) => {
     >
       {props.companies.map((company) => (
         <CompanyItem
-          key={company.id}
+          userId={company.userId}
           id={company.id}
+          key={company.id}
           country={company.country}
           street={company.street}
           city={company.city}
