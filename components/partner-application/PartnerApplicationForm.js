@@ -96,11 +96,10 @@ const PartnerApplicationForm = (props) => {
                 name='name'
                 type='name'
                 autoComplete='name'
-                placeholder='Full Name'
                 autoFocus={props.onHeroBtnClicked && true}
                 ref={nameInputRef}
                 required
-                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
+                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
               />
             </div>
           </div>
@@ -117,10 +116,9 @@ const PartnerApplicationForm = (props) => {
                 name='phone'
                 type='tel'
                 autoComplete='phone'
-                placeholder='Phone'
                 ref={phoneInputRef}
                 required
-                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
+                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
               />
             </div>
           </div>
@@ -137,12 +135,11 @@ const PartnerApplicationForm = (props) => {
                 name='email'
                 type='email'
                 autoComplete='email'
-                placeholder='Email'
                 readOnly
                 value={session ? `${session.user.email}` : ''}
                 ref={emailInputRef}
                 required
-                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
+                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
               />
             </div>
           </div>
@@ -159,10 +156,9 @@ const PartnerApplicationForm = (props) => {
                 name='company'
                 type='company'
                 autoComplete='company'
-                placeholder='Company'
                 ref={companyInputRef}
                 required
-                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
+                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
               />
             </div>
           </div>
@@ -179,10 +175,9 @@ const PartnerApplicationForm = (props) => {
                 name='companyEmail'
                 type='companyEmail'
                 autoComplete='companyEmail'
-                placeholder='Company Email'
                 ref={companyEmailInputRef}
                 required
-                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
+                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
               />
             </div>
           </div>
@@ -197,7 +192,6 @@ const PartnerApplicationForm = (props) => {
               id='country'
               name='country'
               autoComplete='country'
-              placeholder='Country'
               ref={countryInputRef}
               className='max-w-lg block focus:ring-green-500 focus:border-green-500 w-full shadow-sm sm:max-w-xs md:w-vw sm:text-sm border-gray-300 rounded-md mb-4'
             >
@@ -220,7 +214,6 @@ const PartnerApplicationForm = (props) => {
                 name='street_address'
                 id='street_address'
                 autoComplete='street-address'
-                placeholder='Street Address'
                 ref={streetInputRef}
                 className='block max-w-lg w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md mb-4'
               />
@@ -239,7 +232,6 @@ const PartnerApplicationForm = (props) => {
                 type='text'
                 name='city'
                 id='city'
-                placeholder='City'
                 ref={cityInputRef}
                 className='max-w-lg block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md mb-4'
               />
@@ -258,7 +250,6 @@ const PartnerApplicationForm = (props) => {
                 type='text'
                 name='state'
                 id='state'
-                placeholder='State'
                 ref={companyLogoInputRef}
                 className='max-w-lg block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md mb-4'
               />
@@ -277,7 +268,6 @@ const PartnerApplicationForm = (props) => {
                 type='text'
                 name='zipcode'
                 id='zipcode'
-                placeholder='Zipcode'
                 autoComplete='postal-code'
                 ref={zipcodeInputRef}
                 className='max-w-lg block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md mb-4'
