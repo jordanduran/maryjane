@@ -13,11 +13,11 @@ const ProductList = (props) => {
           productName={product.productName}
           productType={product.productType}
           productImage={product.productImage}
-          gram={product.productPrice.gram}
-          eighth={product.productPrice.eighth}
-          quarter={product.productPrice.quarter}
-          half={product.productPrice.half}
-          ounce={product.productPrice.ounce}
+          gram={product.gram}
+          eighth={product.eighth}
+          quarter={product.quarter}
+          half={product.half}
+          ounce={product.ounce}
           onEditBtnClicked={props.onEditBtnClicked}
           onSetEditBtnClicked={props.onSetEditBtnClicked}
         />

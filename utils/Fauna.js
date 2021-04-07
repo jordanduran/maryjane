@@ -156,6 +156,38 @@ const createCompany = async (
 
 // PRODUCT API ROUTES
 
+const getProducts = async () => {
+  // Fetches products from DB
+  const { data } = await faunaClient.query(
+    q.Map(
+      q.Paginate(q.Documents(q.Collection('products'))),
+      q.Lambda('ref', q.Get(q.Var('ref')))
+    )
+  );
+  const products = data.map((product) => {
+    product.id = product.ref.id;
+    delete product.ref;
+    return product;
+  });
+  return products;
+};
+
+const getProductsByCompanyId = async (id) => {
+  // Fetches products by company id
+  const { data } = await faunaClient.query(
+    q.Map(
+      q.Paginate(q.Match(q.Index('products_by_company_id'), id)),
+      q.Lambda('ref', q.Get(q.Var('ref')))
+    )
+  );
+  const products = data.map((product) => {
+    product.id = product.ref.id;
+    delete product.ref;
+    return product;
+  });
+  return products;
+};
+
 const createProduct = async (
   productType,
   productName,
@@ -219,5 +251,7 @@ module.exports = {
   getCompanyById,
   getCompanyByUserEmail,
   createCompany,
+  getProducts,
+  getProductsByCompanyId,
   createProduct,
 };

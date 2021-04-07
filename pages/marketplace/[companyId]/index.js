@@ -1,4 +1,9 @@
-import { getCompanies, getCompanyById } from '../../../utils/Fauna';
+import {
+  getCompanies,
+  getCompanyById,
+  getProducts,
+  getProductsByCompanyId,
+} from '../../../utils/Fauna';
 import CompanyProfile from '../../../components/company/CompanyProfile';
 
 const DUMMY_PRODUCTS = [
@@ -113,16 +118,18 @@ const CompanyProfilePage = (props) => {
 };
 
 export async function getStaticPaths() {
-  const companies = await getCompanies();
+  const products = await getProducts();
 
   console.log(
-    'COMPANIES:',
-    companies.map((company) => company.id)
+    'PRODUCTS:',
+    products.map((product) => product)
   );
 
   return {
     fallback: false,
-    paths: companies.map((company) => ({ params: { companyId: company.id } })),
+    paths: products.map((product) => ({
+      params: { companyId: product.data.companyId.id, productId: product.id },
+    })),
   };
 }
 
@@ -132,6 +139,10 @@ export async function getStaticProps(context) {
   const selectedCompany = await getCompanyById(companyId);
 
   console.log('SELECTED COMPANY:', selectedCompany);
+
+  const selectedCompanyProducts = await getProductsByCompanyId(companyId);
+
+  console.log('COMPANY PRODUCTS:', selectedCompanyProducts);
 
   return {
     props: {
@@ -147,7 +158,35 @@ export async function getStaticProps(context) {
         state: selectedCompany.address.state,
         zipcode: selectedCompany.address.zipcode,
       },
-      products: DUMMY_PRODUCTS,
+      products: selectedCompanyProducts.map((product) => ({
+        productId: product.id,
+        productType: product.data.productType,
+        productName: product.data.productName,
+        productCompanyId: product.data.companyId.id,
+        gram: {
+          gramPrice: product.data.gram.gramPrice || '',
+          gramQty: product.data.gram.gramQty || '',
+        },
+        eighth: {
+          eighthPrice: product.data.eighth.eighthPrice || '',
+          eighthQty: product.data.eighth.eighthQty || '',
+        },
+        quarter: {
+          quarterPrice: product.data.quarter.quarterPrice || '',
+          quarterQty: product.data.quarter.quarterQty || '',
+        },
+        half: {
+          halfPrice: product.data.half.halfPrice || '',
+          halfQty: product.data.half.halfQty || '',
+        },
+        ounce: {
+          ouncePrice: product.data.ounce.ouncePrice || '',
+          ounceQty: product.data.ounce.ounceQty || '',
+        },
+        productImage:
+          product.data.productImage ||
+          'https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
+      })),
     },
     revalidate: 1,
   };

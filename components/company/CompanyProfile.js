@@ -10,7 +10,6 @@ const CompanyProfile = (props) => {
   const [session, loading] = useSession();
   const router = useRouter();
   const loggedInUser = useContext(UserContext);
-
   const companyId = router.query.companyId;
 
   if (session && !loading && props.userId === loggedInUser.loggedInUser.id) {

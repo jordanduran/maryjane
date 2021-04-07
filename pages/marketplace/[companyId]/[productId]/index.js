@@ -1,11 +1,9 @@
-import { getCompanies, getCompanyById } from '../../../../utils/Fauna';
+import { getProducts, getCompanyById } from '../../../../utils/Fauna';
 import { useRouter } from 'next/router';
 import Product from '../../../../components/product/Product';
 
 const ProductPage = () => {
   const router = useRouter();
-
-  // const companyId = router.query.companyId;
 
   return (
     <div>
@@ -15,21 +13,28 @@ const ProductPage = () => {
 };
 
 export async function getStaticPaths() {
-  const companies = await getCompanies();
+  const products = await getProducts();
 
   console.log(
-    'COMPANIES:',
-    companies.map((company) => company.id)
+    'PRODUCTS:',
+    products.map((product) => product)
   );
-
-  // Map over products and return productId in paths along with companyId
 
   return {
     fallback: false,
-    paths: companies.map((company) => ({
-      params: { companyId: company.id, productId: 'p1' },
+    paths: products.map((product) => ({
+      params: { companyId: product.data.companyId.id, productId: product.id },
     })),
   };
+
+  // Map over products and return productId in paths along with companyId
+
+  // return {
+  //   fallback: false,
+  //   paths: companies.map((company) => ({
+  //     params: { companyId: company.id, productId: 'p1' },
+  //   })),
+  // };
 }
 
 export async function getStaticProps(context) {
