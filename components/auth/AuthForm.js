@@ -16,7 +16,7 @@ const createUser = async (
   state,
   zipcode
 ) => {
-  const response = await fetch('/api/auth/createUser', {
+  const response = await fetch('/api/auth/new-user', {
     method: 'POST',
     body: JSON.stringify({
       name,

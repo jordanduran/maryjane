@@ -19,7 +19,7 @@ const PartnerApplicationPage = () => {
   };
 
   const addCompanyHandler = async (enteredCompanyData) => {
-    const response = await fetch('/api/createCompany', {
+    const response = await fetch('/api/new-company', {
       method: 'POST',
       body: JSON.stringify(enteredCompanyData),
       headers: {
