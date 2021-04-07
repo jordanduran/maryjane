@@ -1,11 +1,11 @@
+import { useRef, useContext } from 'react';
 import { useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
-import React, { useRef } from 'react';
+import { UserContext } from '../../store/userContext';
 import ImageUpload from '../form/ImageUpload';
 
 const NewProductForm = (props) => {
+  const { loggedInUser } = useContext(UserContext);
   const [session, loading] = useSession();
-  const router = useRouter();
 
   const productTypeInputRef = useRef();
   const productNameInputRef = useRef();
@@ -20,50 +20,6 @@ const NewProductForm = (props) => {
   const pricePerOunceInputRef = useRef();
   const ounceQtyInputRef = useRef();
   const verifyEmailInputRef = useRef();
-
-  const AddNewProduct = async (
-    productType,
-    productName,
-    gram,
-    gramQty,
-    eighth,
-    eighthQty,
-    quarter,
-    quarterQty,
-    half,
-    halfQty,
-    ounce,
-    ounceQty,
-    email,
-    productImage
-  ) => {
-    const response = await fetch('/api/auth/new-product', {
-      method: 'POST',
-      body: JSON.stringify({
-        productType,
-        productName,
-        gram,
-        gramQty,
-        eighth,
-        eighthQty,
-        quarter,
-        quarterQty,
-        half,
-        halfQty,
-        ounce,
-        ounceQty,
-        email,
-        productImage,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const data = await response.json();
-    console.log(data);
-    return data;
-  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -83,36 +39,38 @@ const NewProductForm = (props) => {
     const enteredVerifiedEmail = verifyEmailInputRef.current.value;
 
     try {
-      const result = await AddNewProduct(
-        enteredProductType,
-        enteredProductName,
-        enteredProductPricePerGram,
-        enteredGramQty,
-        enteredProductPricePerEighth,
-        enteredEighthQty,
-        enteredProductPricePerQuarter,
-        enteredQuarterQty,
-        enteredProductPricePerHalf,
-        enteredHalfQty,
-        enteredProductPricePerOunce,
-        enteredOunceQty,
-        enteredVerifiedEmail
-      );
+      const productData = {
+        productType: enteredProductType,
+        productName: enteredProductName,
+        gram: {
+          gramPrice: enteredProductPricePerGram,
+          gramQty: enteredGramQty,
+        },
+        eighth: {
+          eighthPrice: enteredProductPricePerEighth,
+          eighthQty: enteredEighthQty,
+        },
+        quarter: {
+          quarterPrice: enteredProductPricePerQuarter,
+          quarterQty: enteredQuarterQty,
+        },
+        half: {
+          halfPrice: enteredProductPricePerHalf,
+          halfQty: enteredHalfQty,
+        },
+        ounce: {
+          ouncePrice: enteredProductPricePerOunce,
+          ounceQty: enteredOunceQty,
+        },
 
-      console.log(result);
-      router.back();
+        email: enteredVerifiedEmail,
+        // productImage,
+      };
 
-      productTypeInputRef = '';
-      productNameInputRef = '';
-      pricePerGramInputRef = '';
-      pricePerEighthInputRef = '';
-      pricePerQuarterInputRef = '';
-      pricePerHalfInputRef = '';
-      pricePerOunceInputRef = '';
+      props.onAddNewProductHandler(productData);
     } catch (error) {
       console.log(error);
     }
-    
   };
 
   return (
@@ -513,7 +471,7 @@ const NewProductForm = (props) => {
                   name='email'
                   ref={verifyEmailInputRef}
                   id='email'
-                  value={session.user.email}
+                  value={loggedInUser.email}
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
                   placeholder='you@example.com'
                   readOnly

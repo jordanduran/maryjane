@@ -154,6 +154,60 @@ const createCompany = async (
   );
 };
 
+// PRODUCT API ROUTES
+
+const createProduct = async (
+  productType,
+  productName,
+  gramPrice,
+  gramQty,
+  eighthPrice,
+  eighthQty,
+  quarterPrice,
+  quarterQty,
+  halfPrice,
+  halfQty,
+  ouncePrice,
+  ounceQty,
+  email,
+  productImage
+) => {
+  // Creates new product in DB
+  return await faunaClient.query(
+    q.Create(q.Collection('products'), {
+      data: {
+        productType,
+        productName,
+        companyId: q.Select(
+          'ref',
+          q.Get(q.Match(q.Index('company_by_email'), email))
+        ),
+        gram: {
+          gramPrice,
+          gramQty,
+        },
+        eighth: {
+          eighthPrice,
+          eighthQty,
+        },
+        quarter: {
+          quarterPrice,
+          quarterQty,
+        },
+        half: {
+          halfPrice,
+          halfQty,
+        },
+        ounce: {
+          ouncePrice,
+          ounceQty,
+        },
+        productImage,
+      },
+    })
+  );
+};
+
 module.exports = {
   getUsers,
   getUserById,
@@ -165,4 +219,5 @@ module.exports = {
   getCompanyById,
   getCompanyByUserEmail,
   createCompany,
+  createProduct,
 };
