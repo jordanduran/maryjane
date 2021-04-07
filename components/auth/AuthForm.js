@@ -207,7 +207,7 @@ const AuthForm = () => {
                   type='email'
                   autoComplete='email'
                   required
-                  className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
+                  className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
                   placeholder='Email address'
                 />
               </div>
@@ -222,7 +222,7 @@ const AuthForm = () => {
                   type='password'
                   autoComplete='current-password'
                   required
-                  className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
+                  className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-b-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
                   placeholder='Password'
                 />
               </div>
@@ -339,7 +339,6 @@ const AuthForm = () => {
                   name='name'
                   id='name'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='Full Name'
                   required
                 />
               </div>
@@ -357,7 +356,6 @@ const AuthForm = () => {
                   name='phone'
                   id='phone'
                   autoComplete='phone'
-                  placeholder='Phone Number'
                   required
                   className='block w-full shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm border-gray-300 rounded-md'
                   ref={phoneInputRef}
@@ -378,7 +376,6 @@ const AuthForm = () => {
                   name='email'
                   id='email'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='Email Address'
                   required
                 />
               </div>
@@ -397,7 +394,6 @@ const AuthForm = () => {
                   name='street'
                   id='street'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='Street'
                   required
                 />
               </div>
@@ -416,7 +412,6 @@ const AuthForm = () => {
                   name='city'
                   id='city'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='City'
                   required
                 />
               </div>
@@ -435,7 +430,6 @@ const AuthForm = () => {
                   name='state'
                   id='state'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='State'
                   required
                 />
               </div>
@@ -454,7 +448,6 @@ const AuthForm = () => {
                   name='zipcode'
                   id='zipcode'
                   className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='Zipcode'
                   required
                 />
               </div>
@@ -472,9 +465,8 @@ const AuthForm = () => {
                   type='password'
                   name='password'
                   id='password'
-                  className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
+                  className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm'
                   autoComplete='current-password'
-                  placeholder='Password'
                   required
                 />
               </div>
