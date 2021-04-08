@@ -1,15 +1,17 @@
 import { useState, useContext } from 'react';
-import Link from 'next/link';
 import { useSession } from 'next-auth/client';
 import { UserContext } from '../../store/userContext';
-import ProductList from '../product/ProductList';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import ProductList from '../product/ProductList';
 
 const CompanyProfile = (props) => {
+  console.log(props);
+
+  const loggedInUser = useContext(UserContext);
   const [editBtnClicked, setEditBtnClicked] = useState(false);
   const [session, loading] = useSession();
   const router = useRouter();
-  const loggedInUser = useContext(UserContext);
   const companyId = router.query.companyId;
 
   if (session && !loading && props.userId === loggedInUser.loggedInUser.id) {
@@ -91,11 +93,36 @@ const CompanyProfile = (props) => {
             </button>
           </div>
         </div>
-        <ProductList
-          products={props.products}
-          onEditBtnClicked={editBtnClicked}
-          onSetEditBtnClicked={setEditBtnClicked}
-        />
+
+        {props.products.length === 0 ? (
+          <div className='confetti-bg'>
+            <div className='max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8'>
+              <h2 className='text-3xl font-extrabold tracking-tight sm:text-4xl'>
+                <span className='block text-gray-800'>
+                  You currently do not have any products in your inventory
+                </span>
+                <span className='block text-green-500'>
+                  Add your first product to get started!
+                </span>
+              </h2>
+              <div className='mt-8 flex justify-center'>
+                <div className='ml-3 inline-flex'>
+                  <Link href={`/marketplace/${companyId}/add-new-product`}>
+                    <a className='inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200'>
+                      Add New Product
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <ProductList
+            products={props.products}
+            onEditBtnClicked={editBtnClicked}
+            onSetEditBtnClicked={setEditBtnClicked}
+          />
+        )}
       </div>
     );
   } else {
@@ -160,7 +187,26 @@ const CompanyProfile = (props) => {
             </h3>
           </div>
         </div>
-        <ProductList products={props.products} />
+        {props.products.length === 0 ? (
+          <div className='confetti-bg'>
+            <div className='max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8'>
+              <h2 className='text-3xl font-extrabold tracking-tight sm:text-4xl'>
+                <span className='block text-gray-800'>
+                  This company has yet to add a product to their inventory.
+                </span>
+                <span className='block text-green-500'>
+                  Please check again later!
+                </span>
+              </h2>
+            </div>
+          </div>
+        ) : (
+          <ProductList
+            products={props.products}
+            onEditBtnClicked={editBtnClicked}
+            onSetEditBtnClicked={setEditBtnClicked}
+          />
+        )}
       </div>
     );
   }

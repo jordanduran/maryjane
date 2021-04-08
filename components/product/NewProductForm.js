@@ -7,8 +7,6 @@ const NewProductForm = (props) => {
   const { loggedInUser } = useContext(UserContext);
   const [session, loading] = useSession();
 
-  console.log(loggedInUser);
-
   const productTypeInputRef = useRef();
   const productNameInputRef = useRef();
   const pricePerGramInputRef = useRef();
