@@ -35,3 +35,7 @@ button {
   background-repeat: repeat;
   height: fit-content;
 }
+
+.capitalize {
+  text-transform: capitalize;
+}

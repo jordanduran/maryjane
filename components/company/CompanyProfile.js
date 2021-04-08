@@ -192,7 +192,10 @@ const CompanyProfile = (props) => {
             <div className='max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8'>
               <h2 className='text-3xl font-extrabold tracking-tight sm:text-4xl'>
                 <span className='block text-gray-800'>
-                  This company has yet to add a product to their inventory.
+                  <span className='capitalize text-green-500'>
+                    {props.company}{' '}
+                  </span>
+                  has no products available in their inventory at this time.
                 </span>
                 <span className='block text-green-500'>
                   Please check again later!
