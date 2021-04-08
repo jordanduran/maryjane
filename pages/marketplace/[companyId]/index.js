@@ -6,7 +6,6 @@ import {
 import CompanyProfile from '../../../components/company/CompanyProfile';
 
 const CompanyProfilePage = (props) => {
-  // const companyId = router.query.companyId; // Send request to backend API to fetch companies with companyId
   return (
     <div>
       <CompanyProfile

@@ -172,6 +172,14 @@ const getProducts = async () => {
   return products;
 };
 
+const getProductById = async (id) => {
+  // Fetches company by id
+  const { data } = await faunaClient.query(
+    q.Get(q.Match(q.Index('product_by_id'), id))
+  );
+  return data;
+};
+
 const getProductsByCompanyId = async (id) => {
   // Fetches products by company id
   const { data } = await faunaClient.query(
@@ -252,6 +260,7 @@ module.exports = {
   getCompanyByUserEmail,
   createCompany,
   getProducts,
+  getProductById,
   getProductsByCompanyId,
   createProduct,
 };

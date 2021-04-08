@@ -1,13 +1,14 @@
-import { getProducts, getCompanyById } from '../../../../utils/Fauna';
-import { useRouter } from 'next/router';
+import {
+  getProducts,
+  getProductById,
+  getCompanyById,
+} from '../../../../utils/Fauna';
 import Product from '../../../../components/product/Product';
 
-const ProductPage = () => {
-  const router = useRouter();
-
+const ProductPage = (props) => {
   return (
     <div>
-      <Product />
+      <Product companyData={props.companyData} product={props.product} />
     </div>
   );
 };
@@ -39,10 +40,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const companyId = context.params.companyId;
+  const productId = context.params.productId;
 
   const selectedCompany = await getCompanyById(companyId);
+  const selectedProduct = await getProductById(productId);
 
   console.log('SELECTED COMPANY:', selectedCompany);
+
+  console.log('SELECTED PRODUCT:', selectedProduct);
 
   return {
     props: {
@@ -58,7 +63,31 @@ export async function getStaticProps(context) {
         state: selectedCompany.address.state,
         zipcode: selectedCompany.address.zipcode,
       },
-      // products: DUMMY_PRODUCTS,
+      product: {
+        productId: productId,
+        productType: selectedProduct.productType,
+        productName: selectedProduct.productName,
+        gram: {
+          gramPrice: selectedProduct.gram.gramPrice,
+          gramQty: selectedProduct.gram.gramQty,
+        },
+        eighth: {
+          eighthPrice: selectedProduct.eighth.eighthPrice,
+          eighthQty: selectedProduct.eighth.eighthQty,
+        },
+        quarter: {
+          quarterPrice: selectedProduct.quarter.quarterPrice,
+          quarterQty: selectedProduct.quarter.quarterQty,
+        },
+        half: {
+          halfPrice: selectedProduct.half.halfPrice,
+          halfQty: selectedProduct.half.halfQty,
+        },
+        ounce: {
+          ouncePrice: selectedProduct.ounce.ouncePrice,
+          ounceQty: selectedProduct.ounce.ounceQty,
+        },
+      },
     },
     revalidate: 1,
   };
