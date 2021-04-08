@@ -1,12 +1,14 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Provider } from 'next-auth/client';
-import Layout from '../components/layout/Layout';
 import { UserContext } from '../store/userContext';
 import { AlertContextProvider } from '../store/AlertContext';
-
+import Router from 'next/router';
+import Layout from '../components/layout/Layout';
+import Spinner from '../components/layout/Spinner';
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }) => {
+  const [loading, setLoading] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(
     typeof window !== 'undefined'
       ? JSON.parse(localStorage.getItem('user'))
@@ -18,12 +20,29 @@ const MyApp = ({ Component, pageProps }) => {
     setLoggedInUser,
   ]);
 
+  useEffect(() => {
+    const startLoader = () => {
+      setLoading(true);
+    };
+    const endLoader = () => {
+      setLoading(false);
+    };
+    Router.events.on('routeChangeStart', startLoader);
+    Router.events.on('routeChangeComplete', endLoader);
+    Router.events.on('routeChangeError', endLoader);
+    return () => {
+      Router.events.off('routeChangeStart', startLoader);
+      Router.events.off('routeChangeComplete', endLoader);
+      Router.events.off('routeChangeError', endLoader);
+    };
+  }, []);
+
   return (
     <UserContext.Provider value={value}>
       <AlertContextProvider>
         <Provider session={pageProps.session}>
           <Layout>
-            <Component {...pageProps} />
+            {loading ? <Spinner /> : <Component {...pageProps} />}
           </Layout>
         </Provider>
       </AlertContextProvider>
