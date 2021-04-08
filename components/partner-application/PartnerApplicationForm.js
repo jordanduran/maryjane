@@ -1,9 +1,11 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useContext } from 'react';
 import { useSession } from 'next-auth/client';
+import { UserContext } from '../../store/userContext';
 import ImageUpload from '../form/ImageUpload';
 
 const PartnerApplicationForm = (props) => {
   const [session, loading] = useSession();
+  const { loggedInUser } = useContext(UserContext);
 
   const formRef = useRef();
   const nameInputRef = useRef();
@@ -23,7 +25,6 @@ const PartnerApplicationForm = (props) => {
 
     const enteredName = nameInputRef.current.value;
     const enteredPhone = phoneInputRef.current.value;
-    const enteredEmail = emailInputRef.current.value;
     const enteredCompany = companyInputRef.current.value;
     const enteredCompanyEmail = companyEmailInputRef.current.value;
     const enteredCountry = countryInputRef.current.value;
@@ -34,7 +35,7 @@ const PartnerApplicationForm = (props) => {
 
     const companyData = {
       name: enteredName,
-      email: enteredEmail,
+      email: loggedInUser.email || session.user.email,
       phone: enteredPhone,
       company: enteredCompany,
       companyEmail: enteredCompanyEmail,
@@ -50,7 +51,6 @@ const PartnerApplicationForm = (props) => {
 
     if (!console.error) {
       nameInputRef.current.value = '';
-      emailInputRef.current.value = '';
       phoneInputRef.current.value = '';
       companyInputRef.current.value = '';
       companyEmailInputRef.current.value = '';
@@ -117,27 +117,6 @@ const PartnerApplicationForm = (props) => {
                 type='tel'
                 autoComplete='phone'
                 ref={phoneInputRef}
-                required
-                className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              htmlFor='email'
-              className='block text-sm font-medium text-gray-700'
-            >
-              Email Address
-            </label>
-            <div className='mt-1'>
-              <input
-                id='email'
-                name='email'
-                type='email'
-                autoComplete='email'
-                readOnly
-                value={session ? `${session.user.email}` : ''}
-                ref={emailInputRef}
                 required
                 className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm mb-4'
               />

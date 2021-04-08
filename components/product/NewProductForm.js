@@ -21,7 +21,6 @@ const NewProductForm = (props) => {
   const halfQtyInputRef = useRef();
   const pricePerOunceInputRef = useRef();
   const ounceQtyInputRef = useRef();
-  const verifyEmailInputRef = useRef();
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -38,7 +37,6 @@ const NewProductForm = (props) => {
     const enteredHalfQty = halfQtyInputRef.current.value;
     const enteredProductPricePerOunce = pricePerOunceInputRef.current.value;
     const enteredOunceQty = ounceQtyInputRef.current.value;
-    const enteredVerifiedEmail = verifyEmailInputRef.current.value;
 
     try {
       const productData = {
@@ -65,7 +63,7 @@ const NewProductForm = (props) => {
           ounceQty: enteredOunceQty,
         },
 
-        email: enteredVerifiedEmail,
+        email: loggedInUser.email || session.user.email,
         // productImage,
       };
 
@@ -456,27 +454,6 @@ const NewProductForm = (props) => {
                   id='ounceQty'
                   className='focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md'
                   placeholder='0'
-                />
-              </div>
-            </div>
-
-            <div className='col-span-3 sm:col-span-2'>
-              <label
-                htmlFor='productName'
-                className='block text-sm font-medium text-gray-700'
-              >
-                Verify Email
-              </label>
-              <div className='mt-1'>
-                <input
-                  type='text'
-                  name='email'
-                  ref={verifyEmailInputRef}
-                  id='email'
-                  value={loggedInUser.email}
-                  className='shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md'
-                  placeholder='you@example.com'
-                  readOnly
                 />
               </div>
             </div>
