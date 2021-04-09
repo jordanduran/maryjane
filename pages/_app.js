@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { Provider } from 'next-auth/client';
 import { UserContext } from '../store/userContext';
 import { AlertContextProvider } from '../store/AlertContext';
+import { CartProvider } from '../store/CartContext';
+
 import Router from 'next/router';
 import Layout from '../components/layout/Layout';
 import Spinner from '../components/layout/Spinner';
@@ -40,11 +42,13 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <UserContext.Provider value={value}>
       <AlertContextProvider>
-        <Provider session={pageProps.session}>
-          <Layout>
-            {loading ? <Spinner /> : <Component {...pageProps} />}
-          </Layout>
-        </Provider>
+        <CartProvider>
+          <Provider session={pageProps.session}>
+            <Layout>
+              {loading ? <Spinner /> : <Component {...pageProps} />}
+            </Layout>
+          </Provider>
+        </CartProvider>
       </AlertContextProvider>
     </UserContext.Provider>
   );

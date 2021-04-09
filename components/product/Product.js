@@ -5,6 +5,7 @@ import {
   faQuestionCircle,
   faChevronCircleDown,
 } from '@fortawesome/free-solid-svg-icons';
+import { useDispatchCart } from '../../store/CartContext';
 
 const Product = (props) => {
   const [gramQty, setGramQty] = useState(0);
@@ -12,6 +13,8 @@ const Product = (props) => {
   const [quarterQty, setQuarterQty] = useState(0);
   const [halfQty, setHalfQty] = useState(0);
   const [ounceQty, setOunceQty] = useState(0);
+
+  const dispatch = useDispatchCart();
 
   const qtyChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -22,6 +25,32 @@ const Product = (props) => {
         [name]: value,
       };
     });
+  };
+
+  const addToCartHandler = () => {
+    let product = {
+      product: {
+        productId: props.product.productId,
+        productName: props.product.productName,
+        productType: props.product.productType,
+        productImage: props.product.productImage,
+        quantity: {
+          gram: gramQty > 0 && gramQty,
+          eighth: eighthQty > 0 && eighthQty,
+          quarter: quarterQty > 0 && quarterQty,
+          half: halfQty > 0 && halfQty,
+          ounce: ounceQty > 0 && ounceQty,
+        },
+      },
+      companyData: props.companyData,
+    };
+    console.log(product);
+    dispatch({ type: 'ADD', product });
+    setGramQty(0);
+    setEighthQty(0);
+    setQuarterQty(0);
+    setHalfQty(0);
+    setOunceQty(0);
   };
 
   console.log(props);
@@ -137,6 +166,7 @@ const Product = (props) => {
                     </span>
                     <div>
                       <button
+                        onClick={addToCartHandler}
                         type='button'
                         className='block mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400'
                       >
@@ -222,6 +252,7 @@ const Product = (props) => {
                     </span>
                     <div>
                       <button
+                        onClick={addToCartHandler}
                         type='button'
                         className='block mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400'
                       >
@@ -308,6 +339,7 @@ const Product = (props) => {
                     </span>
                     <div>
                       <button
+                        onClick={addToCartHandler}
                         type='button'
                         className='block mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400'
                       >
@@ -391,6 +423,7 @@ const Product = (props) => {
                     </span>
                     <div>
                       <button
+                        onClick={addToCartHandler}
                         type='button'
                         className='block mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400'
                       >
@@ -474,6 +507,7 @@ const Product = (props) => {
                     </span>
                     <div>
                       <button
+                        onClick={addToCartHandler}
                         type='button'
                         className='block mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400'
                       >

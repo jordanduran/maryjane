@@ -6,6 +6,8 @@ import { Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCannabis, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { UserContext } from '../../store/userContext';
+import { useCart } from '../../store/CartContext';
+
 import AlertContext from '../../store/AlertContext';
 
 const Navbar = () => {
@@ -14,6 +16,9 @@ const Navbar = () => {
   const { showAlert } = useContext(AlertContext);
   const [session, loading] = useSession();
   const router = useRouter();
+  const cartItems = useCart();
+
+  console.log(cartItems);
 
   const logoutHandler = () => {
     signOut();
@@ -46,24 +51,29 @@ const Navbar = () => {
             </Link>
 
             <div className='-mr-2 flex items-center md:hidden'>
+              {cartItems.length > 0 && (
+                <span className='absolute top-0 bottom-6 right-24 inline-flex items-center px-2.5 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
+                  <span className='text-xs font-bold'>{cartItems.length}</span>
+                </span>
+              )}
               <button
                 onClick={() => console.log('Shopping cart!')}
                 type='button'
-                className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
+                className='mr-5 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
                 aria-expanded='false'
               >
-                <span className='sr-only'>Open main menu</span>
+                <span className='sr-only'>Open cart page</span>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  class='h-8 w-8 text-gray-700'
+                  className='h-8 w-8 text-gray-700'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
                 >
                   <path
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                    stroke-width='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
                     d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
                   />
                 </svg>
@@ -119,21 +129,25 @@ const Navbar = () => {
             className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
             aria-expanded='false'
           >
-            <span className='sr-only'>Open main menu</span>
+            <span className='sr-only'>Open cart page</span>
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              class='h-8 w-8 text-gray-700'
+              className='h-8 w-8 text-gray-700'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
             >
               <path
-                stroke-linecap='round'
-                stroke-linejoin='round'
-                stroke-width='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
                 d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
               />
             </svg>
+
+            <span className='ml-1'>
+              {cartItems.length > 0 && '( ' + cartItems.length + ' )'}
+            </span>
           </button>
         </div>
 
