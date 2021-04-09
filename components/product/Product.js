@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCannabis,
@@ -6,6 +7,23 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const Product = (props) => {
+  const [gramQty, setGramQty] = useState(0);
+  const [eighthQty, setEighthQty] = useState(0);
+  const [quarterQty, setQuarterQty] = useState(0);
+  const [halfQty, setHalfQty] = useState(0);
+  const [ounceQty, setOunceQty] = useState(0);
+
+  const qtyChangeHandler = (event) => {
+    const { name, value } = event.target;
+
+    setQtyValue((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
+
   console.log(props);
   return (
     <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 m-2'>
@@ -62,6 +80,10 @@ const Product = (props) => {
                   <form className='mt-1'>
                     <span className='relative z-0 inline-flex shadow-sm rounded-md'>
                       <button
+                        onClick={() => {
+                          gramQty > 0 &&
+                            setGramQty((prevState) => prevState - 1);
+                        }}
                         type='button'
                         className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
@@ -81,13 +103,19 @@ const Product = (props) => {
                         </svg>
                       </button>
                       <input
+                        onChange={qtyChangeHandler}
+                        value={gramQty}
                         type='text'
                         name='gramQty'
                         id='gramQty'
                         className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
-                        placeholder='Qty'
                       />
                       <button
+                        onClick={() => {
+                          gramQty < Number(props.product.gram.gramQty) &&
+                            gramQty >= 0 &&
+                            setGramQty((prevState) => prevState + 1);
+                        }}
                         type='button'
                         className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
@@ -136,6 +164,10 @@ const Product = (props) => {
                   <form className='mt-1'>
                     <span className='relative z-0 inline-flex shadow-sm rounded-md'>
                       <button
+                        onClick={() => {
+                          eighthQty > 0 &&
+                            setEighthQty((prevState) => prevState - 1);
+                        }}
                         type='button'
                         className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
@@ -155,13 +187,20 @@ const Product = (props) => {
                         </svg>
                       </button>
                       <input
+                        onChange={qtyChangeHandler}
+                        value={eighthQty}
                         type='text'
-                        name='gramQty'
-                        id='gramQty'
+                        name='eighthQty'
+                        id='eighthQty'
                         className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
                         placeholder='Qty'
                       />
                       <button
+                        onClick={() => {
+                          eighthQty < Number(props.product.eighth.eighthQty) &&
+                            eighthQty >= 0 &&
+                            setEighthQty((prevState) => prevState + 1);
+                        }}
                         type='button'
                         className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
@@ -210,6 +249,10 @@ const Product = (props) => {
                   <form className='mt-1'>
                     <span className='relative z-0 inline-flex shadow-sm rounded-md'>
                       <button
+                        onClick={() => {
+                          quarterQty > 0 &&
+                            setQuarterQty((prevState) => prevState - 1);
+                        }}
                         type='button'
                         className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
@@ -229,13 +272,21 @@ const Product = (props) => {
                         </svg>
                       </button>
                       <input
+                        onChange={qtyChangeHandler}
+                        value={quarterQty}
                         type='text'
-                        name='gramQty'
-                        id='gramQty'
+                        name='quarterQty'
+                        id='quarterQty'
                         className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
                         placeholder='Qty'
                       />
                       <button
+                        onClick={() => {
+                          quarterQty <
+                            Number(props.product.quarter.quarterQty) &&
+                            quarterQty >= 0 &&
+                            setQuarterQty((prevState) => prevState + 1);
+                        }}
                         type='button'
                         className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
@@ -282,6 +333,10 @@ const Product = (props) => {
                   <form className='mt-1'>
                     <span className='relative z-0 inline-flex shadow-sm rounded-md'>
                       <button
+                        onClick={() => {
+                          halfQty > 0 &&
+                            setHalfQty((prevState) => prevState - 1);
+                        }}
                         type='button'
                         className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
@@ -301,13 +356,20 @@ const Product = (props) => {
                         </svg>
                       </button>
                       <input
+                        onChange={qtyChangeHandler}
+                        value={halfQty}
                         type='text'
-                        name='gramQty'
-                        id='gramQty'
+                        name='halfQty'
+                        id='halfQty'
                         className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
                         placeholder='Qty'
                       />
                       <button
+                        onClick={() => {
+                          halfQty < Number(props.product.half.halfQty) &&
+                            halfQty >= 0 &&
+                            setHalfQty((prevState) => prevState + 1);
+                        }}
                         type='button'
                         className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
@@ -354,6 +416,10 @@ const Product = (props) => {
                   <form className='mt-1'>
                     <span className='relative z-0 inline-flex shadow-sm rounded-md'>
                       <button
+                        onClick={() => {
+                          ounceQty > 0 &&
+                            setOunceQty((prevState) => prevState - 1);
+                        }}
                         type='button'
                         className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
@@ -373,13 +439,20 @@ const Product = (props) => {
                         </svg>
                       </button>
                       <input
+                        onChange={qtyChangeHandler}
+                        value={ounceQty}
                         type='text'
-                        name='gramQty'
-                        id='gramQty'
+                        name='ounceQty'
+                        id='ounceQty'
                         className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
                         placeholder='Qty'
                       />
                       <button
+                        onClick={() => {
+                          ounceQty < Number(props.product.ounce.ounceQty) &&
+                            ounceQty >= 0 &&
+                            setOunceQty((prevState) => prevState + 1);
+                        }}
                         type='button'
                         className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                       >
