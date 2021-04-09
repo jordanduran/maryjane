@@ -255,7 +255,7 @@ const Navbar = () => {
               <Link href='/marketplace'>
                 <a
                   className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-800 hover:bg-gray-50'
-                  onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
+                  onClick={() => setIsNavMenuOpen(false)}
                 >
                   Marketplace
                 </a>
@@ -263,7 +263,7 @@ const Navbar = () => {
               <Link href='/partner-application'>
                 <a
                   className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-800 hover:bg-gray-200'
-                  onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
+                  onClick={() => setIsNavMenuOpen(false)}
                 >
                   Partnership
                 </a>
@@ -274,7 +274,7 @@ const Navbar = () => {
               <Link href='/auth'>
                 <a
                   className='block w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
-                  onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
+                  onClick={() => setIsNavMenuOpen(false)}
                 >
                   Sign In
                 </a>
@@ -285,7 +285,7 @@ const Navbar = () => {
                 <Link href='/account'>
                   <a
                     className='flex content-center justify-center w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
-                    onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
+                    onClick={() => setIsNavMenuOpen(false)}
                   >
                     <span className='inline-block align-middle mt-1.5'>
                       View Account
@@ -296,7 +296,7 @@ const Navbar = () => {
                   <a
                     onClick={logoutHandler}
                     className='block w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
-                    onFocus={() => setIsNavMenuOpen((prevState) => !prevState)}
+                    onClick={() => setIsNavMenuOpen(false)}
                   >
                     <FontAwesomeIcon
                       className='fa-2x text-base mr-2'
