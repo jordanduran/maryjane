@@ -44,7 +44,30 @@ const Navbar = () => {
                 />
               </a>
             </Link>
+
             <div className='-mr-2 flex items-center md:hidden'>
+              <button
+                onClick={() => console.log('Shopping cart!')}
+                type='button'
+                className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
+                aria-expanded='false'
+              >
+                <span className='sr-only'>Open main menu</span>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  class='h-8 w-8 text-gray-700'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  stroke='currentColor'
+                >
+                  <path
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    stroke-width='2'
+                    d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
+                  />
+                </svg>
+              </button>
               <button
                 onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
                 type='button'
@@ -89,6 +112,31 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
+        <div className='hidden space-x-10 md:flex md:ml-10'>
+          <button
+            onClick={() => console.log('Shopping cart!')}
+            type='button'
+            className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
+            aria-expanded='false'
+          >
+            <span className='sr-only'>Open main menu</span>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              class='h-8 w-8 text-gray-700'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+            >
+              <path
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                stroke-width='2'
+                d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
+              />
+            </svg>
+          </button>
+        </div>
+
         {!session && !loading && (
           <div className='hidden md:flex md:space-x-4'>
             <Link href='/auth'>
