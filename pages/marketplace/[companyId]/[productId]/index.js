@@ -78,7 +78,9 @@ export async function getStaticProps(context) {
           ouncePrice: selectedProduct.ounce.ouncePrice,
           ounceQty: selectedProduct.ounce.ounceQty,
         },
-        productImage: selectedProduct.productImage,
+        productImage:
+          selectedProduct.productImage ||
+          'https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
       },
     },
     revalidate: 1,
