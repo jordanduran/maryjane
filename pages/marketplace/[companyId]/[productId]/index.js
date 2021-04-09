@@ -7,7 +7,7 @@ import Product from '../../../../components/product/Product';
 
 const ProductPage = (props) => {
   return (
-    <div>
+    <div className='confetti-bg'>
       <Product companyData={props.companyData} product={props.product} />
     </div>
   );
@@ -27,15 +27,6 @@ export async function getStaticPaths() {
       params: { companyId: product.data.companyId.id, productId: product.id },
     })),
   };
-
-  // Map over products and return productId in paths along with companyId
-
-  // return {
-  //   fallback: false,
-  //   paths: companies.map((company) => ({
-  //     params: { companyId: company.id, productId: 'p1' },
-  //   })),
-  // };
 }
 
 export async function getStaticProps(context) {
@@ -87,6 +78,7 @@ export async function getStaticProps(context) {
           ouncePrice: selectedProduct.ounce.ouncePrice,
           ounceQty: selectedProduct.ounce.ounceQty,
         },
+        productImage: selectedProduct.productImage,
       },
     },
     revalidate: 1,
