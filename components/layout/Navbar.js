@@ -18,8 +18,6 @@ const Navbar = () => {
   const loggedInUser = useContext(UserContext);
   const { showAlert } = useContext(AlertContext);
 
-  console.log(cartProducts);
-
   const logoutHandler = () => {
     signOut();
     localStorage.removeItem('user');
