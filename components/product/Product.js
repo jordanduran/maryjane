@@ -28,24 +28,41 @@ const Product = (props) => {
   };
 
   const addToCartHandler = () => {
-    let product = {
-      product: {
-        productId: props.product.productId,
-        productName: props.product.productName,
-        productType: props.product.productType,
-        productImage: props.product.productImage,
-        quantity: {
-          gram: gramQty > 0 && gramQty,
-          eighth: eighthQty > 0 && eighthQty,
-          quarter: quarterQty > 0 && quarterQty,
-          half: halfQty > 0 && halfQty,
-          ounce: ounceQty > 0 && ounceQty,
+    if (
+      gramQty === 0 &&
+      eighthQty === 0 &&
+      quarterQty === 0 &&
+      halfQty === 0 &&
+      ounceQty === 0
+    ) {
+      return;
+    } else if (
+      gramQty > 0 ||
+      eighthQty > 0 ||
+      quarterQty > 0 ||
+      halfQty > 0 ||
+      ounceQty > 0
+    ) {
+      let product = {
+        product: {
+          productId: props.product.productId,
+          productName: props.product.productName,
+          productType: props.product.productType,
+          productImage: props.product.productImage,
+          quantity: {
+            gram: gramQty > 0 && gramQty,
+            eighth: eighthQty > 0 && eighthQty,
+            quarter: quarterQty > 0 && quarterQty,
+            half: halfQty > 0 && halfQty,
+            ounce: ounceQty > 0 && ounceQty,
+          },
         },
-      },
-      companyData: props.companyData,
-    };
-    console.log(product);
-    dispatch({ type: 'ADD', product });
+        companyData: props.companyData,
+      };
+      dispatch({ type: 'ADD', product });
+      console.log(product);
+    }
+
     setGramQty(0);
     setEighthQty(0);
     setQuarterQty(0);

@@ -57,28 +57,29 @@ const Navbar = () => {
                   <span className='text-xs font-bold'>{cartItems.length}</span>
                 </span>
               )}
-              <button
-                onClick={() => console.log('Shopping cart!')}
-                type='button'
-                className='mr-5 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
-                aria-expanded='false'
-              >
-                <span className='sr-only'>Open cart page</span>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='h-8 w-8 text-gray-700'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  stroke='currentColor'
+              <Link href='/cart'>
+                <button
+                  type='button'
+                  className='mr-5 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
+                  aria-expanded='false'
                 >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
-                  />
-                </svg>
-              </button>
+                  <span className='sr-only'>Open cart page</span>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-8 w-8 text-gray-700'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth='2'
+                      d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
+                    />
+                  </svg>
+                </button>
+              </Link>
               <button
                 onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
                 type='button'
@@ -124,32 +125,33 @@ const Navbar = () => {
           </div>
         </div>
         <div className='hidden space-x-10 md:flex md:ml-10'>
-          <button
-            onClick={() => console.log('Shopping cart!')}
-            type='button'
-            className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
-            aria-expanded='false'
-          >
-            <span className='sr-only'>Open cart page</span>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-8 w-8 text-gray-700 hover:text-green-500'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
+          <Link href='/cart'>
+            <button
+              type='button'
+              className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
+              aria-expanded='false'
             >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth='2'
-                d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
-              />
-            </svg>
+              <span className='sr-only'>Open cart page</span>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-8 w-8 text-gray-700 hover:text-green-500'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
+                />
+              </svg>
 
-            <span className='ml-1'>
-              {cartItems.length > 0 && '( ' + cartItems.length + ' )'}
-            </span>
-          </button>
+              <span className='ml-1'>
+                {cartItems.length > 0 && '( ' + cartItems.length + ' )'}
+              </span>
+            </button>
+          </Link>
         </div>
 
         {!session && !loading && (
