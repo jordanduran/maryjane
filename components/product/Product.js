@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCannabis,
   faQuestionCircle,
   faChevronCircleDown,
 } from '@fortawesome/free-solid-svg-icons';
-import { useDispatchCart } from '../../store/CartContext';
+import { useCart, useDispatchCart } from '../../store/CartContext';
+import AlertContext from '../../store/AlertContext';
 
 const Product = (props) => {
   const [gramQty, setGramQty] = useState(0);
@@ -13,7 +14,9 @@ const Product = (props) => {
   const [quarterQty, setQuarterQty] = useState(0);
   const [halfQty, setHalfQty] = useState(0);
   const [ounceQty, setOunceQty] = useState(0);
+  const { showAlert } = useContext(AlertContext);
 
+  const cartProducts = useCart();
   const dispatch = useDispatchCart();
 
   const qtyChangeHandler = (event) => {
@@ -28,6 +31,21 @@ const Product = (props) => {
   };
 
   const addToCartHandler = () => {
+    const companyProductsInCart = cartProducts.map(
+      (product) => product.companyData.id
+    );
+
+    if (
+      !companyProductsInCart.includes(props.companyData.id) &&
+      companyProductsInCart.length > 0
+    ) {
+      return showAlert({
+        title: 'Unsuccessful add to cart.',
+        message: `You may only place an order from one vendor at a time.`,
+        status: 'error',
+      });
+    }
+
     if (
       gramQty === 0 &&
       eighthQty === 0 &&
@@ -71,7 +89,7 @@ const Product = (props) => {
   };
 
   return (
-    <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 m-2'>
+    <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 m-3'>
       <div className='max-w-3xl mx-auto'>
         <div className='my-auto overflow-hidden shadow rounded-lg divide-y divide-gray-200'>
           <div className='px-4 py-5 sm:p-6'>
