@@ -70,7 +70,6 @@ const Product = (props) => {
     setOunceQty(0);
   };
 
-  console.log(props);
   return (
     <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 m-2'>
       <div className='max-w-3xl mx-auto'>
@@ -118,7 +117,7 @@ const Product = (props) => {
                 </span>
                 <div className='mt-1'>
                   <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.gram.gramQty}
+                    {props.product.gram.gramQty - gramQty}
                   </span>
                   <div className='mb-2 text-green-700 font-bold'>
                     <span>(${props.product.gram.gramPrice} per gram)</span>
@@ -192,7 +191,7 @@ const Product = (props) => {
                 </span>
                 <div className='mt-1'>
                   <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.eighth.eighthQty}
+                    {props.product.eighth.eighthQty - eighthQty}
                   </span>
                   <div className='mb-2 text-green-700 font-bold'>
                     <span>
@@ -269,7 +268,7 @@ const Product = (props) => {
                 </span>
                 <div className='mt-1'>
                   <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.quarter.quarterQty}
+                    {props.product.quarter.quarterQty - quarterQty}
                   </span>
                   <div className='mb-2 text-green-700 font-bold'>
                     <span>
@@ -347,7 +346,7 @@ const Product = (props) => {
                 </span>
                 <div className='mt-1'>
                   <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.half.halfQty}
+                    {props.product.half.halfQty - halfQty}
                   </span>
                   <div className='mb-2 text-green-700 font-bold'>
                     <span>(${props.product.half.halfPrice} per half)</span>
@@ -422,7 +421,7 @@ const Product = (props) => {
                 </span>
                 <div className='mt-1'>
                   <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.ounce.ounceQty}
+                    {props.product.ounce.ounceQty - ounceQty}
                   </span>
                   <div className='mb-2 text-green-700 font-bold'>
                     <span>(${props.product.ounce.ouncePrice} per ounce)</span>

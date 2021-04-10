@@ -1,7 +1,14 @@
+import CartList from '../../components/cart/CartList';
+import { useCart } from '../../store/CartContext';
+
 const CartPage = () => {
+  const cartProducts = useCart();
+
+  console.log(cartProducts);
+
   return (
     <div>
-      <h1>Cart Page</h1>
+      <CartList />
     </div>
   );
 };

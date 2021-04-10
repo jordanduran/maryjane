@@ -12,13 +12,13 @@ import AlertContext from '../../store/AlertContext';
 
 const Navbar = () => {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
-  const loggedInUser = useContext(UserContext);
-  const { showAlert } = useContext(AlertContext);
   const [session, loading] = useSession();
   const router = useRouter();
-  const cartItems = useCart();
+  const cartProducts = useCart();
+  const loggedInUser = useContext(UserContext);
+  const { showAlert } = useContext(AlertContext);
 
-  console.log(cartItems);
+  console.log(cartProducts);
 
   const logoutHandler = () => {
     signOut();
@@ -52,9 +52,11 @@ const Navbar = () => {
             </Link>
 
             <div className='-mr-2 flex items-center md:hidden'>
-              {cartItems.length > 0 && (
+              {cartProducts.length > 0 && (
                 <span className='absolute top-0 bottom-6 right-24 inline-flex items-center px-2.5 py-1.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
-                  <span className='text-xs font-bold'>{cartItems.length}</span>
+                  <span className='text-xs font-bold'>
+                    {cartProducts.length}
+                  </span>
                 </span>
               )}
               <Link href='/cart'>
@@ -148,7 +150,7 @@ const Navbar = () => {
               </svg>
 
               <span className='ml-1'>
-                {cartItems.length > 0 && '( ' + cartItems.length + ' )'}
+                {cartProducts.length > 0 && '( ' + cartProducts.length + ' )'}
               </span>
             </button>
           </Link>
