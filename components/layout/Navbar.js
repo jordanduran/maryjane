@@ -60,7 +60,7 @@ const Navbar = () => {
               <button
                 onClick={() => console.log('Shopping cart!')}
                 type='button'
-                className='mr-5 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
+                className='mr-5 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
                 aria-expanded='false'
               >
                 <span className='sr-only'>Open cart page</span>
@@ -127,13 +127,13 @@ const Navbar = () => {
           <button
             onClick={() => console.log('Shopping cart!')}
             type='button'
-            className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-300 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
+            className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
             aria-expanded='false'
           >
             <span className='sr-only'>Open cart page</span>
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='h-8 w-8 text-gray-700'
+              className='h-8 w-8 text-gray-700 hover:text-green-500'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
