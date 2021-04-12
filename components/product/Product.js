@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCannabis,
@@ -9,26 +9,14 @@ import { useCart, useDispatchCart } from '../../store/CartContext';
 import AlertContext from '../../store/AlertContext';
 
 const Product = (props) => {
-  const [gramQty, setGramQty] = useState(0);
-  const [eighthQty, setEighthQty] = useState(0);
-  const [quarterQty, setQuarterQty] = useState(0);
-  const [halfQty, setHalfQty] = useState(0);
-  const [ounceQty, setOunceQty] = useState(0);
+  const [qtyOfProduct, setQtyOfProduct] = useState(0);
+  const [selectedQty, setSelectedQty] = useState('gram');
   const { showAlert } = useContext(AlertContext);
-
   const cartProducts = useCart();
   const dispatch = useDispatchCart();
+  const qtyRef = useRef();
 
-  const qtyChangeHandler = (event) => {
-    const { name, value } = event.target;
-
-    setQtyValue((prevState) => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
+  const qtyChangeHandler = () => selectedQty(qtyRef.current.value);
 
   const addToCartHandler = () => {
     const companyProductsInCart = cartProducts.map(
@@ -46,21 +34,9 @@ const Product = (props) => {
       });
     }
 
-    if (
-      gramQty === 0 &&
-      eighthQty === 0 &&
-      quarterQty === 0 &&
-      halfQty === 0 &&
-      ounceQty === 0
-    ) {
+    if (qtyOfProduct === 0) {
       return;
-    } else if (
-      gramQty > 0 ||
-      eighthQty > 0 ||
-      quarterQty > 0 ||
-      halfQty > 0 ||
-      ounceQty > 0
-    ) {
+    } else if (qtyOfProduct > 0) {
       let product = {
         product: {
           productId: props.product.productId,
@@ -68,11 +44,8 @@ const Product = (props) => {
           productType: props.product.productType,
           productImage: props.product.productImage,
           quantity: {
-            gram: gramQty > 0 && gramQty,
-            eighth: eighthQty > 0 && eighthQty,
-            quarter: quarterQty > 0 && quarterQty,
-            half: halfQty > 0 && halfQty,
-            ounce: ounceQty > 0 && ounceQty,
+            selectedQty,
+            qty: qtyOfProduct,
           },
         },
         companyData: props.companyData,
@@ -80,12 +53,8 @@ const Product = (props) => {
       dispatch({ type: 'ADD', product });
       console.log(product);
     }
-
-    setGramQty(0);
-    setEighthQty(0);
-    setQuarterQty(0);
-    setHalfQty(0);
-    setOunceQty(0);
+    setSelectedQty('gram');
+    setQtyOfProduct(0);
   };
 
   return (
@@ -128,385 +97,103 @@ const Product = (props) => {
         </div>
         <div className='flex flex-col'>
           <div className='mt-5 text-center grid grid-cols-1 gap-5 sm:grid-cols-1'>
-            {Number(props.product.gram.gramQty) > 0 && (
-              <div className='px-4 w-full py-5 shadow rounded-lg overflow-hidden sm:p-6'>
-                <span className='text-sm font-medium text-gray-800 truncate'>
-                  Total Grams available
-                </span>
-                <div className='mt-1'>
-                  <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.gram.gramQty - gramQty}
-                  </span>
-                  <div className='mb-2 text-green-700 font-bold'>
-                    <span>(${props.product.gram.gramPrice} per gram)</span>
-                  </div>
-                  <form className='mt-1'>
-                    <span className='relative z-0 inline-flex shadow-sm rounded-md'>
-                      <button
-                        onClick={() => {
-                          gramQty > 0 &&
-                            setGramQty((prevState) => prevState - 1);
-                        }}
-                        type='button'
-                        className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Previous</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                      <input
-                        onChange={qtyChangeHandler}
-                        value={gramQty}
-                        type='text'
-                        name='gramQty'
-                        id='gramQty'
-                        className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
-                      />
-                      <button
-                        onClick={() => {
-                          gramQty < Number(props.product.gram.gramQty) &&
-                            gramQty >= 0 &&
-                            setGramQty((prevState) => prevState + 1);
-                        }}
-                        type='button'
-                        className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Next</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                    </span>
-                  </form>
-                </div>
+            <div className='px-4 w-full py-5 shadow rounded-lg overflow-hidden sm:p-6'>
+              <div>
+                <label
+                  htmlFor='location'
+                  className='block text-base font-semibold text-gray-700'
+                >
+                  Quantity
+                </label>
+                <select
+                  onChange={() => setSelectedQty(qtyRef.current.value)}
+                  ref={qtyRef}
+                  id='qty'
+                  name='qty'
+                  className='my-2 inline-block w-10/12 md:w-6/12 text-center pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md'
+                >
+                  <option value='gram'>Gram</option>
+                  <option value='eighth'>Eighth</option>
+                  <option value='quarter'>Quarter</option>
+                  <option value='half'>Half</option>
+                  <option value='ounce'>Ounce</option>
+                </select>
               </div>
-            )}
-            {Number(props.product.eighth.eighthQty) > 0 && (
-              <div className='px-4 w-full py-5 shadow rounded-lg overflow-hidden sm:p-6'>
-                <span className='text-sm font-medium text-gray-800 truncate'>
-                  Total Eighths available
-                </span>
-                <div className='mt-1'>
-                  <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.eighth.eighthQty - eighthQty}
-                  </span>
-                  <div className='mb-2 text-green-700 font-bold'>
-                    <span>
-                      (${props.product.eighth.eighthPrice} per eighth)
-                    </span>
-                  </div>
-                  <form className='mt-1'>
-                    <span className='relative z-0 inline-flex shadow-sm rounded-md'>
-                      <button
-                        onClick={() => {
-                          eighthQty > 0 &&
-                            setEighthQty((prevState) => prevState - 1);
-                        }}
-                        type='button'
-                        className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Previous</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                      <input
-                        onChange={qtyChangeHandler}
-                        value={eighthQty}
-                        type='text'
-                        name='eighthQty'
-                        id='eighthQty'
-                        className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
-                        placeholder='Qty'
-                      />
-                      <button
-                        onClick={() => {
-                          eighthQty < Number(props.product.eighth.eighthQty) &&
-                            eighthQty >= 0 &&
-                            setEighthQty((prevState) => prevState + 1);
-                        }}
-                        type='button'
-                        className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Next</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                    </span>
-                  </form>
-                </div>
+              <div className='mb-2 text-green-700 font-bold'>
+                (
+                {selectedQty === 'gram' ? (
+                  <span>${props.product.gram.gramPrice} per gram</span>
+                ) : selectedQty === 'eighth' ? (
+                  <span>${props.product.eighth.eighthPrice} per eighth</span>
+                ) : selectedQty === 'quarter' ? (
+                  <span>${props.product.quarter.quarterPrice} per quarter</span>
+                ) : selectedQty === 'half' ? (
+                  <span>${props.product.half.halfPrice} per half</span>
+                ) : selectedQty === 'ounce' ? (
+                  <span>${props.product.ounce.ouncePrice} per ounce</span>
+                ) : undefined}
+                )
               </div>
-            )}
-            {Number(props.product.quarter.quarterQty) > 0 && (
-              <div className='px-4 w-full py-5 shadow rounded-lg overflow-hidden sm:p-6'>
-                <span className='text-sm font-medium text-gray-800 truncate'>
-                  Total Quarters available
-                </span>
-                <div className='mt-1'>
-                  <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.quarter.quarterQty - quarterQty}
-                  </span>
-                  <div className='mb-2 text-green-700 font-bold'>
-                    <span>
-                      (${props.product.quarter.quarterPrice} per quarter)
-                    </span>
-                  </div>
-                  <form className='mt-1'>
-                    <span className='relative z-0 inline-flex shadow-sm rounded-md'>
-                      <button
-                        onClick={() => {
-                          quarterQty > 0 &&
-                            setQuarterQty((prevState) => prevState - 1);
-                        }}
-                        type='button'
-                        className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Previous</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                      <input
-                        onChange={qtyChangeHandler}
-                        value={quarterQty}
-                        type='text'
-                        name='quarterQty'
-                        id='quarterQty'
-                        className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
-                        placeholder='Qty'
+              <form className='mt-1'>
+                <span className='relative z-0 inline-flex shadow-sm rounded-md'>
+                  <button
+                    onClick={() => {
+                      qtyOfProduct > 0 &&
+                        setQtyOfProduct((prevState) => prevState - 1);
+                    }}
+                    type='button'
+                    className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
+                  >
+                    <span className='sr-only'>Previous</span>
+                    <svg
+                      className='h-5 w-5'
+                      xmlns='http://www.w3.org/2000/svg'
+                      viewBox='0 0 20 20'
+                      fill='currentColor'
+                      aria-hidden='true'
+                    >
+                      <path
+                        fillRule='evenodd'
+                        d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
+                        clipRule='evenodd'
                       />
-                      <button
-                        onClick={() => {
-                          quarterQty <
-                            Number(props.product.quarter.quarterQty) &&
-                            quarterQty >= 0 &&
-                            setQuarterQty((prevState) => prevState + 1);
-                        }}
-                        type='button'
-                        className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Next</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                    </span>
-                  </form>
-                </div>
-              </div>
-            )}
-            {Number(props.product.half.halfQty) > 0 && (
-              <div className='px-4 w-full py-5 shadow rounded-lg overflow-hidden sm:p-6'>
-                <span className='text-sm font-medium text-gray-800 truncate'>
-                  Total Halfs available
-                </span>
-                <div className='mt-1'>
-                  <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.half.halfQty - halfQty}
-                  </span>
-                  <div className='mb-2 text-green-700 font-bold'>
-                    <span>(${props.product.half.halfPrice} per half)</span>
-                  </div>
-                  <form className='mt-1'>
-                    <span className='relative z-0 inline-flex shadow-sm rounded-md'>
-                      <button
-                        onClick={() => {
-                          halfQty > 0 &&
-                            setHalfQty((prevState) => prevState - 1);
-                        }}
-                        type='button'
-                        className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Previous</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                      <input
-                        onChange={qtyChangeHandler}
-                        value={halfQty}
-                        type='text'
-                        name='halfQty'
-                        id='halfQty'
-                        className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
-                        placeholder='Qty'
+                    </svg>
+                  </button>
+                  <input
+                    onChange={qtyChangeHandler}
+                    value={qtyOfProduct}
+                    type='text'
+                    name='qtyOfProduct'
+                    id='qtyOfProduct'
+                    className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex sm:text-sm border-gray-300'
+                  />
+                  <button
+                    onClick={() => {
+                      qtyOfProduct < 10 &&
+                        qtyOfProduct >= 0 &&
+                        setQtyOfProduct((prevState) => prevState + 1);
+                    }}
+                    type='button'
+                    className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
+                  >
+                    <span className='sr-only'>Next</span>
+                    <svg
+                      className='h-5 w-5'
+                      xmlns='http://www.w3.org/2000/svg'
+                      viewBox='0 0 20 20'
+                      fill='currentColor'
+                      aria-hidden='true'
+                    >
+                      <path
+                        fillRule='evenodd'
+                        d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
+                        clipRule='evenodd'
                       />
-                      <button
-                        onClick={() => {
-                          halfQty < Number(props.product.half.halfQty) &&
-                            halfQty >= 0 &&
-                            setHalfQty((prevState) => prevState + 1);
-                        }}
-                        type='button'
-                        className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Next</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                    </span>
-                  </form>
-                </div>
-              </div>
-            )}
-            {Number(props.product.ounce.ounceQty) > 0 && (
-              <div className='px-4 w-full py-5 shadow rounded-lg overflow-hidden sm:p-6'>
-                <span className='text-sm font-medium text-gray-800 truncate'>
-                  Total Ounces available
+                    </svg>
+                  </button>
                 </span>
-                <div className='mt-1'>
-                  <span className='w-40 mt-1 mr-2 text-3xl font-semibold text-gray-900'>
-                    {props.product.ounce.ounceQty - ounceQty}
-                  </span>
-                  <div className='mb-2 text-green-700 font-bold'>
-                    <span>(${props.product.ounce.ouncePrice} per ounce)</span>
-                  </div>
-                  <form className='mt-1'>
-                    <span className='relative z-0 inline-flex shadow-sm rounded-md'>
-                      <button
-                        onClick={() => {
-                          ounceQty > 0 &&
-                            setOunceQty((prevState) => prevState - 1);
-                        }}
-                        type='button'
-                        className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Previous</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                      <input
-                        onChange={qtyChangeHandler}
-                        value={ounceQty}
-                        type='text'
-                        name='ounceQty'
-                        id='ounceQty'
-                        className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex  sm:text-sm border-gray-300'
-                        placeholder='Qty'
-                      />
-                      <button
-                        onClick={() => {
-                          ounceQty < Number(props.product.ounce.ounceQty) &&
-                            ounceQty >= 0 &&
-                            setOunceQty((prevState) => prevState + 1);
-                        }}
-                        type='button'
-                        className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
-                      >
-                        <span className='sr-only'>Next</span>
-                        <svg
-                          className='h-5 w-5'
-                          xmlns='http://www.w3.org/2000/svg'
-                          viewBox='0 0 20 20'
-                          fill='currentColor'
-                          aria-hidden='true'
-                        >
-                          <path
-                            fillRule='evenodd'
-                            d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-                            clipRule='evenodd'
-                          />
-                        </svg>
-                      </button>
-                    </span>
-                  </form>
-                </div>
-              </div>
-            )}
+              </form>
+            </div>
             <div className=''>
               <button
                 onClick={addToCartHandler}
