@@ -6,7 +6,7 @@ const CartDispatchContext = createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD':
-      return [...state, action.product];
+      return [...state, action.productData];
 
     default:
       return {

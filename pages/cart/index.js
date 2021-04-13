@@ -4,8 +4,6 @@ import { useCart } from '../../store/CartContext';
 const CartPage = () => {
   const cartProducts = useCart();
 
-  console.log(cartProducts);
-
   return (
     <div>
       <CartList />

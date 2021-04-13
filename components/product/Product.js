@@ -64,7 +64,7 @@ const Product = (props) => {
         status: 'error',
       });
     } else if (qtyOfProduct > 0) {
-      let product = {
+      let productData = {
         product: {
           productId: props.product.productId,
           productName: props.product.productName,
@@ -77,8 +77,8 @@ const Product = (props) => {
         },
         companyData: props.companyData,
       };
-      dispatch({ type: 'ADD', product });
-      console.log(product);
+      dispatch({ type: 'ADD', productData });
+      console.log(productData);
     }
 
     setSelectedQty('gram');
