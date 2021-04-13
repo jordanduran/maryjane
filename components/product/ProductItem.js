@@ -6,7 +6,6 @@ const ProductItem = (props) => {
   const companyId = router.query.companyId;
 
   const showProductHandler = () => {
-    console.log(props.id);
     router.push('/marketplace/' + companyId + '/' + props.id);
   };
 
