@@ -4,14 +4,19 @@ import CartItem from './CartItem';
 const CartList = (props) => {
   const cartProducts = useCart();
 
-  console.log(cartProducts);
-
-  // Map over cartProducts and pass it to CartItem as props
-
   return (
     <div className='shadow overflow-hidden rounded-md mx-2 my-4'>
       <ul className='divide-y divide-gray-200'>
-        <CartItem />
+        {cartProducts.map((product) => (
+          <CartItem
+            key={product.product.productId}
+            id={product.product.productId}
+            productName={product.product.productName}
+            productType={product.product.productType}
+            productImage={product.product.productImage}
+            selectedQuantity={product.product.quantity}
+          />
+        ))}
       </ul>
     </div>
   );

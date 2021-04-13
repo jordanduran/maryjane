@@ -6,6 +6,11 @@ const CartPage = () => {
 
   return (
     <div>
+      <div className='pb-5 my-5 border-b border-gray-200'>
+        <h3 className='text-2xl leading-6 font-semibold text-gray-800'>
+          Shopping Cart
+        </h3>
+      </div>
       <CartList />
     </div>
   );

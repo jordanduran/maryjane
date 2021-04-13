@@ -73,6 +73,30 @@ const Product = (props) => {
           quantity: {
             selectedQty,
             qty: qtyOfProduct,
+            selectedQtyPrice:
+              selectedQty === 'gram'
+                ? props.product.gram.gramPrice
+                : selectedQty === 'eighth'
+                ? props.product.eighth.eighthPrice
+                : selectedQty === 'quarter'
+                ? props.product.quarter.quarterPrice
+                : selectedQty === 'half'
+                ? props.product.half.halfPrice
+                : selectedQty === 'ounce'
+                ? props.product.ounce.ouncePrice
+                : undefined,
+            quantityLeftOfProduct:
+              selectedQty === 'gram'
+                ? props.product.gram.gramQty
+                : selectedQty === 'eighth'
+                ? props.product.eighth.eighthQty
+                : selectedQty === 'quarter'
+                ? props.product.quarter.quarterQty
+                : selectedQty === 'half'
+                ? props.product.half.halfQty
+                : selectedQty === 'ounce'
+                ? props.product.ounce.ounceQty
+                : undefined,
           },
         },
         companyData: props.companyData,
