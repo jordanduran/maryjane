@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCannabis,
@@ -6,17 +6,36 @@ import {
   faChevronCircleDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { useCart, useDispatchCart } from '../../store/CartContext';
+import { UserContext } from '../../store/userContext';
 import AlertContext from '../../store/AlertContext';
 
 const Product = (props) => {
   const [qtyOfProduct, setQtyOfProduct] = useState(0);
   const [selectedQty, setSelectedQty] = useState('gram');
   const { showAlert } = useContext(AlertContext);
+  const { loggedInUser } = useContext(UserContext);
   const cartProducts = useCart();
   const dispatch = useDispatchCart();
   const qtyRef = useRef();
 
   const qtyChangeHandler = () => selectedQty(qtyRef.current.value);
+
+  const incrementQtyHandler = () => {
+    if (qtyOfProduct === 10) {
+      showAlert({
+        title: 'Unsuccessful add to cart.',
+        message: `10 is currently the maximum amount you may purchase.`,
+        status: 'notice',
+      });
+      setQtyOfProduct(10);
+    } else if (qtyOfProduct <= 10 && qtyOfProduct >= 0) {
+      setQtyOfProduct((prevState) => prevState + 1);
+    }
+  };
+
+  const decrementQtyHandler = () => {
+    if (qtyOfProduct > 0) setQtyOfProduct((prevState) => prevState - 1);
+  };
 
   const addToCartHandler = () => {
     const companyProductsInCart = cartProducts.map(
@@ -32,10 +51,18 @@ const Product = (props) => {
         message: `You may only place an order from one vendor at a time.`,
         status: 'error',
       });
-    }
-
-    if (qtyOfProduct === 0) {
-      return;
+    } else if (qtyOfProduct === 0) {
+      return showAlert({
+        title: 'Unsuccessful add to cart.',
+        message: `You must select the quantity you would like before adding to your cart.`,
+        status: 'error',
+      });
+    } else if (props.companyData.userId === loggedInUser.id) {
+      return showAlert({
+        title: 'Unsuccessful add to cart.',
+        message: `You can not purchase from your own store.`,
+        status: 'error',
+      });
     } else if (qtyOfProduct > 0) {
       let product = {
         product: {
@@ -53,6 +80,7 @@ const Product = (props) => {
       dispatch({ type: 'ADD', product });
       console.log(product);
     }
+
     setSelectedQty('gram');
     setQtyOfProduct(0);
   };
@@ -137,10 +165,7 @@ const Product = (props) => {
               <form className='mt-1'>
                 <span className='relative z-0 inline-flex shadow-sm rounded-md'>
                   <button
-                    onClick={() => {
-                      qtyOfProduct > 0 &&
-                        setQtyOfProduct((prevState) => prevState - 1);
-                    }}
+                    onClick={decrementQtyHandler}
                     type='button'
                     className='relative block items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                   >
@@ -168,11 +193,7 @@ const Product = (props) => {
                     className='text-center w-16 shadow-sm focus:ring-green-500 focus:border-green-500 inline-flex sm:text-sm border-gray-300'
                   />
                   <button
-                    onClick={() => {
-                      qtyOfProduct < 10 &&
-                        qtyOfProduct >= 0 &&
-                        setQtyOfProduct((prevState) => prevState + 1);
-                    }}
+                    onClick={incrementQtyHandler}
                     type='button'
                     className='-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500'
                   >
@@ -194,11 +215,12 @@ const Product = (props) => {
                 </span>
               </form>
             </div>
-            <div className=''>
+
+            <div>
               <button
                 onClick={addToCartHandler}
                 type='button'
-                className='inline-block w-full text-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+                className='inline-block w-full text-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-80'
               >
                 Add To Cart
               </button>
