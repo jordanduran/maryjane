@@ -7,7 +7,11 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD':
       return [...state, action.productData];
-
+    case 'DELETE':
+      const products = state.filter(
+        (product) => product.product.productKey !== action.keyId
+      );
+      return products;
     default:
       return {
         ...state,
