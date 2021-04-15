@@ -6,8 +6,6 @@ import Link from 'next/link';
 import ProductList from '../product/ProductList';
 
 const CompanyProfile = (props) => {
-  console.log(props);
-
   const loggedInUser = useContext(UserContext);
   const [editBtnClicked, setEditBtnClicked] = useState(false);
   const [session, loading] = useSession();
