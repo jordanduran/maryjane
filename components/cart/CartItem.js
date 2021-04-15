@@ -13,30 +13,34 @@ const CartItem = (props) => {
     <>
       <li className='px-2 py-4'>
         <div className='mr-4 flex justify-between flex-shrink-0'>
-          <div className='flex justify-center items-center'>
+          <div className='flex'>
             <img
               className='inline-flex h-14 w-14 border border-gray-300 bg-gray-50 text-gray-300 mr-2'
               src={props.productImage}
             />
 
-            <span className='text-gray-800 font-bold text-sm w-3/5'>
+            <span className='capitalize text-gray-800 font-bold text-sm'>
               {props.productName}
               <span className='uppercase block text-green-700 font-bold text-xs'>
-                {props.selectedQuantity.selectedQty === 'quarter'
+                {props.selectedQuantity.selectedQty === 'quarter(s)'
                   ? 'qtr'
                   : `${props.selectedQuantity.qty} ${props.selectedQuantity.selectedQty}(s)`}
               </span>
             </span>
           </div>
-          <div className='flex flex-col items-center'>
-            <span className='text-gray-800 font-bold text-sm mb-1'>Price</span>
-            <span className='text-green-600 font-bold text-base'>
-              $
-              {props.selectedQuantity.selectedQtyPrice *
-                props.selectedQuantity.qty}
-            </span>
-          </div>
-          <div className='flex items-center pl-8 '>
+
+          <div className='flex'>
+            <div className='flex flex-col jusitfy-center items-center mr-10'>
+              <span className='text-gray-800 font-bold text-sm'>
+                Price
+              </span>
+              <span className='text-green-600 font-bold text-base'>
+                $
+                {props.selectedQuantity.selectedQtyPrice *
+                  props.selectedQuantity.qty}
+              </span>
+            </div>
+            
             <button
               onClick={() => removeProductHandler(props.keyId)}
               className='text-red-600'
