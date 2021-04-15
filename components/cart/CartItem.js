@@ -19,28 +19,26 @@ const CartItem = (props) => {
               src={props.productImage}
             />
 
-            <span className='capitalize text-gray-800 font-bold text-sm'>
+            <span className='capitalize text-gray-800 font-bold text-base w-2/4'>
               {props.productName}
               <span className='uppercase block text-green-700 font-bold text-xs'>
-                {props.selectedQuantity.selectedQty === 'quarter(s)'
-                  ? 'qtr'
+                {props.selectedQuantity.selectedQty === 'quarter'
+                  ? `${props.selectedQuantity.qty} qtr(s)`
                   : `${props.selectedQuantity.qty} ${props.selectedQuantity.selectedQty}(s)`}
               </span>
             </span>
           </div>
 
           <div className='flex'>
-            <div className='flex flex-col jusitfy-center items-center mr-10'>
-              <span className='text-gray-800 font-bold text-sm'>
-                Price
-              </span>
-              <span className='text-green-600 font-bold text-base'>
+            <div className='flex flex-col items-center mr-10'>
+              <span className='text-gray-800 font-bold text-base'>Price</span>
+              <span className='uppercase block text-green-700 font-bold text-base'>
                 $
                 {props.selectedQuantity.selectedQtyPrice *
                   props.selectedQuantity.qty}
               </span>
             </div>
-            
+
             <button
               onClick={() => removeProductHandler(props.keyId)}
               className='text-red-600'
