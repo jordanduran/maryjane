@@ -8,10 +8,10 @@ const reducer = (state, action) => {
     case 'ADD':
       return [...state, action.productData];
     case 'DELETE':
-      const products = state.filter(
+      const updatedProducts = state.filter(
         (product) => product.product.productKey !== action.keyId
       );
-      return products;
+      return updatedProducts;
     default:
       return {
         ...state,
