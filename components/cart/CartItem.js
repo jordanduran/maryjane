@@ -4,7 +4,6 @@ const CartItem = (props) => {
   const dispatch = useDispatchCart();
 
   const removeProductHandler = (keyId) => {
-    console.log(keyId);
     dispatch({ type: 'DELETE', keyId });
   };
 
@@ -14,42 +13,30 @@ const CartItem = (props) => {
     <>
       <li className='px-2 py-4'>
         <div className='mr-4 flex justify-between flex-shrink-0'>
-          <div className='flex items-center'>
+          <div className='flex justify-center items-center'>
             <img
               className='inline-flex h-14 w-14 border border-gray-300 bg-gray-50 text-gray-300 mr-2'
               src={props.productImage}
             />
 
-            <span className='text-gray-800 font-bold text-sm w-1/5'>
+            <span className='text-gray-800 font-bold text-sm w-3/5'>
               {props.productName}
               <span className='uppercase block text-green-700 font-bold text-xs'>
-                (
                 {props.selectedQuantity.selectedQty === 'quarter'
                   ? 'qtr'
-                  : props.selectedQuantity.selectedQty}
-                )
+                  : `${props.selectedQuantity.qty} ${props.selectedQuantity.selectedQty}(s)`}
               </span>
             </span>
           </div>
-          <div className='flex flex-col text-center mr-2'>
-            <span className='text-gray-800 text-xs font-semibold md:font-bold md:text-sm mb-2'>
-              Qty
-            </span>
-            <span className='text-green-600 font-bold md:text-3xl'>
-              {props.selectedQuantity.qty}
-            </span>
-          </div>
-          <div className='flex flex-col text-center mx-2'>
-            <span className='text-gray-800 text-xs font-semibold md:font-bold md:text-sm mb-2'>
-              Price
-            </span>
-            <span className='text-green-600 font-bold md:text-3xl'>
+          <div className='flex flex-col items-center'>
+            <span className='text-gray-800 font-bold text-sm mb-1'>Price</span>
+            <span className='text-green-600 font-bold text-base'>
               $
               {props.selectedQuantity.selectedQtyPrice *
                 props.selectedQuantity.qty}
             </span>
           </div>
-          <div className='flex items-center pl-2 '>
+          <div className='flex items-center pl-8 '>
             <button
               onClick={() => removeProductHandler(props.keyId)}
               className='text-red-600'
