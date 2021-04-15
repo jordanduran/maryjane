@@ -25,7 +25,7 @@ const CartItem = (props) => {
             </span>
           </div>
 
-          <div className='flex'>
+          <div className='flex justify-center'>
             <div className='flex flex-col items-center mr-10'>
               <span className='text-gray-800 font-bold text-base'>Price</span>
               <span className='uppercase block text-green-700 font-bold text-base'>
@@ -37,7 +37,7 @@ const CartItem = (props) => {
 
             <button
               onClick={() => removeProductHandler(props.keyId)}
-              className='text-red-600'
+              className='text-red-600 h-5 self-center'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
