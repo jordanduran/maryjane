@@ -161,7 +161,7 @@ const Navbar = () => {
                 className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300'
                 onFocus={() => setIsNavMenuOpen(false)}
               >
-                Sign In
+                Login
               </a>
             </Link>
           </div>
@@ -198,7 +198,7 @@ const Navbar = () => {
                   className='fa-2x text-base mr-2 text-gray-700'
                   icon={faSignOutAlt}
                 />
-                Sign Out
+                Logout
               </a>
             </Link>
           </div>
@@ -279,7 +279,7 @@ const Navbar = () => {
                   className='block w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
                   onClick={() => setIsNavMenuOpen(false)}
                 >
-                  Sign In
+                  Login
                 </a>
               </Link>
             )}
@@ -304,7 +304,7 @@ const Navbar = () => {
                       className='fa-2x text-base mr-2'
                       icon={faSignOutAlt}
                     />
-                    Sign Out
+                    Logout
                   </a>
                 </Link>
               </div>
