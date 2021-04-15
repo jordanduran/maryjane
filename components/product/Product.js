@@ -126,7 +126,6 @@ const Product = (props) => {
         companyData: props.companyData,
       };
       dispatch({ type: 'ADD', productData });
-      console.log(productData);
     }
 
     setSelectedQty('gram');

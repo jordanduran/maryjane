@@ -1,9 +1,11 @@
-import Link from 'next/link';
-import CartList from '../../components/cart/CartList';
+import { useRouter } from 'next/router';
 import { useCart } from '../../store/CartContext';
+import CartList from '../../components/cart/CartList';
 
 const CartPage = () => {
+  const router = useRouter();
   const cartProducts = useCart();
+  const companyData = cartProducts.map((product) => product.companyData);
   const totalPrice = cartProducts.reduce(
     (total, b) =>
       total +
@@ -48,6 +50,21 @@ const CartPage = () => {
               currency: 'USD',
             })}
           </h3>
+        </div>
+        <div className='flex justify-between'>
+          <button
+            onClick={() => router.push(`/marketplace/${companyData[0].id}`)}
+            type='button'
+            className='inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+          >
+            Back to Store
+          </button>
+          <button
+            type='button'
+            className='inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+          >
+            Continue
+          </button>
         </div>
       </div>
     );
