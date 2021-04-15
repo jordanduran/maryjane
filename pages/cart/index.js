@@ -1,10 +1,13 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useCart } from '../../store/CartContext';
+import { useCart, useDispatchCart } from '../../store/CartContext';
 import CartList from '../../components/cart/CartList';
+import { TrashIcon } from '@heroicons/react/solid';
 
 const CartPage = () => {
   const router = useRouter();
   const cartProducts = useCart();
+  const dispatch = useDispatchCart();
   const companyData = cartProducts.map((product) => product.companyData);
   const totalPrice = cartProducts.reduce(
     (total, b) =>
@@ -12,6 +15,8 @@ const CartPage = () => {
       Number(b.product.quantity.selectedQtyPrice) * b.product.quantity.qty,
     0
   );
+
+  const clearCartHandler = () => dispatch({ type: 'CLEAR_ALL' });
 
   if (!cartProducts.length) {
     return (
@@ -42,16 +47,24 @@ const CartPage = () => {
           </h3>
         </div>
         <CartList />
-        <div className='pb-5 my-5 border-b border-gray-200'>
-          <h3 className='text-2xl leading-6 font-semibold text-gray-800'>
+        <div className='flex justify-between items-center pb-5 my-5 border-b border-gray-200'>
+          <h3 className='inline text-2xl leading-6 font-semibold text-gray-800'>
             Total:{' '}
             {totalPrice.toLocaleString('en', {
               style: 'currency',
               currency: 'USD',
             })}
           </h3>
+          <button
+            onClick={clearCartHandler}
+            type='button'
+            className='inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-bold rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+          >
+            <TrashIcon className='-ml-1 mr-2 h-5 w-5' aria-hidden='true' />
+            Clear Cart
+          </button>
         </div>
-        <div className='flex justify-between'>
+        <div className='flex justify-between mt-10'>
           <button
             onClick={() => router.push(`/marketplace/${companyData[0].id}`)}
             type='button'
