@@ -60,7 +60,7 @@ const Navbar = () => {
               <Link href='/cart'>
                 <button
                   type='button'
-                  className='mr-5 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
+                  className='mr-5 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none'
                   aria-expanded='false'
                 >
                   <span className='sr-only'>Open cart page</span>
@@ -128,7 +128,7 @@ const Navbar = () => {
           <Link href='/cart'>
             <button
               type='button'
-              className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white'
+              className='mr-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 focus:outline-none'
               aria-expanded='false'
             >
               <span className='sr-only'>Open cart page</span>
