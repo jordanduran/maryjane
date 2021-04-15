@@ -7,8 +7,6 @@ const CartItem = (props) => {
     dispatch({ type: 'DELETE', keyId });
   };
 
-  console.log(props);
-
   return (
     <>
       <li className='px-2 py-4'>

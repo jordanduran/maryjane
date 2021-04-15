@@ -4,6 +4,12 @@ import { useCart } from '../../store/CartContext';
 
 const CartPage = () => {
   const cartProducts = useCart();
+  const totalPrice = cartProducts.reduce(
+    (total, b) =>
+      total +
+      Number(b.product.quantity.selectedQtyPrice) * b.product.quantity.qty,
+    0
+  );
 
   if (!cartProducts.length) {
     return (
@@ -34,10 +40,15 @@ const CartPage = () => {
           </h3>
         </div>
         <CartList />
-        <div className='pb-5 my-5 border-b border-gray-200'></div>
-        <h3 className='text-2xl leading-6 font-semibold text-gray-800'>
-          Total:
-        </h3>
+        <div className='pb-5 my-5 border-b border-gray-200'>
+          <h3 className='text-2xl leading-6 font-semibold text-gray-800'>
+            Total:{' '}
+            {totalPrice.toLocaleString('en', {
+              style: 'currency',
+              currency: 'USD',
+            })}
+          </h3>
+        </div>
       </div>
     );
   }
