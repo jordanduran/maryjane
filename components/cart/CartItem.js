@@ -3,9 +3,7 @@ import { useDispatchCart } from '../../store/CartContext';
 const CartItem = (props) => {
   const dispatch = useDispatchCart();
 
-  const removeProductHandler = (keyId) => {
-    dispatch({ type: 'DELETE', keyId });
-  };
+  const removeProductHandler = (keyId) => dispatch({ type: 'DELETE', keyId });
 
   return (
     <>
