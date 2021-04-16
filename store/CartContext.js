@@ -24,7 +24,7 @@ const reducer = (state, action) => {
 export const CartProvider = ({ children }) => {
   const storedCart =
     typeof window !== 'undefined'
-      ? JSON.parse(localStorage.getItem('cart'))
+      ? JSON.parse(sessionStorage.getItem('cart'))
       : null;
 
   const [state, dispatch] = useReducer(reducer, storedCart ? storedCart : []);

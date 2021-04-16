@@ -18,7 +18,7 @@ const CartPage = () => {
 
   const clearCartHandler = () => {
     dispatch({ type: 'CLEAR_ALL' });
-    localStorage.removeItem('cart');
+    sessionStorage.removeItem('cart');
   };
 
   if (!cartProducts.length) {

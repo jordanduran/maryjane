@@ -6,13 +6,13 @@ const CartItem = (props) => {
 
   const removeProductHandler = (keyId) => {
     dispatch({ type: 'DELETE', keyId });
-    localStorage.removeItem('cart');
+    sessionStorage.removeItem('cart');
 
     let updatedProducts = cartProducts.filter(
       (product) => product.product.productKey !== keyId
     );
 
-    localStorage.setItem('cart', JSON.stringify(updatedProducts));
+    sessionStorage.setItem('cart', JSON.stringify(updatedProducts));
   };
 
   return (

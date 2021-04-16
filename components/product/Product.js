@@ -42,8 +42,6 @@ const Product = (props) => {
       (product) => product.companyData.id
     );
 
-    const getProductsFromStorage = localStorage.getItem('cart');
-
     if (
       !companyProductsInCart.includes(props.companyData.id) &&
       companyProductsInCart.length > 0
@@ -130,11 +128,11 @@ const Product = (props) => {
       dispatch({ type: 'ADD', productData });
 
       if (!cartProducts.length) {
-        localStorage.setItem('cart', JSON.stringify(productData));
+        sessionStorage.setItem('cart', JSON.stringify(productData));
       } else if (cartProducts.length) {
-        localStorage.removeItem('cart');
+        sessionStorage.removeItem('cart');
         let updatedProducts = [...cartProducts, productData];
-        localStorage.setItem('cart', JSON.stringify(updatedProducts));
+        sessionStorage.setItem('cart', JSON.stringify(updatedProducts));
       }
     }
 
