@@ -1,9 +1,19 @@
-import { useDispatchCart } from '../../store/CartContext';
+import { useCart, useDispatchCart } from '../../store/CartContext';
 
 const CartItem = (props) => {
+  const cartProducts = useCart();
   const dispatch = useDispatchCart();
 
-  const removeProductHandler = (keyId) => dispatch({ type: 'DELETE', keyId });
+  const removeProductHandler = (keyId) => {
+    dispatch({ type: 'DELETE', keyId });
+    localStorage.removeItem('cart');
+
+    let updatedProducts = cartProducts.filter(
+      (product) => product.product.productKey !== keyId
+    );
+
+    localStorage.setItem('cart', JSON.stringify(updatedProducts));
+  };
 
   return (
     <>

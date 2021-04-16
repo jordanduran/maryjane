@@ -21,6 +21,7 @@ const Navbar = () => {
   const logoutHandler = () => {
     signOut();
     localStorage.removeItem('user');
+    localStorage.removeItem('cart');
     setIsNavMenuOpen(false);
     router.replace('/');
     showAlert({

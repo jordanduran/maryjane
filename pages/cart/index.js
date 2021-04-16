@@ -16,7 +16,10 @@ const CartPage = () => {
     0
   );
 
-  const clearCartHandler = () => dispatch({ type: 'CLEAR_ALL' });
+  const clearCartHandler = () => {
+    dispatch({ type: 'CLEAR_ALL' });
+    localStorage.removeItem('cart');
+  };
 
   if (!cartProducts.length) {
     return (

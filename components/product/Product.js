@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCannabis,
@@ -41,6 +41,8 @@ const Product = (props) => {
     const companyProductsInCart = cartProducts.map(
       (product) => product.companyData.id
     );
+
+    const getProductsFromStorage = localStorage.getItem('cart');
 
     if (
       !companyProductsInCart.includes(props.companyData.id) &&
@@ -126,6 +128,14 @@ const Product = (props) => {
         companyData: props.companyData,
       };
       dispatch({ type: 'ADD', productData });
+
+      if (!cartProducts.length) {
+        localStorage.setItem('cart', JSON.stringify(productData));
+      } else if (cartProducts.length) {
+        localStorage.removeItem('cart');
+        let updatedProducts = [...cartProducts, productData];
+        localStorage.setItem('cart', JSON.stringify(updatedProducts));
+      }
     }
 
     setSelectedQty('gram');
