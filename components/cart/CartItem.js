@@ -1,7 +1,6 @@
-import { useCart, useDispatchCart } from '../../store/CartContext';
+import { useDispatchCart } from '../../store/CartContext';
 
 const CartItem = (props) => {
-  const cartProducts = useCart();
   const dispatch = useDispatchCart();
 
   const removeProductHandler = (keyId) => {

@@ -12,7 +12,7 @@ const CartPage = () => {
   const totalPrice = cartProducts.reduce(
     (total, currentValue) =>
       total +
-      Number(currentValue.product.quantity.selectedQtyPrice) *
+      currentValue.product.quantity.selectedQtyPrice *
         currentValue.product.quantity.qty,
     0
   );

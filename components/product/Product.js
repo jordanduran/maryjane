@@ -96,7 +96,7 @@ const Product = (props) => {
           productImage: props.product.productImage,
           quantity: {
             selectedQty,
-            qty: qtyOfProduct,
+            qty: qtyOfProduct.toString(),
             selectedQtyPrice:
               selectedQty === 'gram'
                 ? props.product.gram.gramPrice
