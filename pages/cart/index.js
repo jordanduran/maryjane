@@ -18,7 +18,6 @@ const CartPage = () => {
 
   const clearCartHandler = () => {
     dispatch({ type: 'CLEAR_ALL' });
-    sessionStorage.removeItem('cart');
   };
 
   if (!cartProducts.length) {

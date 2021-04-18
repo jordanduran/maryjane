@@ -13,7 +13,7 @@ const MyApp = ({ Component, pageProps }) => {
   const [loading, setLoading] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(
     typeof window !== 'undefined'
-      ? JSON.parse(sessionStorage.getItem('user'))
+      ? JSON.parse(localStorage.getItem('user'))
       : null
   );
 

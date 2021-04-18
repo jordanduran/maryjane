@@ -22,12 +22,7 @@ const reducer = (state, action) => {
 };
 
 export const CartProvider = ({ children }) => {
-  const storedCart =
-    typeof window !== 'undefined'
-      ? JSON.parse(sessionStorage.getItem('cart'))
-      : null;
-
-  const [state, dispatch] = useReducer(reducer, storedCart ? storedCart : []);
+  const [state, dispatch] = useReducer(reducer, []);
 
   return (
     <CartDispatchContext.Provider value={dispatch}>

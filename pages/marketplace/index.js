@@ -9,7 +9,7 @@ const MarketplacePage = (props) => {
 
   useEffect(() => {
     if (loggedInUser) {
-      sessionStorage.setItem('user', JSON.stringify(loggedInUser));
+      localStorage.setItem('user', JSON.stringify(loggedInUser));
     }
   }, [loggedInUser]);
 

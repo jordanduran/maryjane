@@ -20,8 +20,7 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     signOut();
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('cart');
+    localStorage.removeItem('user');
     setIsNavMenuOpen(false);
     router.replace('/');
     showAlert({

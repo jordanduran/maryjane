@@ -126,14 +126,6 @@ const Product = (props) => {
         companyData: props.companyData,
       };
       dispatch({ type: 'ADD', productData });
-
-      if (!cartProducts.length) {
-        sessionStorage.setItem('cart', JSON.stringify(productData));
-      } else if (cartProducts.length) {
-        sessionStorage.removeItem('cart');
-        let updatedProducts = [...cartProducts, productData];
-        sessionStorage.setItem('cart', JSON.stringify(updatedProducts));
-      }
     }
 
     setSelectedQty('gram');
