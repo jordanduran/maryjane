@@ -8,6 +8,7 @@ const CartPage = () => {
   const router = useRouter();
   const cartProducts = useCart();
   const dispatch = useDispatchCart();
+
   const companyData = cartProducts.map((product) => product.companyData);
   const totalPrice = cartProducts.reduce(
     (total, currentValue) =>

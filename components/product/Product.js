@@ -127,8 +127,6 @@ const Product = (props) => {
       };
       dispatch({ type: 'ADD', productData });
     }
-
-    setSelectedQty('gram');
     setQtyOfProduct(0);
   };
 
