@@ -10,9 +10,10 @@ const CartPage = () => {
   const dispatch = useDispatchCart();
   const companyData = cartProducts.map((product) => product.companyData);
   const totalPrice = cartProducts.reduce(
-    (total, b) =>
+    (total, currentValue) =>
       total +
-      Number(b.product.quantity.selectedQtyPrice) * b.product.quantity.qty,
+      Number(currentValue.product.quantity.selectedQtyPrice) *
+        currentValue.product.quantity.qty,
     0
   );
 
