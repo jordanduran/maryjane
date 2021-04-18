@@ -16,8 +16,8 @@ const CartPage = () => {
     0
   );
 
-  const clearCartHandler = () => {
-    dispatch({ type: 'CLEAR_ALL' });
+  const emtpyCartHandler = () => {
+    dispatch({ type: 'EMPTY_CART' });
   };
 
   if (!cartProducts.length) {
@@ -58,12 +58,12 @@ const CartPage = () => {
             })}
           </h3>
           <button
-            onClick={clearCartHandler}
+            onClick={emtpyCartHandler}
             type='button'
             className='inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-bold rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
           >
             <TrashIcon className='-ml-1 mr-2 h-5 w-5' aria-hidden='true' />
-            Clear Cart
+            Empty Cart
           </button>
         </div>
         <div className='flex justify-between mt-10'>

@@ -12,7 +12,7 @@ const reducer = (state, action) => {
         (product) => product.product.productKey !== action.keyId
       );
       return updatedProducts;
-    case 'CLEAR_ALL':
+    case 'EMPTY_CART':
       return [];
     default:
       return {
