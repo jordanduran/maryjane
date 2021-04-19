@@ -9,6 +9,12 @@ const ProductItem = (props) => {
     router.push('/marketplace/' + companyId + '/' + props.id);
   };
 
+  const updateProductHandler = () => {
+    router.push(
+      '/marketplace/' + companyId + '/' + props.id + '/' + 'update-product'
+    );
+  };
+
   if (props.onEditBtnClicked) {
     return (
       <Fragment>
@@ -21,7 +27,7 @@ const ProductItem = (props) => {
             />
             <div className='flex flex-row justify-between justify-between h-1/5 z-10 img-button'>
               <button
-                onClick={() => console.log('EDIT', props.id)}
+                onClick={updateProductHandler}
                 type='button'
                 className='z-10 w-9 h-9 m-2 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500'
               >

@@ -248,6 +248,51 @@ const createProduct = async (
   );
 };
 
+const updateProduct = async (
+  productId,
+  productType,
+  productName,
+  gramPrice,
+  gramQty,
+  eighthPrice,
+  eighthQty,
+  quarterPrice,
+  quarterQty,
+  halfPrice,
+  halfQty,
+  ouncePrice,
+  ounceQty,
+) => {
+  faunaClient.query(
+    q.Update(q.Ref(q.Collection('products'), productId), {
+      data: {
+        productType,
+        productName,
+        gram: {
+          gramPrice,
+          gramQty,
+        },
+        eighth: {
+          eighthPrice,
+          eighthQty,
+        },
+        quarter: {
+          quarterPrice,
+          quarterQty,
+        },
+        half: {
+          halfPrice,
+          halfQty,
+        },
+        ounce: {
+          ouncePrice,
+          ounceQty,
+        },
+      }
+    })
+  );
+};
+
 module.exports = {
   getUsers,
   getUserById,
@@ -263,4 +308,5 @@ module.exports = {
   getProductById,
   getProductsByCompanyId,
   createProduct,
+  updateProduct,
 };

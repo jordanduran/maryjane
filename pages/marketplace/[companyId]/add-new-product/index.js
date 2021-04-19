@@ -22,13 +22,13 @@ const AddNewProductPage = () => {
     if (response.ok) {
       router.back();
       showAlert({
-        title: 'Successful new product.',
+        title: 'Successful new add of product.',
         message: `You have successfully added a new product to your inventory.`,
         status: 'success',
       });
     } else if (!response.ok) {
       showAlert({
-        title: 'Partnership application already in database',
+        title: 'Unsuccessful add of product',
         message:
           data.message ||
           'Sorry, but your product cannot be added to your inventory at this time.',
