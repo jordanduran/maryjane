@@ -47,9 +47,9 @@ const CompanyProfile = (props) => {
 
                         <span className='text-sm'>{props.company}</span>
                       </p>
-                      <p className='text-sm font-bold text-green-500'>
+                      <p className='font-bold text-green-500 flex'>
                         <svg
-                          className='h-6 w-6 inline-block mr-1'
+                          className='h-5 w-5 inline-block mr-1' 
                           xmlns='http://www.w3.org/2000/svg'
                           viewBox='0 0 20 20'
                           fill='currentColor'
