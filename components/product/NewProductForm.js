@@ -77,7 +77,7 @@ const NewProductForm = (props) => {
         <div className='confetti-bg bg-gray-50 py-6 px-4 space-y-6 sm:p-6'>
           <div>
             <h3 className='text-lg font-bold leading-6 font-medium text-gray-800'>
-              Add new product to your inventory
+              Add New Product to Inventory
             </h3>
             {/* <p className='mt-1 text-sm text-gray-500'>
                 This information will be displayed publicly so be careful what
