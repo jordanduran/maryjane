@@ -18,12 +18,13 @@ const UpdateProductPage = (props) => {
     });
 
     if (response.ok) {
-      router.back();
       showAlert({
         title: 'Successful update of product.',
         message: `You have successfully updated this product.`,
         status: 'success',
       });
+      router.replace(router.asPath);
+      router.replace('/marketplace/' + router.query.companyId);
     } else if (!response.ok) {
       showAlert({
         title: 'Unsuccessful update of product',
@@ -33,6 +34,8 @@ const UpdateProductPage = (props) => {
       });
     }
   };
+
+  console.log(router);
 
   return (
     <div className='px-4 py-5 sm:p-6 md:ml-6 md:mr-6 confetti-bg'>

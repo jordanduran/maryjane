@@ -79,11 +79,11 @@ const ProductItem = (props) => {
                 In Stock
               </span>
             </p>
-          ) : (Number(props.gram.gramQty) === 0 &&
-              Number(props.eighth.eighthQty) === 0) ||
-            (Number(props.eighth.eighthQty) === 0 &&
-              Number(props.half.halfQty) === 0 &&
-              Number(props.ounce.ounceQty) === 0) ? (
+          ) : Number(props.gram.gramQty) === 0 &&
+            Number(props.eighth.eighthQty) === 0 &&
+            Number(props.eighth.eighthQty) === 0 &&
+            Number(props.half.halfQty) === 0 &&
+            Number(props.ounce.ounceQty) === 0 ? (
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
                 Out of Stock
@@ -134,18 +134,18 @@ const ProductItem = (props) => {
             Number(props.eighth.eighthQty) +
             Number(props.quarter.quarterQty) +
             Number(props.half.halfQty) +
-            Number(props.ounce.ounceQty) >=
+            Number(props.ounce.ounceQty) >
           20 ? (
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
                 In Stock
               </span>
             </p>
-          ) : (Number(props.gram.gramQty) === 0 &&
-              Number(props.eighth.eighthQty) === 0) ||
-            (Number(props.eighth.eighthQty) === 0 &&
-              Number(props.half.halfQty) === 0 &&
-              Number(props.ounce.ounceQty) === 0) ? (
+          ) : Number(props.gram.gramQty) === 0 &&
+            Number(props.eighth.eighthQty) === 0 &&
+            Number(props.eighth.eighthQty) === 0 &&
+            Number(props.half.halfQty) === 0 &&
+            Number(props.ounce.ounceQty) === 0 ? (
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800'>
                 Out of Stock
