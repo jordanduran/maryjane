@@ -1,6 +1,6 @@
 import {
+  getCompanies,
   getCompanyById,
-  getProducts,
   getProductsByCompanyId,
 } from '../../../utils/Fauna';
 import CompanyProfile from '../../../components/company/CompanyProfile';
@@ -25,37 +25,21 @@ const CompanyProfilePage = (props) => {
   );
 };
 
-export async function getStaticPaths() {
-  const products = await getProducts();
-
-  console.log(
-    'SELECTED COMPANY PRODUCTS:',
-    products.map((product) => product)
-  );
-
-  return {
-    fallback: true,
-    paths: products.map((product) => ({
-      params: { companyId: product.data.companyId.id, productId: product.id },
-    })),
-  };
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const companyId = context.params.companyId;
 
   const selectedCompany = await getCompanyById(companyId);
 
-  console.log('SELECTED COMPANY:', selectedCompany);
-
   const selectedCompanyProducts = await getProductsByCompanyId(companyId);
 
-  console.log('COMPANY PRODUCTS:', selectedCompanyProducts);
+  const allCompanies = await getCompanies();
+
+  const allCompanyIds = allCompanies.map((company) => company.id);
 
   return {
     props: {
       companyData: {
-        id: companyId,
+        id: allCompanyIds,
         userId: selectedCompany.userId.id,
         name: selectedCompany.name,
         company: selectedCompany.company,
@@ -96,7 +80,6 @@ export async function getStaticProps(context) {
           'https://images.unsplash.com/photo-1616690002178-a2e2736a2e2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjA5fHxjYW5uYWJpc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
       })),
     },
-    revalidate: 1,
   };
 }
 
