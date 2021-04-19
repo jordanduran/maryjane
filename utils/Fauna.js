@@ -74,11 +74,11 @@ const createUser = async (
 };
 
 const updateUser = async () => {
-  // TODO: update user
+  // TODO: Update user
 };
 
 const deleteUser = async () => {
-  // TODO: delete user
+  // TODO: Delete user
 };
 
 // COMPANY API ROUTES
@@ -261,8 +261,10 @@ const updateProduct = async (
   halfPrice,
   halfQty,
   ouncePrice,
-  ounceQty,
+  ounceQty
 ) => {
+  // Updates product in DB
+
   faunaClient.query(
     q.Update(q.Ref(q.Collection('products'), productId), {
       data: {
@@ -288,8 +290,15 @@ const updateProduct = async (
           ouncePrice,
           ounceQty,
         },
-      }
+      },
     })
+  );
+};
+
+const deleteProduct = async (productId) => {
+  // Deletes product
+  return await faunaClient.query(
+    q.Delete(q.Ref(q.Collection('products'), productId))
   );
 };
 
@@ -309,4 +318,5 @@ module.exports = {
   getProductsByCompanyId,
   createProduct,
   updateProduct,
+  deleteProduct,
 };

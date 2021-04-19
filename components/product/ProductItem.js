@@ -15,6 +15,10 @@ const ProductItem = (props) => {
     );
   };
 
+  const deleteProductHandler = () => {
+    props.onDeleteProductHandler(props.id);
+  };
+
   if (props.onEditBtnClicked) {
     return (
       <Fragment>
@@ -41,7 +45,7 @@ const ProductItem = (props) => {
                 </svg>
               </button>
               <button
-                onClick={() => console.log('DELETE', props.id)}
+                onClick={deleteProductHandler}
                 type='button'
                 className='z-10 w-9 h-9 m-2 inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600'
               >
@@ -69,7 +73,7 @@ const ProductItem = (props) => {
             Number(props.quarter.quarterQty) +
             Number(props.half.halfQty) +
             Number(props.ounce.ounceQty) >=
-          8 ? (
+          20 ? (
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
                 In Stock
@@ -90,13 +94,13 @@ const ProductItem = (props) => {
               Number(props.eighth.eighthQty) +
               Number(props.half.halfQty) +
               Number(props.ounce.ounceQty) <
-              7 &&
+              10 &&
             Number(props.gram.gramQty) +
               Number(props.eighth.eighthQty) +
               Number(props.eighth.eighthQty) +
               Number(props.half.halfQty) +
               Number(props.ounce.ounceQty) <
-              7 >
+              10 >
               0 ? (
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700'>
@@ -131,7 +135,7 @@ const ProductItem = (props) => {
             Number(props.quarter.quarterQty) +
             Number(props.half.halfQty) +
             Number(props.ounce.ounceQty) >=
-          8 ? (
+          20 ? (
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
                 In Stock
@@ -152,13 +156,13 @@ const ProductItem = (props) => {
               Number(props.eighth.eighthQty) +
               Number(props.half.halfQty) +
               Number(props.ounce.ounceQty) <
-              7 &&
+              10 &&
             Number(props.gram.gramQty) +
               Number(props.eighth.eighthQty) +
               Number(props.eighth.eighthQty) +
               Number(props.half.halfQty) +
               Number(props.ounce.ounceQty) <
-              7 >
+              10 >
               0 ? (
             <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
               <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700'>

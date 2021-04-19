@@ -20,6 +20,7 @@ const ProductList = (props) => {
           ounce={product.ounce}
           onEditBtnClicked={props.onEditBtnClicked}
           onSetEditBtnClicked={props.onSetEditBtnClicked}
+          onDeleteProductHandler={props.onDeleteProductHandler}
         />
       ))}
     </ul>

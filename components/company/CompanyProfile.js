@@ -6,11 +6,27 @@ import Link from 'next/link';
 import ProductList from '../product/ProductList';
 
 const CompanyProfile = (props) => {
-  const loggedInUser = useContext(UserContext);
   const [editBtnClicked, setEditBtnClicked] = useState(false);
+  const loggedInUser = useContext(UserContext);
+
   const [session, loading] = useSession();
   const router = useRouter();
   const companyId = router.query.companyId;
+
+  const deleteProductHandler = async (productId) => {
+    try {
+      await fetch('/api/delete-product', {
+        method: 'DELETE',
+        body: JSON.stringify({ productId }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      router.replace(router.asPath);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (session && !loading && props.userId === loggedInUser.loggedInUser.id) {
     return (
@@ -49,7 +65,7 @@ const CompanyProfile = (props) => {
                       </p>
                       <p className='font-bold text-green-500 flex'>
                         <svg
-                          className='h-5 w-5 inline-block mr-1' 
+                          className='h-5 w-5 inline-block mr-1'
                           xmlns='http://www.w3.org/2000/svg'
                           viewBox='0 0 20 20'
                           fill='currentColor'
@@ -136,6 +152,7 @@ const CompanyProfile = (props) => {
             products={props.products}
             onEditBtnClicked={editBtnClicked}
             onSetEditBtnClicked={setEditBtnClicked}
+            onDeleteProductHandler={deleteProductHandler}
           />
         )}
       </div>
