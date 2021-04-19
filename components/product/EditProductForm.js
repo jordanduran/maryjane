@@ -6,12 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCannabis,
   faQuestionCircle,
-  faChevronCircleDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 const EditProductForm = (props) => {
   const { loggedInUser } = useContext(UserContext);
   const [session, loading] = useSession();
+
+  console.log(props);
 
   const productTypeInputRef = useRef();
   const productNameInputRef = useRef();
@@ -134,6 +135,7 @@ const EditProductForm = (props) => {
                   id='productType'
                   name='productType'
                   autoComplete='productType'
+                  defaultValue={props.product.productType}
                   className='max-w-lg block focus:ring-green-500 focus:border-green-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md'
                 >
                   <option>Sativa</option>
