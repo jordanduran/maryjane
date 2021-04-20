@@ -56,24 +56,24 @@ export async function getServerSideProps(context) {
         productName: product.data.productName,
         productCompanyId: product.data.companyId.id,
         gram: {
-          gramPrice: product.data.gram.gramPrice || '',
-          gramQty: product.data.gram.gramQty || '',
+          gramPrice: product.data.gram.gramPrice || '0',
+          gramQty: product.data.gram.gramQty || '0',
         },
         eighth: {
-          eighthPrice: product.data.eighth.eighthPrice || '',
-          eighthQty: product.data.eighth.eighthQty || '',
+          eighthPrice: product.data.eighth.eighthPrice || '0',
+          eighthQty: product.data.eighth.eighthQty || '0',
         },
         quarter: {
-          quarterPrice: product.data.quarter.quarterPrice || '',
-          quarterQty: product.data.quarter.quarterQty || '',
+          quarterPrice: product.data.quarter.quarterPrice || '0',
+          quarterQty: product.data.quarter.quarterQty || '0',
         },
         half: {
-          halfPrice: product.data.half.halfPrice || '',
-          halfQty: product.data.half.halfQty || '',
+          halfPrice: product.data.half.halfPrice || '0',
+          halfQty: product.data.half.halfQty || '0',
         },
         ounce: {
-          ouncePrice: product.data.ounce.ouncePrice || '',
-          ounceQty: product.data.ounce.ounceQty || '',
+          ouncePrice: product.data.ounce.ouncePrice || '0',
+          ounceQty: product.data.ounce.ounceQty || '0',
         },
         productImage:
           product.data.productImage ||

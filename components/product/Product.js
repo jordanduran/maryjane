@@ -21,7 +21,19 @@ const Product = (props) => {
   const qtyChangeHandler = () => selectedQty(qtyRef.current.value);
 
   const incrementQtyHandler = () => {
-    if (qtyOfProduct === 10) {
+    if (
+      props.product.gram.gramQty === '0' &&
+      props.product.eighth.eighthQty === '0' &&
+      props.product.quarter.quarterQty === '0' &&
+      props.product.half.halfQty === '0' &&
+      props.product.ounce.ounceQty === '0'
+    ) {
+      return showAlert({
+        title: 'Unsuccessful add to cart.',
+        message: `This product is currently out of stock, please try another product from the inventory.`,
+        status: 'error',
+      });
+    } else if (qtyOfProduct === 10) {
       showAlert({
         title: 'Unsuccessful add to cart.',
         message: `10 is currently the maximum amount you may purchase.`,
