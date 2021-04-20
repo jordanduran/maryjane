@@ -108,7 +108,13 @@ const ProductItem = (props) => {
                 Low in Stock
               </span>
             </p>
-          ) : null}
+          ) : (
+            <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
+              <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
+                In Stock
+              </span>
+            </p>
+          )}
           <p className='block text-sm font-medium text-gray-500 pointer-events-none'>
             {props.productType}
           </p>
@@ -170,7 +176,13 @@ const ProductItem = (props) => {
                 Low in Stock
               </span>
             </p>
-          ) : null}
+          ) : (
+            <p className='w-1/2 mt-2 inline-block text-right text-sm font-medium text-gray-900 truncate pointer-events-none'>
+              <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800'>
+                In Stock
+              </span>
+            </p>
+          )}
           <p className='w-1/2 block text-sm font-medium text-gray-500 pointer-events-none'>
             {props.productType}
           </p>
