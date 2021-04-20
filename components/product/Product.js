@@ -141,7 +141,7 @@ const Product = (props) => {
     }
     setQtyOfProduct(0);
   };
-
+  console.log(props);
   return (
     <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 m-3'>
       <div className='max-w-3xl mx-auto'>
@@ -197,11 +197,21 @@ const Product = (props) => {
                   name='qty'
                   className='my-2 inline-block w-10/12 md:w-6/12 text-center pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md'
                 >
-                  <option value='gram'>Gram</option>
-                  <option value='eighth'>Eighth</option>
-                  <option value='quarter'>Quarter</option>
-                  <option value='half'>Half</option>
-                  <option value='ounce'>Ounce</option>
+                  {Number(props.product.gram.gramQty) > 0 && (
+                    <option value='gram'>Gram</option>
+                  )}
+                  {Number(props.product.eighth.eighthQty) > 0 && (
+                    <option value='eighth'>Eighth</option>
+                  )}
+                  {Number(props.product.quarter.quarterQty) > 0 && (
+                    <option value='quarter'>Quarter</option>
+                  )}
+                  {Number(props.product.half.halfQty) > 0 && (
+                    <option value='half'>Half</option>
+                  )}
+                  {Number(props.product.ounce.ounceQty) > 0 && (
+                    <option value='ounce'>Ounce</option>
+                  )}
                 </select>
               </div>
               <div className='mb-2 text-green-700 font-bold'>
