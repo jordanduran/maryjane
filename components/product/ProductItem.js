@@ -66,7 +66,7 @@ const ProductItem = (props) => {
             </div>
           </div>
 
-          <p className='capitalize w-1/2 mt-2 inline-block text-sm font-medium text-gray-900 truncate pointer-events-none'>
+          <p className='capitalize w-1/2 mt-2 inline-block text-sm font-bold text-gray-900 truncate pointer-events-none'>
             {props.productName}
           </p>
           {Number(props.gram.gramQty) +
@@ -133,7 +133,7 @@ const ProductItem = (props) => {
             />
           </div>
 
-          <p className='capitalize w-1/2 mt-2 inline-block text-sm font-medium text-gray-900 truncate pointer-events-none'>
+          <p className='capitalize font-bold w-1/2 mt-2 inline-block text-sm font-medium text-gray-900 truncate pointer-events-none'>
             {props.productName}
           </p>
 
