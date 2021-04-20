@@ -16,7 +16,8 @@ const ProductItem = (props) => {
   };
 
   const deleteProductHandler = () => {
-    props.onDeleteProductHandler(props.id);
+    props.onSetDeleteBtnClicked(true);
+    props.onSetProductToDelete(props.id);
   };
 
   if (props.onEditBtnClicked) {

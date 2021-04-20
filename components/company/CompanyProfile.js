@@ -4,29 +4,17 @@ import { UserContext } from '../../store/userContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import ProductList from '../product/ProductList';
+import Modal from '../ui/Modal';
 
 const CompanyProfile = (props) => {
   const [editBtnClicked, setEditBtnClicked] = useState(false);
+  const [deleteBtnClicked, setDeleteBtnClicked] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
   const loggedInUser = useContext(UserContext);
 
   const [session, loading] = useSession();
   const router = useRouter();
   const companyId = router.query.companyId;
-
-  const deleteProductHandler = async (productId) => {
-    try {
-      await fetch('/api/delete-product', {
-        method: 'DELETE',
-        body: JSON.stringify({ productId }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      router.replace(router.asPath);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   if (session && !loading && props.userId === loggedInUser.loggedInUser.id) {
     return (
@@ -124,7 +112,6 @@ const CompanyProfile = (props) => {
             </button>
           </div>
         </div>
-
         {props.products.length === 0 ? (
           <div className='confetti-bg'>
             <div className='max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8'>
@@ -152,7 +139,17 @@ const CompanyProfile = (props) => {
             products={props.products}
             onEditBtnClicked={editBtnClicked}
             onSetEditBtnClicked={setEditBtnClicked}
-            onDeleteProductHandler={deleteProductHandler}
+            onSetDeleteBtnClicked={setDeleteBtnClicked}
+            onSetProductToDelete={setProductToDelete}
+          />
+        )}
+        {deleteBtnClicked && (
+          <Modal
+            productId={productToDelete}
+            status='delete'
+            title='Delete Product'
+            message='Are you sure you would like to remove this product from your inventory?'
+            onSetDeleteBtnClicked={setDeleteBtnClicked}
           />
         )}
       </div>
@@ -236,11 +233,7 @@ const CompanyProfile = (props) => {
             </div>
           </div>
         ) : (
-          <ProductList
-            products={props.products}
-            onEditBtnClicked={editBtnClicked}
-            onSetEditBtnClicked={setEditBtnClicked}
-          />
+          <ProductList products={props.products} />
         )}
       </div>
     );
