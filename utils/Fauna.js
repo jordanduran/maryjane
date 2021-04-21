@@ -109,7 +109,7 @@ const getCompanyById = async (id) => {
 
 const getCompanyByUserEmail = async (email) => {
   // Fetches specific company from DB by company email
-  const data = await faunaClient.query(
+  const { data } = await faunaClient.query(
     q.Get(q.Match(q.Index('company_by_email'), email))
   );
 
