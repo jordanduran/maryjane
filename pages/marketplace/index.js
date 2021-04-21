@@ -6,31 +6,12 @@ import { UserContext } from '../../store/userContext';
 
 const MarketplacePage = (props) => {
   const { loggedInUser } = useContext(UserContext);
-  const { setLoggedInUser } = useContext(UserContext);
 
   useEffect(() => {
-    const userCompanyData =
-      props.companies &&
-      loggedInUser &&
-      props.companies
-        .map((company) => company)
-        .filter((company) => company.userId === loggedInUser.id);
-
-    if (
-      loggedInUser &&
-      userCompanyData.map((company) => company.userId).includes(loggedInUser.id)
-    ) {
-      setLoggedInUser({ ...loggedInUser, userCompanyData });
-      localStorage.setItem('user', JSON.stringify(loggedInUser));
-    } else if (
-      loggedInUser &&
-      !userCompanyData
-        .map((company) => company.userId)
-        .includes(loggedInUser.id)
-    ) {
+    if (loggedInUser) {
       localStorage.setItem('user', JSON.stringify(loggedInUser));
     }
-  }, []);
+  }, [loggedInUser]);
 
   return (
     <Fragment>

@@ -20,8 +20,8 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     signOut();
-    localStorage.removeItem('user');
     setIsNavMenuOpen(false);
+    localStorage.removeItem('user');
     router.replace('/');
     showAlert({
       title: 'Successful sign out.',
