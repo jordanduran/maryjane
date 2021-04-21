@@ -108,7 +108,7 @@ const Navbar = () => {
           <div className='hidden space-x-10 md:flex md:ml-10'>
             <Link href='/marketplace'>
               <a
-                className='font-medium text-gray-700 hover:text-gray-800'
+                className='uppercase font-semibold text-sm text-gray-700 hover:text-gray-800'
                 onFocus={() => setIsNavMenuOpen(false)}
               >
                 Marketplace
@@ -116,7 +116,7 @@ const Navbar = () => {
             </Link>
             <Link href='/partner-application'>
               <a
-                className='font-medium text-gray-700 hover:text-gray-800'
+                className='uppercase font-semibold text-sm text-gray-700 hover:text-gray-800'
                 onFocus={() => setIsNavMenuOpen(false)}
               >
                 Partnership
@@ -257,7 +257,7 @@ const Navbar = () => {
             <div className='px-2 pt-2 pb-3 space-y-1'>
               <Link href='/marketplace'>
                 <a
-                  className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-800 hover:bg-gray-50'
+                  className='block px-3 py-2 rounded-md text-sm uppercase font-semibold  text-gray-700 hover:text-gray-800 hover:bg-gray-50'
                   onClick={() => setIsNavMenuOpen(false)}
                 >
                   Marketplace
@@ -265,7 +265,7 @@ const Navbar = () => {
               </Link>
               <Link href='/partner-application'>
                 <a
-                  className='block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-800 hover:bg-gray-200'
+                  className='block px-3 py-2 rounded-md text-sm uppercase font-semibold text-gray-700 hover:text-gray-800 hover:bg-gray-200'
                   onClick={() => setIsNavMenuOpen(false)}
                 >
                   Partnership
