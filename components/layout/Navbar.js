@@ -15,7 +15,7 @@ const Navbar = () => {
   const [session, loading] = useSession();
   const router = useRouter();
   const cartProducts = useCart();
-  const loggedInUser = useContext(UserContext);
+  const { loggedInUser } = useContext(UserContext);
   const { showAlert } = useContext(AlertContext);
 
   const logoutHandler = () => {
@@ -122,6 +122,16 @@ const Navbar = () => {
                 Partnership
               </a>
             </Link>
+            {session && loggedInUser.company && (
+              <Link href={`/marketplace/${loggedInUser.companyId}`}>
+                <a
+                  className='uppercase font-semibold text-sm text-gray-700 hover:text-gray-800'
+                  onFocus={() => setIsNavMenuOpen(false)}
+                >
+                  My Company
+                </a>
+              </Link>
+            )}
           </div>
         </div>
         <div className='hidden space-x-10 md:flex md:ml-10'>
@@ -184,7 +194,7 @@ const Navbar = () => {
                   </svg>
                 </span>
                 <span className='uppercase text-sm font-semibold'>
-                  {loggedInUser.name || session.user.name}
+                  {session.user.name}
                 </span>
               </a>
             </Link>
@@ -272,7 +282,6 @@ const Navbar = () => {
                 </a>
               </Link>
             </div>
-
             {!session && !loading && (
               <Link href='/auth'>
                 <a
@@ -283,8 +292,9 @@ const Navbar = () => {
                 </a>
               </Link>
             )}
-            {session && (
-              <div className='flex flex-col content-center'>
+
+            <div className='flex flex-col content-center'>
+              {session && (
                 <Link href='/account'>
                   <a
                     className='flex content-center justify-center w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
@@ -295,6 +305,18 @@ const Navbar = () => {
                     </span>
                   </a>
                 </Link>
+              )}
+              {session && loggedInUser.company && (
+                <Link href={`/marketplace/${loggedInUser.companyId}`}>
+                  <a
+                    className='block w-full px-5 py-3 text-center font-medium text-green-500 bg-gray-50 hover:bg-gray-100'
+                    onClick={() => setIsNavMenuOpen(false)}
+                  >
+                    My Company
+                  </a>
+                </Link>
+              )}
+              {session && (
                 <Link href='/auth'>
                   <a
                     onClick={logoutHandler}
@@ -307,8 +329,8 @@ const Navbar = () => {
                     Logout
                   </a>
                 </Link>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </Transition>
