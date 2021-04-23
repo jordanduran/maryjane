@@ -44,7 +44,7 @@ const createUser = async (
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const { setLoggedInUser, loggedInUser } = useContext(UserContext);
+  const { setLoggedInUser } = useContext(UserContext);
   const { showAlert } = useContext(AlertContext);
 
   const router = useRouter();
@@ -66,31 +66,23 @@ const AuthForm = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
+    let userData;
+
     const fetchUser = async () => {
       const data = await fetch('/api/getUser').then((response) =>
-        response.json().then((data) =>
-          setLoggedInUser({
-            id: data.ref['@ref'].id,
-            name: data.data.name,
-            email: data.data.email,
-            address: {
-              street: data.data.address.street,
-              city: data.data.address.city,
-              state: data.data.address.state,
-              zipcode: data.data.address.zipcode,
-            },
-          })
-        )
+        response.json()
       );
+      userData = data.data;
 
-      return data;
+      return userData;
     };
 
     const fetchUserCompanyData = async () => {
+      let userData = await fetchUser();
       const data = await fetch('/api/get-company-by-email').then((response) =>
         response.json().then((data) =>
-          setLoggedInUser((prevState) => ({
-            ...prevState,
+          setLoggedInUser({
+            ...userData,
             companyId: data.ref['@ref'].id,
             company: data.data.company,
             companyEmail: data.data.companyEmail,
@@ -99,7 +91,7 @@ const AuthForm = () => {
             hasApplied: data.data.hasApplied,
             userName: data.data.name,
             companyEmail: data.data.companyEmail,
-          }))
+          })
         )
       );
 

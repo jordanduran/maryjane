@@ -8,17 +8,8 @@ const MarketplacePage = (props) => {
   const { loggedInUser } = useContext(UserContext);
 
   useEffect(() => {
-    const storageUserData = JSON.parse(localStorage.getItem('user'));
-
-    if (storageUserData === null) {
-      localStorage.setItem('user', JSON.stringify(loggedInUser));
-    } else if (storageUserData !== null && !'company' in storageUserData) {
-      localStorage.removeItem('user');
-      localStorage.setItem('user', JSON.stringify(loggedInUser));
-    } else if (storageUserData && 'company' in storageUserData) {
-      return;
-    }
-  }, []);
+    localStorage.setItem('user', JSON.stringify(loggedInUser));
+  }, [loggedInUser]);
 
   return (
     <Fragment>
