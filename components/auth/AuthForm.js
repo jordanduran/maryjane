@@ -44,7 +44,7 @@ const createUser = async (
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const { setLoggedInUser } = useContext(UserContext);
+  const { setLoggedInUser, loggedInUser } = useContext(UserContext);
   const { showAlert } = useContext(AlertContext);
 
   const router = useRouter();
@@ -86,6 +86,26 @@ const AuthForm = () => {
       return data;
     };
 
+    const fetchUserCompanyData = async () => {
+      const data = await fetch('/api/get-company-by-email').then((response) =>
+        response.json().then((data) =>
+          setLoggedInUser((prevState) => ({
+            ...prevState,
+            companyId: data.ref['@ref'].id,
+            company: data.data.company,
+            companyEmail: data.data.companyEmail,
+            country: data.data.country,
+            userEmail: data.data.email,
+            hasApplied: data.data.hasApplied,
+            userName: data.data.name,
+            companyEmail: data.data.companyEmail,
+          }))
+        )
+      );
+
+      return data;
+    };
+
     if (isLogin) {
       const enteredEmail = emailInputRef.current.value;
       const enteredPassword = passwordInputRef.current.value;
@@ -101,6 +121,7 @@ const AuthForm = () => {
         passwordInputRef.current.value = '';
 
         fetchUser();
+        fetchUserCompanyData();
 
         router.replace('/marketplace');
 
